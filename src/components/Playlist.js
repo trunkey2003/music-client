@@ -7,7 +7,7 @@ export default function Playlist(props) {
         <div className="playlist">
             {props.songs && props.songs.map((song, index) => {
                 return (
-                    <Song thumb= {song.image} title={song.name} singer={song.singer} songIndex={props.songIndex} index={index} key={index} modifySongPlay={props.modifySongPlay} songs={props.songs} modifyIsPlaying={props.modifyIsPlaying}/>
+                    <Song handleSoftDelte={props.handleSoftDelte} thumb= {song.image} title={song.name} src={props.src} singer={song.singer} songIndex={props.songIndex} index={index} key={index} modifySongPlay={props.modifySongPlay} modifyIsPlaying={props.modifyIsPlaying}/>
                 )
             })}
         </div>

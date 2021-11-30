@@ -1,7 +1,7 @@
 const URL = 'https://trunkey2003.github.io';
 
 
-export const songsUs = [
+const songsUs = [
   {
     name: "All I Want For Christmas Is You",
     singer: "Mariah Carey",
@@ -731,7 +731,7 @@ export const songsUs = [
   // },
 ]
 
-export const songsVn = [
+const songsVn = [
     {
       name: "The Playah",
       singer: "SOOBIN X SLIMV",

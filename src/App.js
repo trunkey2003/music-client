@@ -9,7 +9,7 @@ function App() {
   const songVn = useRef();
   const songUs = useRef();
   const [songRegion, setSongRegion] = useState("usuk");
-  // const songs = (songRegion == "usuk")? songUs.current : songVn.current;
+  // const songs = (songRegion === "usuk")? songUs.current : songVn.current;
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
   const audioRef = useRef();
@@ -46,42 +46,48 @@ function App() {
     duration,
   }
 
-  useEffect(async () => {
-    if (firstLoading) {
-      setLoading(true);
-      await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/us")
-        .then((response) => response.json())
-        .then((data) => {
-          songUs.current = data;
-        })
-        .catch((next) => console.log(next));
+  useEffect(() => {
+    const func = async () => {
+      if (firstLoading) {
+        setLoading(true);
+        await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/us")
+          .then((response) => response.json())
+          .then((data) => {
+            songUs.current = data;
+          })
+          .catch((next) => console.log(next));
 
-      await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/vn")
-        .then((response) => response.json())
-        .then((data) => {
-          songVn.current = data;
-        })
-        .catch((next) => console.log(next))
-        .finally(() => { setLoading(false); setFirstLoading(false); })
-      const songs = (songRegion == "usuk") ? songUs.current : songVn.current;
-      setSongs(songs);
-      setCdThumb(songs[0].image);
-      setSong(songs[0].name);
-      setSinger(songs[0].singer);
-      setSrc(songs[0].path);
-      setSongIndex(0);
-      setTimeManually(0);
-      setPercentage(0);
-    } else {
-      const songs = (songRegion == "usuk") ? songUs.current : songVn.current;
-      setSongs(songs);
-      setSongs(songs);
-      setCdThumb(songs[0].image);
-      setSong(songs[0].name);
-      setSinger(songs[0].singer);
-      setSrc(songs[0].path);
+        await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/vn")
+          .then((response) => response.json())
+          .then((data) => {
+            songVn.current = data;
+          })
+          .catch((next) => console.log(next))
+          .finally(() => { setLoading(false); setFirstLoading(false); })
+        const songs = (songRegion === "usuk") ? songUs.current : songVn.current;
+        setSongs(songs);
+        setCdThumb(songs[0].image);
+        setSong(songs[0].name);
+        setSinger(songs[0].singer);
+        setSrc(songs[0].path);
+        setSongIndex(0);
+        setTimeManually(0);
+        setPercentage(0);
+      } else {
+        let songs;
+        if (songs && songRegion === "usuk") songUs.current = songs;
+        if (songs && songRegion === "vn") songVn.current = songs;
+        songs = (songRegion === "usuk") ? songUs.current : songVn.current;
+        setSongs(songs);
+        setCdThumb(songs[0].image);
+        setSong(songs[0].name);
+        setSinger(songs[0].singer);
+        setSrc(songs[0].path);
+      }
     }
-  }, [songRegion])
+
+    func();
+  }, [songRegion, firstLoading])
 
 
   let classes;
@@ -144,21 +150,23 @@ function App() {
   }
 
   const modifySongPlay = function (index, isForced) {
-    if (!isForced) {
-      if (activeRandom) {
-        index = Math.round(Math.random() * songs.length);
+    if (songs) {
+      if (!isForced) {
+        if (activeRandom) {
+          index = Math.round(Math.random() * songs.length);
+        }
+        if (activeRepeat) {
+          index = songIndex;
+        }
       }
-      if (activeRepeat) {
-        index = songIndex;
-      }
+      setSongIndex(index);
+      setTimeManually(0);
+      setPercentage(0);
+      modifySong(songs[index].name);
+      modifySinger(songs[index].singer);
+      modifySrc(songs[index].path);
+      modifyCdThumb(songs[index].image);
     }
-    setSongIndex(index);
-    setTimeManually(0);
-    setPercentage(0);
-    modifySong(songs[index].name);
-    modifySinger(songs[index].singer);
-    modifySrc(songs[index].path);
-    modifyCdThumb(songs[index].image);
   }
 
   const modifySongState = {
@@ -169,9 +177,9 @@ function App() {
   const updateTime = (e) => {
     const _percentage = e.target.currentTime / duration * 100;
     setPercentage(_percentage);
-    if (percentage == 100) {
-      if (songIndex == songs.length-1) 
-      modifySongPlay(0); else modifySongPlay(songIndex + 1);
+    if (percentage === 100) {
+      if (songIndex === songs.length - 1)
+        modifySongPlay(0); else modifySongPlay(songIndex + 1);
     }
   }
 
@@ -179,12 +187,18 @@ function App() {
     audioRef.current.currentTime = e;
   }
 
+  const handleSoftDelte = (index) => {
+    let newSongs = [...songs];
+    newSongs.splice(index, 1);
+    setSongs(newSongs);
+  }
+
   return (
     <div className={classes}>
-      {(loading == true) ? <Loading/> : (<div>
-        <Dashboard modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} />
+      {(loading === true) ? <Loading /> : (<div>
+        <Dashboard modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs}/>
         <audio ref={audioRef} id="audio" onTimeUpdate={(e) => updateTime(e)} src={src} onLoadedData={(e) => { setDuration(e.currentTarget.duration); }}></audio>
-        <Playlist songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} />
+        <Playlist handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} />
       </div>)}
     </div>
   );

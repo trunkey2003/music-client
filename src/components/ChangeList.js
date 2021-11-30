@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ChangeList(props) {
     const handleOnClickChangeListBtn = (e) =>{
-        if (e.target.src == "https://trunkey2003.github.io/img/us.png"){
+        if (e.target.src === "https://trunkey2003.github.io/img/us.png"){
             e.target.src = "https://trunkey2003.github.io/img/vn.png";
             e.target.alt = "vn";
             props.modifySongRegion(e.target.alt);

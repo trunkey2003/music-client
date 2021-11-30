@@ -1,5 +1,4 @@
 import React from "react";
-import {useRef} from 'react';
 
 export default function SongWave(props) {
     let classes;

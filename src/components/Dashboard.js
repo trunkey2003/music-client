@@ -7,7 +7,12 @@ import Header from './Header'
 import ChangeList from './ChangeList'
 import SongWave from './SongWave'
 
-export default function Dashboard({ modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState }) {
+import { useEffect } from 'react'
+
+export default function Dashboard({modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState, songs}) {
+    useEffect(()=>{
+        if (songs.length !== 0) modifySongPlay(songDetail.songIndex,true);
+    }, [songCount])
     return (
         <div className="dashboard">
             <SongWave isPlaying={songDetail.isPlaying}/>
