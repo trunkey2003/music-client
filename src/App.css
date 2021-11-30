@@ -1,12 +1,12 @@
 :root {
-  --primary-color: rgb(104, 7, 7);
+  --primary-color: rgb(153, 10, 10);
   --text-color: rgb(255, 255, 255);
   --background: #000000; 
 }
 
 .customModal .modal-dialog .modal-content {
-  background-color: rgb(41, 41, 41);
-  color: white;
+  background-color: rgb(190, 188, 188);
+  color: rgb(0, 0, 0);
 }
 
 .hidden {
@@ -144,7 +144,7 @@ html {
   header h4 {
     color: var(--primary-color);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   header h2 {
@@ -218,7 +218,9 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-color);
+    background: rgb(63, 7, 9);
+    background: linear-gradient(to bottom, #23074d, #cc5333);
+    border: 0;
   }
 
   .control .btn-toggle-play:hover {
@@ -515,6 +517,8 @@ html {
     align-items: center;
     justify-content: center;
     background-color: var(--primary-color);
+    background: linear-gradient(to bottom, #23074d, #cc5333);
+    border: none;
   }
 
   .progress {
@@ -634,10 +638,11 @@ html {
   .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background: linear-gradient(#e66465, #9198e5);
+    background: rgb(63, 7, 9);
+    background: linear-gradient(to top, #780206, #061161);
     /* border: rgb(255, 255, 255) solid 2px; */
     cursor: pointer;
   }
@@ -679,7 +684,8 @@ html {
   height: 5px;
   bottom: 0px;
   position: absolute;
-  background: var(--primary-color);
+  background: #c31432;
+  background: linear-gradient(to left, #c31432, #240b36);
 }
 
 .song-wave-active span {
@@ -756,12 +762,12 @@ body{
 
 .custom-delete-btn{
   background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+  background: linear-gradient(to bottom, #23074d, #cc5333);
   border: none;
 }
 
 .custom-close-btn{
   background: rgb(131,58,180);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+  background: linear-gradient(to bottom, #23074d, #cc5333);
   border: none;
 }
