@@ -59,10 +59,10 @@ export default function Song(props) {
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseDownload}>
+                        <Button variant="secondary" className="custom-close-btn" onClick={handleCloseDownload}>
                             Close
                         </Button>
-                        <Button href={props.src} download variant="danger">
+                        <Button className="custom-delete-btn" href={props.src} download variant="danger">
                             Download
                         </Button>
                     </Modal.Footer>
@@ -83,10 +83,10 @@ export default function Song(props) {
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseDelete}>
+                        <Button variant="secondary" className="custom-close-btn" onClick={handleCloseDelete}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={() => {props.handleSoftDelte(props.index); handleCloseDelete()}}>
+                        <Button variant="danger" className="custom-delete-btn" onClick={() => {props.handleSoftDelte(props.index); toogleThreeDot(); handleCloseDelete();}}>
                             Delete
                         </Button>
                     </Modal.Footer>
