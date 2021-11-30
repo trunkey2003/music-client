@@ -13,8 +13,6 @@ export default function ChangeList(props) {
         }
     }
     return (
-        <div className="change-list">
-                <img id="change-list-btn" src="https://trunkey2003.github.io/img/us.png" alt="us" onClick={(e) => {handleOnClickChangeListBtn(e)}} />
-        </div>
+        <img id="change-list-btn" src="https://trunkey2003.github.io/img/us.png" alt="us" onClick={(e) => {handleOnClickChangeListBtn(e)}} />
     )
 }
