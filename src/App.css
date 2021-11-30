@@ -7,6 +7,10 @@
   display: none;
 }
 
+.flash{
+  position: absolute;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -16,6 +20,7 @@
 body {
   background-image: url("https://trunkey2003.github.io/img/background.jpg");
   background-repeat: repeat;
+  font-family: "Poppins", sans-serif;
   /* linear-gradient(200.72003deg, #8a1111, #ff7300, #b36104, #e3e81d, #07ff30, #1ddde8, #1000f3, #dd00f3, #f700ff);  */
 }
 html {
@@ -23,23 +28,54 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+.song .title{
+  font-weight: 700;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: loading 10s linear infinite;
+}
+
+.Loading{
+  width: 100%;
+  height: 98vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.Loading h1{
+  color: white;
+}
+
+
 @media (min-width: 800px) {
   .player {
     display: flex;
   }
-
+  
   .player .icon-pause {
     display: none;
   }
-
+  
   .player.playing .icon-pause {
     display: inline-block;
   }
-
+  
   .player.playing .icon-play {
     display: none;
   }
-
+  
   .dashboard {
     padding: 16px 16px 14px;
     background-color: rgb(0, 0, 0);
@@ -48,35 +84,37 @@ html {
     height: 100%;
     width: 30%;
   }
-
+  
   /* HEADER */
   header {
     text-align: center;
     margin-bottom: 10px;
   }
-
+  
   header h4 {
     color: var(--primary-color);
+    font-weight: 700;
     font-size: 12px;
   }
-
+  
   header h2 {
     color: var(--text-color);
+    font-weight: 700;
     font-size: 20px;
   }
-
+  
   header h3 {
     color: var(--text-color);
     font-size: 15px;
   }
-
+  
   /* CD */
   .cd {
     display: flex;
     margin: 10vh auto 55vh auto;
     height: 10vh;
   }
-
+  
   .cd-thumb {
     width: 100%;
     padding-top: 100%;
@@ -86,13 +124,17 @@ html {
     margin: auto;
     border: 2.0072003 px solid var(--primary-color);
   }
-
+  
   /* CONTROL */
   .control {
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 18px 0 8px 0;
+  }
+  
+  .btn:hover .fas{
+    color: #fff;
   }
 
   .btn {
@@ -101,7 +143,7 @@ html {
 
   .control .btn {
     color: #666;
-    padding: 18px;
+    padding :5px;
     font-size: 18px;
   }
 
@@ -237,18 +279,6 @@ html {
     background: #570808;
   }
 
-  @keyframes loading {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .spin {
-    animation: loading 10s linear infinite;
-  }
 
   audio {
     display: block !important;
@@ -259,6 +289,7 @@ html {
     width: 100%;
     height: 25px;
     outline: none;
+    overflow: visible;
     opacity: 0.70022003;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
@@ -272,15 +303,15 @@ html {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
-    height: 40px;
+    height: 35px;
     background: rgb(109, 14, 14);
-    border: rgb(255, 255, 255) solid 3px;
+    border: rgb(255, 255, 255) solid 2px;
     cursor: pointer;
   }
   
   .progress::-moz-range-thumb {
     width: 25px;
-    height: 25px;
+    height: 40px;
     background: rgb(255, 255, 255);
     cursor: pointer;
   }
@@ -321,12 +352,14 @@ html {
   }
 
   header h4 {
+    font-weight: 700;
     color: var(--primary-color);
     font-size: 12px;
   }
 
   header h2 {
     color: var(--text-color);
+    font-weight: 700;
     font-size: 20px;
   }
 
@@ -366,7 +399,7 @@ html {
 
   .control .btn {
     color: #666;
-    padding: 18px;
+    padding :5px;
     font-size: 18px;
   }
 
@@ -393,8 +426,8 @@ html {
 
   /* PLAYLIST */
   .playlist {
-    margin-top: 420px;
-    padding: 15px;
+    padding-top: 420px;
+    padding: 420px 15px 15px 15px;
   }
 
   .song {
@@ -418,12 +451,12 @@ html {
     cursor: pointer;
   }
 
-  .us-uk:hover {
-    background: rgb(23, 9, 49);
+  .song:hover {
+    background-color: rgb(173, 169, 169);
   }
 
-  .vn:hover {
-    background: rgb(20, 17, 61);
+  .song:hover .title, .song:hover .author, .song:hover .option  {
+    color: rgb(0, 0, 0);
   }
 
   .song.active {

@@ -6,7 +6,7 @@ import Progress from './Progress'
 import Header from './Header'
 import ChangeList from './ChangeList'
 
-export default function Dashboard({modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, songState, modifySongState}) {
+export default function Dashboard({modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState}) {
     return (
         <div className="dashboard">
             <ChangeList modifySongRegion={modifySongRegion}/>

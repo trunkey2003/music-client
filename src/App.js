@@ -2,6 +2,7 @@ import './App.css';
 import Dashboard from './components/Dashboard';
 import Playlist from './components/Playlist';
 import { useState, useRef, useEffect } from 'react';
+import Loading from './components/Loading';
 
 
 function App() {
@@ -45,8 +46,6 @@ function App() {
     duration,
   }
 
-  console.log("re-render");
-
   useEffect(async () => {
     if (firstLoading) {
       setLoading(true);
@@ -73,8 +72,6 @@ function App() {
       setSongIndex(0);
       setTimeManually(0);
       setPercentage(0);
-      console.log(songUs.current);
-      console.log(songVn.current);
     } else {
       const songs = (songRegion == "usuk") ? songUs.current : songVn.current;
       setSongs(songs);
@@ -147,7 +144,6 @@ function App() {
   }
 
   const modifySongPlay = function (index, isForced) {
-    console.log(songs);
     if (!isForced) {
       if (activeRandom) {
         index = Math.round(Math.random() * songs.length);
@@ -174,7 +170,8 @@ function App() {
     const _percentage = e.target.currentTime / duration * 100;
     setPercentage(_percentage);
     if (percentage == 100) {
-      modifySongPlay(songIndex + 1);
+      if (songIndex == songs.length-1) 
+      modifySongPlay(0); else modifySongPlay(songIndex + 1);
     }
   }
 
@@ -184,7 +181,7 @@ function App() {
 
   return (
     <div className={classes}>
-      {(loading == true) ? "" : (<div>
+      {(loading == true) ? <Loading/> : (<div>
         <Dashboard modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} />
         <audio ref={audioRef} id="audio" onTimeUpdate={(e) => updateTime(e)} src={src} onLoadedData={(e) => { setDuration(e.currentTarget.duration); }}></audio>
         <Playlist songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} />

@@ -13,7 +13,7 @@ export default function Song(props) {
     }
 
     return (
-        <div className={classActive} onClick={() => {modifySongPlay(props.index)}}>
+        <div className={classActive} id={props.index} onClick={() => {modifySongPlay(props.index)}}>
             <div className="thumb" style={{ backgroundImage: `url('${props.thumb}')` }}>
             </div>
 
