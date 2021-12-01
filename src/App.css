@@ -1,7 +1,20 @@
 :root {
   --primary-color: rgb(153, 10, 10);
   --text-color: rgb(255, 255, 255);
-  --background: #000000; 
+  --background-scroll-thumb: #000000; 
+  --background-scroll-bar: linear-gradient(to left, #200122, #6f0000);
+  --background-scroll-bar-hover: linear-gradient(to right, #200122, #6f0000);
+  --background-btn-play: linear-gradient(to bottom, #23074d, #cc5333);  
+  --color-song-wave: linear-gradient(to left, #c31432, #240b36);
+  --color-btn-play: white;
+  --background-progress-thumb: linear-gradient(to top, #780206, #061161);
+  --main-background: url("https://cdn.wallpapersafari.com/9/64/MTHusA.jpg");
+  --background-dashboard: rgb(0, 0, 0);
+  --background-song: #000000;
+  --color-song: white;
+  --background-song-active: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+  --color-song-active: rgb(255, 255, 255);
+  --background-song-hover: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
 }
 
 .customModal .modal-dialog .modal-content {
@@ -23,8 +36,15 @@
   box-sizing: inherit;
 }
 
-body {
-  background-image: url("https://trunkey2003.github.io/img/background.jpg");
+.body{
+  font-family: "Poppins", sans-serif;
+}
+
+.theme {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #000000;
+  background-image: var(--main-background);
   background-repeat: repeat;
   font-family: "Poppins", sans-serif;
   /* linear-gradient(200.72003deg, #8a1111, #ff7300, #b36104, #e3e81d, #07ff30, #1ddde8, #1000f3, #dd00f3, #f700ff);  */
@@ -53,7 +73,9 @@ html {
 
 .Loading {
   width: 100%;
-  height: 98vh;
+  height: 100vh;
+  max-height: 100vh;
+  background: var(--main-background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,7 +150,7 @@ html {
 
   .dashboard {
     padding: 16px 30px 14px 20px;
-    background-color: rgb(0, 0, 0);
+    background-color: var(--background-dashboard);
     position: fixed;
     left: 10%;
     height: 100%;
@@ -139,6 +161,7 @@ html {
   header {
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   header h4 {
@@ -214,12 +237,12 @@ html {
     height: 56px;
     border-radius: 50%;
     font-size: 24px;
-    color: #fff;
+    color:  var(--color-btn-play);
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgb(63, 7, 9);
-    background: linear-gradient(to bottom, #23074d, #cc5333);
+    background: var(--background-btn-play);
     border: 0;
   }
 
@@ -248,10 +271,28 @@ html {
   .song {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-    background-color: var(--background);
+    margin-bottom: 5px;
+    background-color: var(--background-song);
     padding: 8px 16px;
-    border-bottom: 3px solid transparent;
+    /* border-image: linear-gradient(
+      to right,
+      #ff0000,
+      #ff3300,
+      #fbff00,
+      #07ff30,
+      #00eeff,
+      #6f00ff,
+      #ff009d
+    ); */
+    border-image-slice: 1;
+    cursor: pointer;
+  }
+
+  .song:last-child{
+    display: flex;
+    align-items: center;
+    background-color: var(--background-song);
+    padding: 8px 16px;
     /* border-image: linear-gradient(
       to right,
       #ff0000,
@@ -268,7 +309,8 @@ html {
 
   .song:hover {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+    background: var(--background-song-hover);
+    border: 0;
   }
 
   .song:hover .title,
@@ -282,7 +324,8 @@ html {
 
   .song.active {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+    background: var(--background-song-active);
+    border: 0;
   }
 
   .song:active {
@@ -293,7 +336,7 @@ html {
   .song.active .option,
   .song.active .author,
   .song.active .title {
-    color: rgb(255, 255, 255);
+    color: var(--color-song-active);
   }
 
   .song.active .option{
@@ -315,12 +358,12 @@ html {
 
   .song .title {
     font-size: 18px;
-    color: rgb(255, 255, 255);
+    color: var(--color-song);
   }
 
   .song .author {
     font-size: 12px;
-    color: rgb(170, 170, 170);
+    color: var(--color-song);
   }
 
   .song .option {
@@ -344,17 +387,17 @@ html {
 
   ::-webkit-scrollbar-track {
     /* background: linear-gradient(to top, #de6161, #2657eb); */
-    background : var(--background);
+    background : var(--background-scroll-thumb);
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to left, #200122, #6f0000);
+    background: var(--background-scroll-bar);
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to top, #200122, #6f0000);
+    background: var(--background-scroll-bar-hover);
   }
 
   audio {
@@ -381,7 +424,7 @@ html {
     appearance: none;
     width: 30px;
     height: 30px;
-    background: linear-gradient(to top, #780206, #061161);
+    background: var(--background-progress-thumb);
     border-radius: 50%;
     border: rgb(177, 174, 174) solid 2px;
     cursor: pointer;
@@ -414,6 +457,11 @@ html {
   .thumbnail .thumbnail-content h5 {
     font-size: 18px;
   }
+
+  .change-theme-btn:hover{
+    color: rgb(202, 198, 198);
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 1199.999px) {
@@ -437,7 +485,7 @@ html {
 
   .dashboard {
     padding: 16px 16px 14px;
-    background-color: rgb(0, 0, 0);
+    background-color: var(--background-dashboard);
     position: fixed;
     top: 0;
     width: 100%;
@@ -449,6 +497,7 @@ html {
   header {
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   header h4 {
@@ -512,12 +561,12 @@ html {
     height: 56px;
     border-radius: 50%;
     font-size: 24px;
-    color: #fff;
+    color:  var(--color-btn-play);
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--primary-color);
-    background: linear-gradient(to bottom, #23074d, #cc5333);
+    background: var(--background-btn-play);
     border: none;
   }
 
@@ -535,8 +584,8 @@ html {
   .song {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-    background-color: rgb(0, 0, 0);
+    margin-bottom: 5px;
+    background-color: var(--background-song);
     padding: 8px 16px;
     /* border-bottom: 3px solid transparent;
     border-image: linear-gradient(
@@ -555,7 +604,8 @@ html {
 
   .song:hover {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+    background: var(--background-song-hover);
+    border: 0;
   }
 
   .song:hover .title,
@@ -566,7 +616,7 @@ html {
 
   .song.active {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+    background: var(--background-song-active);
   }
 
   .song.active {
@@ -597,12 +647,12 @@ html {
 
   .song .title {
     font-size: 18px;
-    color: var(--text-color);
+    color: var(--color-song);
   }
 
   .song .author {
     font-size: 12px;
-    color: var(--text-color);
+    color: var(--color-song);
   }
 
   .song .option {
@@ -625,6 +675,7 @@ html {
     height: 10px;
     outline: none;
     overflow: visible;
+    background-color: white!important;
     /* opacity: 0.70022003; */
     border-radius: 10px;
     -webkit-transition: 0.2s;
@@ -642,7 +693,7 @@ html {
     height: 22px;
     border-radius: 50%;
     background: rgb(63, 7, 9);
-    background: linear-gradient(to top, #780206, #061161);
+    background: var(--background-progress-thumb);
     /* border: rgb(255, 255, 255) solid 2px; */
     cursor: pointer;
   }
@@ -685,7 +736,7 @@ html {
   bottom: 0px;
   position: absolute;
   background: #c31432;
-  background: linear-gradient(to left, #c31432, #240b36);
+  background: var(--color-song-wave);
 }
 
 .song-wave-active span {
@@ -714,6 +765,14 @@ html {
   animation-delay: 1s;
 }
 
+.change-theme-btn{
+  position: absolute;
+  top: 15px;
+  right: 13%;
+  font-size: 20px;
+  color: rgb(102, 99, 99);
+}
+
 @keyframes waving {
   0% {
     height: 5px;
@@ -737,37 +796,39 @@ html {
   }
 }
 
-.custom-light-theme {
-  background: linear-gradient(to bottom, #23074d, #cc5333);
-  --text-color: rgb(0, 0, 0);
-  --background: #c9c9c9; 
-}
-/* 
-body{
-  background: linear-gradient(to bottom, #23074d, #cc5333);
-} */
-
-.custom-light-theme .dashboard{
-  background: white;
-  border: black solid 2px;
-}
-
-.custom-light-theme .playlist .song{
-  background: white;
-}
-
-.custom-light-theme .playlist .song .body h3, .custom-light-theme .playlist .song .body p {
-  color: #000000;
+.custom-theme-01 {
+  --text-color: rgb(255, 255, 255);
+  --color-song: white;
+  --background-scroll-thumb: #c9c9c9;
+  --primary-color: #be9409;
+  --background-btn-play: linear-gradient(to left, #917e13, #2b0c0c);
+  --background-scroll-bar: linear-gradient(to top, #917e13, #2b0c0c);
+  --background-scroll-bar-hover: linear-gradient(to right, #917e13, #2b0c0c);
+  --color-btn-play: rgb(248, 248, 248);
+  --color-song-wave: linear-gradient(to left, #917e13, #2b0c0c);
+  --background-progress-thumb:#be9409;
+  --main-background: url("https://i.pinimg.com/originals/3a/b3/8e/3ab38e395dd4950db6d8e0c39ad21e31.jpg");
+  --background-dashboard: rgb(51, 51, 45);
+  --background-song: rgb(53, 41, 32);;
+  --background-song-active: linear-gradient(to left, #917e13, #2b0c0c);
+  --background-song-hover: linear-gradient(to left, #917e13, #2b0c0c);
 }
 
-.custom-delete-btn{
-  background: rgb(2,0,36);
-  background: linear-gradient(to bottom, #23074d, #cc5333);
-  border: none;
+.custom-theme-02 {
+  --text-color: rgb(255, 255, 255);
+  --color-song: black;
+  --background-scroll-thumb: #000000;
+  --primary-color: #840f94;
+  --background-btn-play: linear-gradient(to top, #5c094a, #2b14f8);
+  --background-scroll-bar: linear-gradient(to top, #911391, #dbd3d3);
+  --background-scroll-bar-hover: linear-gradient(to top, #5c094a, #2b14f8);
+  --color-btn-play: rgb(248, 248, 248);
+  --color-song-wave: linear-gradient(to left, #911387, #2b0c0c);
+  --background-progress-thumb:linear-gradient(to top, #5c094a, #2b14f8);;
+  --main-background: url("https://firebasestorage.googleapis.com/v0/b/trunkey-music-player.appspot.com/o/background-custem-theme-3.jpg?alt=media&token=a0d2ba40-549a-416a-a736-7a2413e2e01d");
+  --background-dashboard: rgb(0, 0, 0);
+  --background-song: rgb(255, 255, 255);;
+  --background-song-active: linear-gradient(to top, #5c094a, #2b14f8);
+  --background-song-hover: linear-gradient(to top, #5c094a, #2b14f8);
 }
 
-.custom-close-btn{
-  background: rgb(131,58,180);
-  background: linear-gradient(to bottom, #23074d, #cc5333);
-  border: none;
-}

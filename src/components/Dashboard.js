@@ -8,14 +8,16 @@ import ChangeList from './ChangeList'
 import SongWave from './SongWave'
 
 import { useEffect } from 'react'
+import ChangeTheme from './ChangeTheme'
 
-export default function Dashboard({modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState, songs}) {
+export default function Dashboard({modifyClassTheme, modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState, songs}) {
     useEffect(()=>{
         if (songs.length !== 0) modifySongPlay(songDetail.songIndex,true);
     }, [songCount])
     return (
         <div className="dashboard">
             <SongWave isPlaying={songDetail.isPlaying}/>
+            <ChangeTheme modifyClassTheme={modifyClassTheme}/>
             <ChangeList modifySongRegion={modifySongRegion} />
             <Header song={songDetail.song} singer={songDetail.singer} />
             <Cd image={songDetail.cdThumb} isPlaying={songDetail.isPlaying} modifyIsPlaying={modifyIsPlaying} />
