@@ -44,9 +44,10 @@ export default function Song(props) {
                     <button onClick={handleShowDelete} >Soft delete <i className="fas fa-trash"></i></button>
                 </div>
 
-                <Modal className="customModal" show={showDownload} onHide={handleCloseDownload}>
+                <Modal className="custom-modal-01" show={showDownload} onHide={handleCloseDownload}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{props.title}</Modal.Title>
+                        <Modal.Title>Download {props.title}</Modal.Title>
+                        <button type="button" class="custom-btn-close-modal" onClick={handleCloseDownload} aria-label="Close"><i className="fas fa-times"></i></button>
                     </Modal.Header>
                     <Modal.Body>
                         Are you sure you want to download this song ?
@@ -62,18 +63,19 @@ export default function Song(props) {
                         <Button variant="secondary" className="custom-close-btn" onClick={handleCloseDownload}>
                             Close
                         </Button>
-                        <Button className="custom-delete-btn" href={props.src} download variant="danger">
-                            Download
+                        <Button className="custom-download-btn" href={props.src} download>
+                            Download <i className="fas fa-download"></i>
                         </Button>
                     </Modal.Footer>
                 </Modal>
 
-                <Modal className="customModal darkTheme" show={showDelete} onHide={handleCloseDelete}>
+                <Modal className="custom-modal-01 darkTheme" show={showDelete} onHide={handleCloseDelete}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{props.title}</Modal.Title>
+                        <Modal.Title>Remove {props.title} </Modal.Title>
+                        <button type="button" class="custom-btn-close-modal" aria-label="Close" onClick={handleCloseDelete}><i className="fas fa-times"></i></button>
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to remove this song from your list ? <br/> <span class="text-secondary">Note that this song won't be deleted permanently from my database :)</span>
+                        Are you sure you want to remove this song from your list ? <br/> <span class="custom-text-note">Note that this song won't be deleted permanently from my database :)</span>
                         <div class="thumbnail">
                             <img alt={props.title} src={props.thumb} className="thumbnail-img"></img>
                             <div className="thumbnail-content">
@@ -87,7 +89,7 @@ export default function Song(props) {
                             Close
                         </Button>
                         <Button variant="danger" className="custom-delete-btn" onClick={() => {props.handleSoftDelte(props.index); toogleThreeDot(); handleCloseDelete();}}>
-                            Delete
+                            Delete <i className="fas fa-trash"></i>
                         </Button>
                     </Modal.Footer>
                 </Modal>

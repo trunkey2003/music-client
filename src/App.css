@@ -1,4 +1,4 @@
-:root {
+body {
   --primary-color: rgb(153, 10, 10);
   --text-color: rgb(255, 255, 255);
   --background-scroll-thumb: #000000; 
@@ -8,19 +8,92 @@
   --color-song-wave: linear-gradient(to left, #c31432, #240b36);
   --color-btn-play: white;
   --background-progress-thumb: linear-gradient(to top, #780206, #061161);
-  --main-background: url("https://cdn.wallpapersafari.com/9/64/MTHusA.jpg");
+  --main-background: url("https://images.wallpaperscraft.com/image/single/tunnel_neon_glow_166518_1920x1080.jpg");
   --background-dashboard: rgb(0, 0, 0);
   --background-song: #000000;
   --color-song: white;
   --background-song-active: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
   --color-song-active: rgb(255, 255, 255);
   --background-song-hover: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+  --background-modal: linear-gradient(to right, #c31432, #240b36);;
+  --color-modal: rgb(255, 255, 255);
+  --color-note: rgb(190, 186, 186) ;
+  --background-close-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-download-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-delete-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-close-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-download-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-delete-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-btn-close-delete-download: black;
+  --color-btn-close-delete-download-hover: white;
+  --color-btn-close-modal:white;
+  --color-btn-close-modal-hover: rgb(185, 185, 185);
+  --background-option-songs-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-option-songs-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-option-songs-btn: white;
+  --color-option-songs-btn-hover: rgb(255, 255, 255);
 }
 
-.customModal .modal-dialog .modal-content {
-  background-color: rgb(190, 188, 188);
-  color: rgb(0, 0, 0);
+.custom-modal-01 .modal-dialog .modal-content {
+  background: var(--background-modal);
+  color: var(--color-modal);
+  border: none;
 }
+
+.custom-modal-01 .modal-dialog .modal-content span{
+  color: var(--color-note);
+}
+
+.custom-modal-01 .custom-close-btn{ 
+  background: var(--background-close-btn);
+  color: var(--color-btn-close-delete-download);
+  border: none;
+}
+.custom-modal-01 .custom-download-btn{
+  background: var(--background-download-btn);
+  color: var(--color-btn-close-delete-download);
+  border: none;
+}
+.custom-modal-01 .custom-delete-btn {
+  background: var(--background-delete-btn);
+  color: var(--color-btn-close-delete-download);
+  border: none;
+}
+
+.custom-modal-01 .custom-close-btn:hover{ 
+  background: var(--background-close-btn-hover);
+  color: var(--color-btn-close-delete-download-hover);
+  border: none;
+}
+
+.custom-modal-01 .custom-download-btn:hover{
+  background: var(--background-download-btn-hover);
+  color: var(--color-btn-close-delete-download-hover);
+  border: none;
+}
+
+.custom-modal-01 .custom-delete-btn:hover {
+  background: var(--background-delete-btn-hover);
+  color: var(--color-btn-close-delete-download-hover);
+  border: none;
+}
+
+.custom-modal-01 .btn-close{
+  display: none;
+}
+
+.custom-modal-01 .custom-btn-close-modal{
+  border: 0;
+  background: none;
+  color: var(--color-btn-close-modal);
+  font-size: 20px;
+}
+
+.custom-modal-01 .custom-btn-close-modal:hover{
+  color: var(--color-btn-close-modal-hover);
+}
+
+
 
 .hidden {
   display: none;
@@ -116,6 +189,8 @@ html {
   width: 120px;
   font-size: 15px;
   padding: 5px;
+  background: var(--background-option-songs-btn);
+  color: var(--color-option-songs-btn);
 }
 
 .option-songs-btn button:first-child {
@@ -123,11 +198,11 @@ html {
 }
 
 .option-songs-btn button:hover {
-  background-color: rgb(102, 4, 4);
-  color: white;
+  background: var(--background-option-songs-btn-hover);
+  color: var(--color-option-songs-btn-hover);
 }
 
-.customModal {
+.custom-modal-01 {
   top: 20vh;
 }
 
@@ -796,6 +871,7 @@ html {
   }
 }
 
+
 .custom-theme-01 {
   --text-color: rgb(255, 255, 255);
   --color-song: white;
@@ -812,6 +888,23 @@ html {
   --background-song: rgb(53, 41, 32);;
   --background-song-active: linear-gradient(to left, #917e13, #2b0c0c);
   --background-song-hover: linear-gradient(to left, #917e13, #2b0c0c);
+  --background-modal: linear-gradient(to right, #c2f800, #240b36);;
+  --color-modal: rgb(255, 255, 255);
+  --color-note: rgb(190, 186, 186) ;
+  --background-close-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-download-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-delete-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-close-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-download-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-delete-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-btn-close-delete-download: black;
+  --color-btn-close-delete-download-hover: white;
+  --color-btn-close-modal:white;
+  --color-btn-close-modal-hover: rgb(185, 185, 185);
+  --background-option-songs-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-option-songs-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-option-songs-btn: white;
+  --color-option-songs-btn-hover: rgb(255, 255, 255);
 }
 
 .custom-theme-02 {
@@ -825,10 +918,64 @@ html {
   --color-btn-play: rgb(248, 248, 248);
   --color-song-wave: linear-gradient(to left, #911387, #2b0c0c);
   --background-progress-thumb:linear-gradient(to top, #5c094a, #2b14f8);;
-  --main-background: url("https://firebasestorage.googleapis.com/v0/b/trunkey-music-player.appspot.com/o/background-custem-theme-3.jpg?alt=media&token=a0d2ba40-549a-416a-a736-7a2413e2e01d");
+  --main-background: url("https://images.wallpaperscraft.com/image/single/moon_moonlight_birds_121692_1920x1080.jpg");
   --background-dashboard: rgb(0, 0, 0);
   --background-song: rgb(255, 255, 255);;
   --background-song-active: linear-gradient(to top, #5c094a, #2b14f8);
   --background-song-hover: linear-gradient(to top, #5c094a, #2b14f8);
+  --background-modal: linear-gradient(to right, #c31432, #240b36);;
+  --color-modal: rgb(255, 255, 255);
+  --color-note: rgb(190, 186, 186) ;
+  --background-close-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-download-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-delete-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-close-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-download-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-delete-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-btn-close-delete-download: black;
+  --color-btn-close-delete-download-hover: white;
+  --color-btn-close-modal:white;
+  --color-btn-close-modal-hover: rgb(185, 185, 185);
+  --background-option-songs-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-option-songs-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-option-songs-btn: white;
+  --color-option-songs-btn-hover: rgb(255, 255, 255);
 }
+
+.custom-theme-03 {
+  --text-color: rgb(255, 255, 255);
+  --color-song: black;
+  --background-scroll-thumb: #000000;
+  --primary-color: #840f94;
+  --background-btn-play: linear-gradient(to top, #5c094a, #2b14f8);
+  --background-scroll-bar: linear-gradient(to top, #911391, #dbd3d3);
+  --background-scroll-bar-hover: linear-gradient(to top, #5c094a, #2b14f8);
+  --color-btn-play: rgb(248, 248, 248);
+  --color-song-wave: linear-gradient(to left, #911387, #2b0c0c);
+  --background-progress-thumb:linear-gradient(to top, #5c094a, #2b14f8);;
+  --main-background: url("https://images.wallpaperscraft.com/image/single/moon_moonlight_birds_121692_1920x1080.jpg");
+  --background-dashboard: rgb(0, 0, 0);
+  --background-song: rgb(255, 255, 255);;
+  --background-song-active: linear-gradient(to top, #5c094a, #2b14f8);
+  --background-song-hover: linear-gradient(to top, #5c094a, #2b14f8);
+  --background-modal: linear-gradient(to right, #c31432, #240b36);;
+  --color-modal: rgb(255, 255, 255);
+  --color-note: rgb(190, 186, 186) ;
+  --background-close-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-download-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-delete-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-close-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-download-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-delete-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-btn-close-delete-download: black;
+  --color-btn-close-delete-download-hover: white;
+  --color-btn-close-modal:white;
+  --color-btn-close-modal-hover: rgb(185, 185, 185);
+  --background-option-songs-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-option-songs-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-option-songs-btn: white;
+  --color-option-songs-btn-hover: rgb(255, 255, 255);
+}
+
+
 

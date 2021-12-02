@@ -14,10 +14,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const audioRef = useRef();
   const [songIndex, setSongIndex] = useState(0);
-  const [src, setSrc] = useState("songs[songIndex].path");
-  const [cdThumb, setCdThumb] = useState("songs[songIndex].image");
-  const [song, setSong] = useState("songs[songIndex].name");
-  const [singer, setSinger] = useState("songs[songIndex].singer");
+  const [src, setSrc] = useState("");
+  const [cdThumb, setCdThumb] = useState("");
+  const [song, setSong] = useState("");
+  const [singer, setSinger] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [percentage, setPercentage] = useState(0);
