@@ -220,6 +220,10 @@ html {
     font-size: 15px;
   }
 
+  header h4:hover, header h2:hover, header h3:hover {
+    opacity: 0.8;
+  }
+
   /* CD */
   .cd {
     display: flex;
@@ -262,7 +266,7 @@ html {
   }
 
   .control .btn {
-    color: #666;
+    color: rgb(197, 196, 196);
     padding: 5px;
     font-size: 18px;
   }
@@ -286,8 +290,7 @@ html {
   }
 
   .control .btn-toggle-play:hover {
-    background-color: rgb(109, 14, 14);
-    color: rgb(192, 190, 190);
+    opacity: 0.70022003;
   }
 
   .progress {
@@ -498,7 +501,7 @@ html {
   }
 
   .change-theme-btn:hover {
-    color: rgb(202, 198, 198);
+    color: rgb(250, 250, 250);
     cursor: pointer;
   }
 }
@@ -524,7 +527,7 @@ html {
 
   .dashboard {
     padding: 16px 16px 14px;
-    background: var(--background-dashboard);
+    background: var(--background-dashboard-mobile);
     position: fixed;
     top: 0;
     width: 100%;
@@ -586,7 +589,7 @@ html {
   }
 
   .control .btn {
-    color: #666;
+    color: rgb(173, 171, 171);
     padding: 5px;
     font-size: 18px;
   }
@@ -623,7 +626,7 @@ html {
   .song {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     background: var(--background-song);
     padding: 8px 16px;
     /* border-bottom: 3px solid transparent;
@@ -711,7 +714,7 @@ html {
   .progress {
     -webkit-appearance: none;
     width: 100%;
-    height: 10px;
+    height: 7px;
     outline: none;
     overflow: visible;
     background-color: white !important;
@@ -769,6 +772,10 @@ html {
   display: block;
 }
 
+.song-wave:hover{
+  opacity: 0.8;
+}
+
 .song-wave span {
   width: 5px;
   height: 5px;
@@ -809,7 +816,7 @@ html {
   top: 15px;
   right: 13%;
   font-size: 20px;
-  color: rgb(102, 99, 99);
+  color: var(--primary-color);
 }
 
 @keyframes waving {

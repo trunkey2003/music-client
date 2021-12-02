@@ -1,21 +1,36 @@
-.custom-theme-01 {
+:root {
+  --primary-color: rgb(153, 10, 10);
   --text-color: rgb(255, 255, 255);
+  --background-scroll-thumb: #000000;
+  --background-scroll-bar: linear-gradient(to left, #200122, #6f0000);
+  --background-scroll-bar-hover: linear-gradient(to right, #200122, #6f0000);
+  --background-btn-play: linear-gradient(to bottom, #4744dd, #7e1d1d);
+  --color-song-wave: linear-gradient(to left, #ffffff, #848be6);
+  --color-btn-play: white;
+  --background-progress-thumb: linear-gradient(to top, #780206, #061161);
+  --main-background: url("https://trunkey2003.github.io/general-img/first-custom-theme-background.jpg");
+  --background-dashboard: linear-gradient(to right, #780206b6,#501113bd, #061161b7, #2f08dabd);
+  --background-dashboard-mobile: url("https://trunkey2003.github.io/general-img/first-custom-theme-background-mobile-02.jpg");
+  --background-song: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.849) 50%,
+      rgba(39, 29, 133, 0.836) 96%
+    );
   --color-song: white;
-  --background-scroll-thumb: #c9c9c9;
-  --primary-color: #f4f800;
-  --background-btn-play: linear-gradient(to left, #917e13, #2b0c0c);
-  --background-scroll-bar: linear-gradient(to top, #917e13, #2b0c0c);
-  --background-scroll-bar-hover: linear-gradient(to right, #917e13, #2b0c0c);
-  --color-btn-play: rgb(248, 248, 248);
-  --color-song-wave: linear-gradient(to left, #917e13, #2b0c0c);
-  --background-progress-thumb: #be9409;
-  --main-background: url("https://trunkey2003.github.io/general-img/golden.jpg");
-  --background-dashboard: rgba(51, 51, 45, 0.842);
-  --background-dashboard-mobile: url("https://trunkey2003.github.io/general-img/second-custom-theme-background-mobile.jpg");
-  --background-song: linear-gradient(to right, #000000, #4c501ab9);
-  --background-song-active: linear-gradient(to left, #917e13, #2b0c0c);
-  --background-song-hover: linear-gradient(to left, #917e13, #2b0c0c);
-  --background-modal: linear-gradient(to right, #c2f800, #240b36);
+  --background-song-active: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(121, 9, 28, 1) 52%,
+      rgba(25, 0, 255, 1) 96%
+    );
+  --color-song-active: rgb(255, 255, 255);
+  --background-song-hover: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(121, 9, 28, 1) 52%,
+      rgba(25, 0, 255, 1) 96%
+    );
+  --background-modal: linear-gradient(to right, #c31432, #240b36);
   --color-modal: rgb(255, 255, 255);
   --color-note: rgb(190, 186, 186);
   --background-close-btn: linear-gradient(

@@ -2,7 +2,7 @@
     --text-color: rgb(255, 255, 255);
     --color-song: white;
     --background-scroll-thumb: #c9c9c9;
-    --primary-color: #be9409;
+    --primary-color: #f4f800;
     --background-btn-play: linear-gradient(to left, #917e13, #2b0c0c);
     --background-scroll-bar: linear-gradient(to top, #917e13, #2b0c0c);
     --background-scroll-bar-hover: linear-gradient(to right, #917e13, #2b0c0c);
@@ -10,8 +10,9 @@
     --color-song-wave: linear-gradient(to left, #917e13, #2b0c0c);
     --background-progress-thumb: #be9409;
     --main-background: url("https://trunkey2003.github.io/general-img/golden.jpg");
-    --background-dashboard: rgb(51, 51, 45);
-    --background-song: rgb(53, 41, 32);
+    --background-dashboard: rgba(51, 51, 45, 0.842);
+    --background-dashboard-mobile: url("https://trunkey2003.github.io/general-img/second-custom-theme-background-mobile.jpg");
+    --background-song: linear-gradient(to right, #000000, #4c501ab9);
     --background-song-active: linear-gradient(to left, #917e13, #2b0c0c);
     --background-song-hover: linear-gradient(to left, #917e13, #2b0c0c);
     --background-modal: linear-gradient(to right, #c2f800, #240b36);
@@ -63,4 +64,5 @@
     );
     --color-option-songs-btn: white;
     --color-option-songs-btn-hover: rgb(255, 255, 255);
+    --color-control-btn: rgb(173, 171, 171);
   }

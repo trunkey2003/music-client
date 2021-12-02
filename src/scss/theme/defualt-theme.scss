@@ -8,12 +8,13 @@
     --color-song-wave: linear-gradient(to left, #ffffff, #848be6);
     --color-btn-play: white;
     --background-progress-thumb: linear-gradient(to top, #780206, #061161);
-    --main-background: url("https://images.wallpaperscraft.com/image/single/street_night_wet_155637_1920x1080.jpg");
-    --background-dashboard: linear-gradient(to right, #780206,#501113, #061161, #2e08da);
+    --main-background: url("https://trunkey2003.github.io/general-img/first-custom-theme-background.jpg");
+    --background-dashboard: linear-gradient(to right, #780206b6,#501113bd, #061161b7, #2f08dabd);
+    --background-dashboard-mobile: url("https://trunkey2003.github.io/general-img/first-custom-theme-background-mobile-02.jpg");
     --background-song: linear-gradient(
       90deg,
-      rgb(0, 0, 0) 50%,
-      rgb(39, 29, 133) 96%
+      rgba(0, 0, 0, 0.849) 50%,
+      rgba(39, 29, 133, 0.836) 96%
     );
     --color-song: white;
     --background-song-active: linear-gradient(
@@ -78,4 +79,5 @@
     );
     --color-option-songs-btn: white;
     --color-option-songs-btn-hover: rgb(255, 255, 255);
+    --color-control-btn: rgb(173, 171, 171);
   }

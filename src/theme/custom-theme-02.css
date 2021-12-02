@@ -10,8 +10,9 @@
   --color-song-wave: linear-gradient(to left, #911387, #300c31);
   --background-progress-thumb: linear-gradient(to top, #6d0d58, #5c094a, #620fa7);
   --main-background: url("https://i.pinimg.com/originals/81/8a/1b/818a1b56754f8c08591df2d60f3d6d90.jpg");
-  --background-dashboard: linear-gradient(to right, #27041f,#5c094a, #000000);
-  --background-song: linear-gradient(to right, #000000, #44173a, #200e38);
+  --background-dashboard: linear-gradient(to right, #27041f,#5c094aaf, #00000086);
+  --background-dashboard-mobile: url("https://i.pinimg.com/originals/81/8a/1b/818a1b56754f8c08591df2d60f3d6d90.jpg");
+  --background-song: linear-gradient(to right, #000000, #44173aa6, #200e38);
   --background-song-active: linear-gradient(to top, #5c094a, #2b14f8);
   --background-song-hover: linear-gradient(to top, #5c094a, #2b14f8);
   --background-modal: linear-gradient(to right, #c31432, #240b36);
@@ -62,4 +63,5 @@
     rgb(30, 33, 219)
   );
   --color-option-songs-btn: white;
-  --color-option-songs-btn-hover: rgb(255, 255, 255); }
+  --color-option-songs-btn-hover: rgb(255, 255, 255);
+  --color-control-btn: rgb(173, 171, 171); }
