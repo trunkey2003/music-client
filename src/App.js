@@ -176,7 +176,7 @@ function App() {
   }
 
   const modifyClassTheme = () => {
-    (classTheme === "defualt-theme")? setClassTheme("custom-theme-01") : ((classTheme === "custom-theme-01")? setClassTheme("custom-theme-02") : setClassTheme("defualt-theme"));
+    (classTheme === "defualt-theme")? setClassTheme("custom-theme-01") : ((classTheme === "custom-theme-01")? setClassTheme("custom-theme-02") : ((classTheme === "custom-theme-02")? setClassTheme("custom-theme-03") : setClassTheme("defualt-theme")));
   }
 
   const updateTime = (e) => {

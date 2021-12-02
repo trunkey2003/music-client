@@ -1,0 +1,34 @@
+.custom-theme-03 {
+  --primary-color: rgb(153, 10, 10);
+  --text-color: rgb(255, 255, 255);
+  --background-scroll-thumb: #000000;
+  --background-scroll-bar: linear-gradient(to left, #200122, #6f0000);
+  --background-scroll-bar-hover: linear-gradient(to right, #200122, #6f0000);
+  --background-btn-play: linear-gradient(to bottom, #23074d, #cc5333);
+  --color-song-wave: linear-gradient(to left, #c31432, #240b36);
+  --color-btn-play: white;
+  --background-progress-thumb: linear-gradient(to top, #780206, #061161);
+  --main-background: url("https://images.wallpaperscraft.com/image/single/tunnel_neon_glow_166518_1920x1080.jpg");
+  --background-dashboard: rgb(0, 0, 0);
+  --background-song: #000000;
+  --color-song: white;
+  --background-song-active: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+  --color-song-active: rgb(255, 255, 255);
+  --background-song-hover: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,28,1) 52%, rgba(25,0,255,1) 96%);
+  --background-modal: linear-gradient(to right, #c31432, #240b36);
+  --color-modal: rgb(255, 255, 255);
+  --color-note: rgb(190, 186, 186) ;
+  --background-close-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-download-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-delete-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-close-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-download-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --background-delete-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-btn-close-delete-download: black;
+  --color-btn-close-delete-download-hover: white;
+  --color-btn-close-modal:white;
+  --color-btn-close-modal-hover: rgb(185, 185, 185);
+  --background-option-songs-btn: linear-gradient(to right, rgb(218, 132, 132), rgb(130, 131, 238));
+  --background-option-songs-btn-hover: linear-gradient(to right, rgb(214, 61, 61), rgb(30, 33, 219));
+  --color-option-songs-btn: white;
+  --color-option-songs-btn-hover: rgb(255, 255, 255); }

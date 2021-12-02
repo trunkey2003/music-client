@@ -1,0 +1,66 @@
+.custom-theme-01 {
+    --text-color: rgb(255, 255, 255);
+    --color-song: white;
+    --background-scroll-thumb: #c9c9c9;
+    --primary-color: #be9409;
+    --background-btn-play: linear-gradient(to left, #917e13, #2b0c0c);
+    --background-scroll-bar: linear-gradient(to top, #917e13, #2b0c0c);
+    --background-scroll-bar-hover: linear-gradient(to right, #917e13, #2b0c0c);
+    --color-btn-play: rgb(248, 248, 248);
+    --color-song-wave: linear-gradient(to left, #917e13, #2b0c0c);
+    --background-progress-thumb: #be9409;
+    --main-background: url("https://trunkey2003.github.io/general-img/golden.jpg");
+    --background-dashboard: rgb(51, 51, 45);
+    --background-song: rgb(53, 41, 32);
+    --background-song-active: linear-gradient(to left, #917e13, #2b0c0c);
+    --background-song-hover: linear-gradient(to left, #917e13, #2b0c0c);
+    --background-modal: linear-gradient(to right, #c2f800, #240b36);
+    --color-modal: rgb(255, 255, 255);
+    --color-note: rgb(190, 186, 186);
+    --background-close-btn: linear-gradient(
+      to right,
+      rgb(218, 132, 132),
+      rgb(130, 131, 238)
+    );
+    --background-download-btn: linear-gradient(
+      to right,
+      rgb(218, 132, 132),
+      rgb(130, 131, 238)
+    );
+    --background-delete-btn: linear-gradient(
+      to right,
+      rgb(218, 132, 132),
+      rgb(130, 131, 238)
+    );
+    --background-close-btn-hover: linear-gradient(
+      to right,
+      rgb(214, 61, 61),
+      rgb(30, 33, 219)
+    );
+    --background-download-btn-hover: linear-gradient(
+      to right,
+      rgb(214, 61, 61),
+      rgb(30, 33, 219)
+    );
+    --background-delete-btn-hover: linear-gradient(
+      to right,
+      rgb(214, 61, 61),
+      rgb(30, 33, 219)
+    );
+    --color-btn-close-delete-download: black;
+    --color-btn-close-delete-download-hover: white;
+    --color-btn-close-modal: white;
+    --color-btn-close-modal-hover: rgb(185, 185, 185);
+    --background-option-songs-btn: linear-gradient(
+      to right,
+      rgb(218, 132, 132),
+      rgb(130, 131, 238)
+    );
+    --background-option-songs-btn-hover: linear-gradient(
+      to right,
+      rgb(214, 61, 61),
+      rgb(30, 33, 219)
+    );
+    --color-option-songs-btn: white;
+    --color-option-songs-btn-hover: rgb(255, 255, 255);
+  }
