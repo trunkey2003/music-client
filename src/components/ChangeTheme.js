@@ -6,6 +6,6 @@ export default function ChangeTheme(props) {
     }
 
     return (
-        <i class="fas fa-paint-roller change-theme-btn" onClick={() => {handleChangeThemeBtnOnClick()}}></i>
+        <i className="fas fa-paint-roller change-theme-btn" onClick={() => {handleChangeThemeBtnOnClick()}}></i>
     )
 }

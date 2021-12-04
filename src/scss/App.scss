@@ -1,4 +1,4 @@
-@import './theme/defualt-theme.scss';
+@import "./theme/defualt-theme.scss";
 
 .custom-modal-01 .modal-dialog .modal-content {
   background: var(--background-modal);
@@ -170,7 +170,60 @@ html {
   top: 20vh;
 }
 
+
+.volume-container{
+  position: absolute;
+  background: var(--background-btn-play);
+  left: 12%;
+  top: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.fa-volume-up{
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+/*Thiết lập style cho range slider*/
+
 @media (min-width: 1200px) {
+  .slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 7px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    position: absolute;
+    top: 1.3rem;
+    left: calc(35% - 100px);
+    z-index: 5;
+  }
+  /*Thiết kế phần để kéo trượt trong rangerslider -- dùng -webkit- để chạy trên Chrome, Opera, Safari, Edge*/
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+     background: var(--primary-color);
+    cursor: pointer;
+  }
+  /*-moz- dùng để thiết kế rangerslider trên firefox nhé*/
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
   .player {
     display: flex;
   }
@@ -220,7 +273,9 @@ html {
     font-size: 15px;
   }
 
-  header h4:hover, header h2:hover, header h3:hover {
+  header h4:hover,
+  header h2:hover,
+  header h3:hover {
     opacity: 0.8;
   }
 
@@ -507,10 +562,45 @@ html {
 }
 
 @media (max-width: 1199.999px) {
+  .slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 7px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    position: fixed;
+    top: 1rem;
+    left: calc(50% - 50px);
+    z-index: 5;
+  }
+  /*Thiết kế phần để kéo trượt trong rangerslider -- dùng -webkit- để chạy trên Chrome, Opera, Safari, Edge*/
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+     background: var(--primary-color);
+    cursor: pointer;
+  }
+  /*-moz- dùng để thiết kế rangerslider trên firefox nhé*/
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
   .player {
     position: relative;
-    max-width: 480px;
-    margin: 0 auto;
+    width: 100vw;
+    left: 0;
+    margin: 0 0;
   }
 
   .player .icon-pause {
@@ -529,9 +619,10 @@ html {
     padding: 16px 16px 14px;
     background: var(--background-dashboard-mobile);
     position: fixed;
+    left: 0;
     top: 0;
     width: 100%;
-    max-width: 480px;
+    // max-width: 90vw;
     z-index: 1;
   }
 
@@ -772,7 +863,7 @@ html {
   display: block;
 }
 
-.song-wave:hover{
+.song-wave:hover {
   opacity: 0.8;
 }
 
@@ -814,7 +905,7 @@ html {
 .change-theme-btn {
   position: absolute;
   top: 15px;
-  right: 13%;
+  right: 4rem;
   font-size: 20px;
   color: var(--primary-color);
 }
@@ -842,8 +933,6 @@ html {
   }
 }
 
-@import './theme/custom-theme-01.scss';
-@import './theme/custom-theme-02.scss';
-@import './theme/custom-theme-03.scss';
-
-
+@import "./theme/custom-theme-01.scss";
+@import "./theme/custom-theme-02.scss";
+@import "./theme/custom-theme-03.scss";

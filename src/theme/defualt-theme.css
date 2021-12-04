@@ -79,4 +79,5 @@
     );
   --color-option-songs-btn: white;
   --color-option-songs-btn-hover: rgb(255, 255, 255);
-  --color-control-btn: rgb(173, 171, 171); }
+  --color-control-btn: rgb(173, 171, 171);
+  width: 100vw; }
