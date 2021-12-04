@@ -83,6 +83,42 @@
   --color-control-btn: rgb(173, 171, 171);
   width: 100vw; }
 
+@keyframes fadedDashboard-PC {
+  from {
+    opacity: 0;
+    height: 0; }
+  to {
+    opacity: 1;
+    height: 100vh; } }
+
+@keyframes fadedSong-PC {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    height: 0; }
+  to {
+    opacity: 1;
+    height: 100vh;
+    visibility: visible; } }
+
+@keyframes fadedDashboard-Mobile {
+  from {
+    opacity: 0;
+    width: 0; }
+  to {
+    opacity: 1;
+    width: 100vw; } }
+
+@keyframes fadedSong-Mobile {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    width: 0; }
+  to {
+    opacity: 1;
+    width: 100vw;
+    visibility: visible; } }
+
 .custom-modal-01 .modal-dialog .modal-content {
   background: var(--background-modal);
   color: var(--color-modal);
@@ -224,22 +260,140 @@ html {
 .custom-modal-01 {
   top: 20vh; }
 
+@keyframes fromVolume0ToVolume1 {
+  0% {
+    width: 40px;
+    height: 40px; }
+  33% {
+    width: 0;
+    height: 0; }
+  66% {
+    width: 0px;
+    height: 0px; } }
+
+@keyframes fromVolume1ToVolume2 {
+  0% {
+    width: 0;
+    height: 0; }
+  66% {
+    top: 4px;
+    left: 4px;
+    width: 32px;
+    height: 32px; } }
+
+@keyframes fromVolume2ToVolume3 {
+  0% {
+    top: 4px;
+    left: 4px;
+    width: 32px;
+    height: 32px; }
+  33% {
+    width: 0;
+    height: 0; }
+  66% {
+    top: 3px;
+    left: 3px;
+    width: 34px;
+    height: 34px; } }
+
+@keyframes fromVolume3ToVolume4 {
+  0% {
+    top: 3px;
+    left: 3px;
+    width: 34px;
+    height: 34px; }
+  33% {
+    width: 0;
+    height: 0; }
+  66% {
+    top: 2px;
+    left: 2px;
+    width: 36px;
+    height: 36px; } }
+
+@keyframes fromVolume4ToVolume0 {
+  0% {
+    top: 2px;
+    left: 2px;
+    width: 36px;
+    height: 36px; }
+  33% {
+    width: 0;
+    height: 0; }
+  66% {
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px; } }
+
 .volume-container {
   position: absolute;
+  right: 0.18em;
+  top: 3.6rem;
+  width: 42px;
+  height: 42px; }
+
+.volume-background {
+  position: absolute;
+  margin: auto;
   background: var(--background-btn-play);
-  left: 12%;
-  top: 1rem;
-  width: 40px;
-  height: 40px;
+  animation: fromVolume4ToVolume0 1s ease;
+  width: 42px;
+  height: 42px;
   border-radius: 50%; }
 
-.fa-volume-up {
+.volume-background-01 {
   position: absolute;
+  margin: auto;
+  background: var(--background-btn-play);
+  animation: fromVolume0ToVolume1 1s ease;
+  top: 5px;
+  left: 5px;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%; }
+
+.volume-background-02 {
+  position: absolute;
+  margin: auto;
+  background: var(--background-btn-play);
+  animation: fromVolume1ToVolume2 1s ease;
+  top: 4px;
+  left: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; }
+
+.volume-background-03 {
+  position: absolute;
+  margin: auto;
+  background: var(--background-btn-play);
+  animation: fromVolume2ToVolume3 1s ease;
+  top: 3px;
+  left: 3px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%; }
+
+.volume-background-04 {
+  position: absolute;
+  margin: auto;
+  background: var(--background-btn-play);
+  animation: fromVolume3ToVolume4 1s ease;
+  top: 2px;
+  left: 2px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; }
+
+.volume-icon {
+  position: absolute;
+  margin-left: 10px;
+  line-height: 40px;
   color: white;
   font-size: 20px;
   cursor: pointer; }
 
-/*Thiết lập style cho range slider*/
 @media (min-width: 1200px) {
   .slider {
     -webkit-appearance: none;
@@ -255,7 +409,6 @@ html {
     top: 1.3rem;
     left: calc(35% - 100px);
     z-index: 5; }
-  /*Thiết kế phần để kéo trượt trong rangerslider -- dùng -webkit- để chạy trên Chrome, Opera, Safari, Edge*/
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -264,7 +417,6 @@ html {
     border-radius: 50%;
     background: var(--primary-color);
     cursor: pointer; }
-  /*-moz- dùng để thiết kế rangerslider trên firefox nhé*/
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -285,7 +437,8 @@ html {
     position: fixed;
     left: 10%;
     height: 100%;
-    width: 30%; }
+    width: 30%;
+    animation: fadedDashboard-PC 0.8s ease-in-out; }
   /* HEADER */
   header {
     text-align: center;
@@ -367,7 +520,8 @@ html {
     /* top:0; */
     bottom: 0;
     overflow-y: scroll;
-    overflow-x: hidden; }
+    overflow-x: hidden;
+    animation: fadedSong-PC 0.8s ease-in-out; }
   .song {
     display: flex;
     align-items: center;
@@ -554,6 +708,8 @@ html {
     position: fixed;
     left: 0;
     top: 0;
+    animation: fadedDashboard-Mobile 0.8s ease-in-out;
+    display: block;
     width: 100%;
     z-index: 1; }
   /* HEADER */
@@ -617,7 +773,8 @@ html {
   /* PLAYLIST */
   .playlist {
     padding-top: 420px;
-    padding: 420px 15px 15px 15px; }
+    padding: 420px 15px 15px 15px;
+    animation: fadedSong-Mobile 0.8s ease-in-out; }
   .song {
     display: flex;
     align-items: center;

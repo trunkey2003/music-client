@@ -1,5 +1,53 @@
 @import "./theme/defualt-theme.scss";
 
+@keyframes fadedDashboard-PC{
+  from{
+    opacity: 0;
+    height: 0;
+  }
+  to{
+    opacity: 1;
+    height: 100vh;
+  }
+}
+
+@keyframes fadedSong-PC{
+  from{
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+  }
+  to{
+    opacity: 1;
+    height: 100vh;
+    visibility: visible;
+  }
+}
+
+@keyframes fadedDashboard-Mobile{
+  from{
+    opacity: 0;
+    width: 0;
+  }
+  to{
+    opacity: 1;
+    width: 100vw;
+  }
+}
+
+@keyframes fadedSong-Mobile{
+  from{
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+  }
+  to{
+    opacity: 1;
+    width: 100vw;
+    visibility: visible;
+  }
+}
+
 .custom-modal-01 .modal-dialog .modal-content {
   background: var(--background-modal);
   color: var(--color-modal);
@@ -170,24 +218,8 @@ html {
   top: 20vh;
 }
 
-
-.volume-container{
-  position: absolute;
-  background: var(--background-btn-play);
-  left: 12%;
-  top: 1rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.fa-volume-up{
-  position: absolute;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-}
-/*Thiết lập style cho range slider*/
+// @import "./Sound/volume-button-animation.scss";
+@import "./Sound/volume-button.scss";
 
 @media (min-width: 1200px) {
   .slider {
@@ -205,7 +237,7 @@ html {
     left: calc(35% - 100px);
     z-index: 5;
   }
-  /*Thiết kế phần để kéo trượt trong rangerslider -- dùng -webkit- để chạy trên Chrome, Opera, Safari, Edge*/
+
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -215,7 +247,7 @@ html {
      background: var(--primary-color);
     cursor: pointer;
   }
-  /*-moz- dùng để thiết kế rangerslider trên firefox nhé*/
+
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -247,6 +279,7 @@ html {
     left: 10%;
     height: 100%;
     width: 30%;
+    animation: fadedDashboard-PC 0.8s ease-in-out;
   }
 
   /* HEADER */
@@ -363,6 +396,7 @@ html {
     bottom: 0;
     overflow-y: scroll;
     overflow-x: hidden;
+    animation: fadedSong-PC 0.8s ease-in-out;
   }
 
   .song {
@@ -621,8 +655,9 @@ html {
     position: fixed;
     left: 0;
     top: 0;
+    animation: fadedDashboard-Mobile 0.8s ease-in-out;
+    display: block;
     width: 100%;
-    // max-width: 90vw;
     z-index: 1;
   }
 
@@ -712,6 +747,7 @@ html {
   .playlist {
     padding-top: 420px;
     padding: 420px 15px 15px 15px;
+    animation: fadedSong-Mobile 0.8s ease-in-out;
   }
 
   .song {

@@ -10,14 +10,13 @@ import VolumeSlider from './VolumeSlider'
 import { useEffect } from 'react'
 import ChangeTheme from './ChangeTheme'
 
-export default function Dashboard({modifyClassTheme, modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState, songs, ModifySongVolume}) {
+export default function Dashboard({volumeIcon, volumeBackground, modifyClassTheme, modifySongRegion, songDetail, modifySongPlay, modifyIsPlaying, percentage, modifyPercentage, modifyCurruntTime, songCount, modifySongState, songs, ModifySongVolume}) {
     useEffect(()=>{
         if (songs.length !== 0) modifySongPlay(songDetail.songIndex,true);
     }, [songCount])
     return (
-        <div className="dashboard">
-            <div className="volume-container"></div>
-            <i className="fas fa-volume-up" onClick={() => {ModifySongVolume()}}/>
+        <div key={`${songDetail.songRegion} ${songDetail.classTheme}`} className="dashboard">
+            <div className="volume-container"><div className={volumeBackground}></div><i className={`${volumeIcon} volume-icon`} onClick={() => {ModifySongVolume()}}/></div>
             <SongWave isPlaying={songDetail.isPlaying}/>
             <ChangeTheme modifyClassTheme={modifyClassTheme}/>
             <ChangeList modifySongRegion={modifySongRegion} />

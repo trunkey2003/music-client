@@ -26,6 +26,8 @@ function App() {
   const [firstLoading, setFirstLoading] = useState(true);
   const [classTheme, setClassTheme] = useState("defualt-theme");
   const [volume, setVolume] = useState(1);
+  const [volumeBackground, setVolumeBackground] = useState("volume-background");
+  const [volumeIcon, setVolumeIcon] = useState("fas fa-volume-up");
 
   // const fetchData = () => {
   //   setLoading(true);
@@ -46,6 +48,8 @@ function App() {
     isPlaying,
     songIndex,
     duration,
+    classTheme,
+    songRegion,
   }
 
   useEffect(() => {
@@ -211,28 +215,41 @@ function App() {
 
   const ModifySongVolume = (e) => {
     switch (volume) {
-      case 0.25:
-        setVolume(0.5);
+      case 0:
+        setVolume(0.4);
+        setVolumeBackground("volume-background-02");
+        setVolumeIcon("fas fa-volume-down");
         break;
-      case 0.5:
-        setVolume(0.75);
+      case 0.4:
+        setVolume(0.65);
+        setVolumeBackground("volume-background-03");
+        setVolumeIcon("fas fa-volume-down");
         break;
-      case 0.75:
+      case 0.65:
+        setVolume(0.8);
+        setVolumeBackground("volume-background-04");
+        setVolumeIcon("fas fa-volume-down");
+        break;
+      case 0.8:
         setVolume(1);
+        setVolumeBackground("volume-background");
+        setVolumeIcon("fas fa-volume-up");
         break;
       case 1:
-        setVolume(0.25);
+        setVolume(0);
+        setVolumeBackground("volume-background-01");
+        setVolumeIcon("fas fa-volume-mute");
         break;
-      default: break;
+      default: alert("Sound Volume error");
     }
   }
 
   return (
     <div className={`${classes} ${classTheme}`}>
       {(loading === true) ? <Loading /> : (<div className="theme">
-        <Dashboard ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs} />
+        <Dashboard volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs} />
         <audio ref={audioRef} id="audio" onTimeUpdate={(e) => updateTime(e)} src={src} onLoadedData={(e) => { setDuration(e.currentTarget.duration); }}></audio>
-        <Playlist handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} />
+        <Playlist classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} />
       </div>)}
     </div>
   );
