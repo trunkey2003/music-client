@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function ChangeTheme(props) {
     function handleChangeThemeBtnOnClick() {
         props.modifyClassTheme();

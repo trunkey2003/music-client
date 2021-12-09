@@ -1,18 +1,23 @@
-import React from 'react'
+import { useEffect, useState } from "react";
 
 export default function ChangeList(props) {
-    const handleOnClickChangeListBtn = (e) =>{
-        if (e.target.src === "https://trunkey2003.github.io/img/us.png"){
-            e.target.src = "https://trunkey2003.github.io/img/vn.png";
-            e.target.alt = "vn";
-            props.modifySongRegion(e.target.alt);
-        } else {
-            e.target.src = "https://trunkey2003.github.io/img/us.png";
-            e.target.alt = "usuk";
-            props.modifySongRegion(e.target.alt);
+    const [src, setSrc] = useState("");
+
+    useEffect(() =>{
+        if (props.songRegion === "usuk") setSrc("https://trunkey2003.github.io/img/us.png"); else setSrc("https://trunkey2003.github.io/img/vn.png");
+    }, [props.songRegion])
+
+    const handleOnClickChangeListBtn = () =>{
+        if (props.songRegion === "usuk") {
+            props.modifySongRegion("vn"); 
+        } else{
+            props.modifySongRegion("usuk");
         }
     }
+
     return (
-        <img id="change-list-btn" src="https://trunkey2003.github.io/img/us.png" alt="us" onClick={(e) => {handleOnClickChangeListBtn(e)}} />
+        <div>
+            <img id="change-list-btn" src={src} alt={props.songRegion} onClick={() => {handleOnClickChangeListBtn()}} />
+        </div>
     )
 }

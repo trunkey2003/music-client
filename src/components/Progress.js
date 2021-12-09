@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Progress({percentage, modifyPercentage, modifyCurruntTime, duration, cdThumb}) {
     const handleOnChangeProgress = (e) =>{
         modifyPercentage(e.target.value);

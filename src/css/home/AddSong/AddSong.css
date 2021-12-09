@@ -1,0 +1,60 @@
+.add-song-section {
+  height: 64px;
+  width: 100%;
+  background: var(--background-song);
+  color: white;
+  text-align: center;
+  line-height: 64px;
+  font-size: 1.5rem; }
+
+.add-song-section:hover {
+  background: var(--background-song-active);
+  cursor: pointer; }
+
+.search-song-input {
+  width: 80%; }
+
+.songs-modal-container {
+  max-height: 330px;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+.songs-modal {
+  position: relative;
+  margin: 10px 0;
+  display: flex;
+  background-color: black;
+  max-height: 100px;
+  width: 100%; }
+  .songs-modal .songs-modal-img {
+    width: 20%; }
+    .songs-modal .songs-modal-img img {
+      height: 100%;
+      border-radius: 50%; }
+  .songs-modal .songs-modal-detail {
+    margin-left: auto;
+    padding-top: 15px;
+    width: 75%; }
+
+.songs-modal:hover {
+  background-color: #1d1d1d;
+  cursor: pointer; }
+
+.song-modal-detail-button {
+  position: absolute;
+  top: calc(45% - 10px);
+  right: 10%;
+  border: none;
+  padding: 5px 15px 5px 15px; }
+
+.songs-modal-loading {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  background-color: black; }
+
+.songs-modal-loading h4 {
+  line-height: 100px; }
+
+.error img {
+  width: 81%; }

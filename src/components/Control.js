@@ -1,19 +1,19 @@
-import React from 'react'
-import { useState, useRef } from 'react';
+import {useEffect, useState} from 'react';
 
 export default function Control(props) {
-    const activeRandom = useRef(false);  
-    const activeRepeat = useRef(false);
-
     const [classRandom, setClassRandom] = useState("btn btn-random");
     const [classRepeat, setClassRepeat] = useState("btn btn-repeat");
 
+    useEffect(() =>{
+        (props.songState.activeRepeat)? setClassRepeat("btn btn-repeat active") : setClassRepeat("btn btn-repeat");
+        (props.songState.activeRandom)? setClassRandom("btn btn-random active") : setClassRandom("btn btn-random");
+    }, [props.songState.activeRepeat, props.songState.activeRandom])
     const handleOnClickBtnPrev = () => {
-        if (activeRepeat.current){
+        if (props.songState.activeRepeat){
             props.modifySongPlay(props.songIndex);
             return;
         }
-        if (activeRandom.current){ 
+        if (props.songState.activeRandom){ 
             props.modifySongPlay(Math.round(Math.random()*props.songCount-1));
             return;
         } 
@@ -25,11 +25,11 @@ export default function Control(props) {
     }
 
     const handleOnClickBtnNext = () => {
-        if (activeRepeat.current){
+        if (props.songState.activeRepeat){
             props.modifySongPlay(props.songIndex);
             return;
         }
-        if (activeRandom.current){
+        if (props.songState.activeRandom){
             props.modifySongPlay(Math.round(Math.random()*props.songCount-1));
         } else{
         if (props.songIndex === props.songCount-1){
@@ -41,15 +41,12 @@ export default function Control(props) {
     }
 
     const handleOnClickBtnRepeat = () => {
-        activeRepeat.current = !activeRepeat.current;
-        (activeRepeat.current)? setClassRepeat("btn btn-repeat active") : setClassRepeat("btn btn-repeat"); 
-        props.modifySongState.modifyActiveRepeat(activeRepeat.current);
+        props.modifySongState.modifyActiveRepeat(!props.songState.activeRepeat);
+       
     }
 
     const handleOnClickBtnRandom = () =>{
-        activeRandom.current = !activeRandom.current;
-        (activeRandom.current)? setClassRandom("btn btn-random active") : setClassRandom("btn btn-random");
-        props.modifySongState.modifyActiveRandom(activeRandom.current);
+        props.modifySongState.modifyActiveRandom(!props.songState.activeRandom);
     }
 
     const handleOnClickBtnTogglePlay = () => {

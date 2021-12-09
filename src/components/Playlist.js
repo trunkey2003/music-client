@@ -1,6 +1,5 @@
-import React from 'react'
+import AddSong from './AddSong'
 import Song from './Song'
-
 
 export default function Playlist(props) {
     return (
@@ -10,6 +9,7 @@ export default function Playlist(props) {
                     <Song handleSoftDelte={props.handleSoftDelte} thumb= {song.image} title={song.name} src={song.path} singer={song.singer} songIndex={props.songIndex} index={index} key={index} modifySongPlay={props.modifySongPlay} modifyIsPlaying={props.modifyIsPlaying}/>
                 )
             })}
+            <AddSong modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong}/>
         </div>
     )
 }

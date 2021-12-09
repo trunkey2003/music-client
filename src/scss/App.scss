@@ -1,4 +1,5 @@
-@import "./theme/defualt-theme.scss";
+@import "./home/theme/defualt-theme.scss";
+@import "./home/AddSong/AddSong.scss";
 
 @keyframes fadedDashboard-PC{
   from{
@@ -13,7 +14,7 @@
 
 @keyframes fadedSong-PC{
   from{
-    opacity: 0;
+    opacity: 0; 
     visibility: hidden;
     height: 0;
   }
@@ -125,7 +126,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.theme {
+.player {
   width: 100vw;
   min-height: 100vh;
   background-color: #000000;
@@ -219,7 +220,7 @@ html {
 }
 
 // @import "./Sound/volume-button-animation.scss";
-@import "./Sound/volume-button.scss";
+@import "./home/Sound/volume-button.scss";
 
 @media (min-width: 1200px) {
   .slider {
@@ -969,6 +970,6 @@ html {
   }
 }
 
-@import "./theme/custom-theme-01.scss";
-@import "./theme/custom-theme-02.scss";
-@import "./theme/custom-theme-03.scss";
+@import "./home/theme/custom-theme-01.scss";
+@import "./home/theme/custom-theme-02.scss";
+@import "./home/theme/custom-theme-03.scss";
