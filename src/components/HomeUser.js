@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import Loading from './Loading';
 
 
-function Home({path}) {
+function Home() {
   const songVn = useRef();
   const songUs = useRef();
   const [songRegion, setSongRegion] = useState("usuk");
@@ -45,14 +45,14 @@ function Home({path}) {
     const func = async () => {
       if (firstLoading) {
         setLoading(true);
-        await fetch(`${path}/admin/us`)
+        await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/us")
           .then((response) => response.json())
           .then((data) => {
             songUs.current = data;
           })
           .catch((next) => console.log(next));
 
-        await fetch(`${path}/admin/vn`)
+        await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/vn")
           .then((response) => response.json())
           .then((data) => {
             songVn.current = data;
