@@ -513,6 +513,16 @@ html {
     cursor: pointer;
   }
 
+  .user-icon {
+    height: 2.5rem;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -839,6 +849,17 @@ html {
     display: block;
     cursor: pointer;
   }
+
+  .user-icon {
+    height: 2.5rem;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
   .progress {
     -webkit-appearance: none;
     width: 100%;

@@ -2,12 +2,15 @@ import '../css/App.css';
 import Dashboard from './Dashboard';
 import Playlist from './Playlist';
 import { useState, useRef, useEffect } from 'react';
+import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 
 
-function Home() {
-  const songVn = useRef();
-  const songUs = useRef();
+function Home({path}) {
+  var {username} = useParams();
+  const validated = useRef();
+  const userDetail = useRef();
+  const [userIcon, setUserIcon] = useState("https://trunkey2003.github.io/general-img/default-profile-pic.jpg");
   const [songRegion, setSongRegion] = useState("usuk");
   const [songs, setSongs] = useState([]);
   const [songAdded, setSongAdded] = useState(false);
@@ -16,8 +19,8 @@ function Home() {
   const [songIndex, setSongIndex] = useState(0);
   const [src, setSrc] = useState("");
   const [cdThumb, setCdThumb] = useState("");
-  const [song, setSong] = useState("");
-  const [singer, setSinger] = useState("");
+  const [song, setSong] = useState("Song");
+  const [singer, setSinger] = useState("Singer");
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [percentage, setPercentage] = useState(0);
@@ -28,6 +31,7 @@ function Home() {
   const [volume, setVolume] = useState(1);
   const [volumeBackground, setVolumeBackground] = useState("volume-background");
   const [volumeIcon, setVolumeIcon] = useState("fas fa-volume-up");
+
 
   const songDetail = {
     src,
@@ -45,43 +49,30 @@ function Home() {
     const func = async () => {
       if (firstLoading) {
         setLoading(true);
-        await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/us")
+        await fetch(`${path}/${username}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) 
+          userDetail.current = data;
+          console.log(userDetail.current);
+          setUserIcon(data[0].avatar);
+          validated.current = true;
+        })
+        .catch(() => {validated.current = false;setLoading(false)})
+        if (validated.current){
+        await fetch(`${path}/${username}/songs`)
           .then((response) => response.json())
           .then((data) => {
-            songUs.current = data;
+            if (data) setSongs(data);
           })
-          .catch((next) => console.log(next));
-
-        await fetch("https://api-trunkeymusicplayer.herokuapp.com/api/vn")
-          .then((response) => response.json())
-          .then((data) => {
-            songVn.current = data;
-          })
-          .catch((next) => console.log(next))
+          .catch(() => {console.log("Cannot get user songs");})
           .finally(() => { setLoading(false); setFirstLoading(false); })
-        const songs = (songRegion === "usuk") ? songUs.current : songVn.current;
-        setSongs(songs);
-        setCdThumb(songs[0].image);
-        setSong(songs[0].name);
-        setSinger(songs[0].singer);
-        setSrc(songs[0].path);
-        setSongIndex(0);
-        setTimeManually(0);
-        setPercentage(0);
-      } else {
-        let songs;
-        if (songs && songRegion === "usuk") songUs.current = songs;
-        if (songs && songRegion === "vn") songVn.current = songs;
-        songs = (songRegion === "usuk") ? songUs.current : songVn.current;
-        setSongs(songs);
-        setCdThumb(songs[0].image);
-        setSong(songs[0].name);
-        setSinger(songs[0].singer);
-        setSrc(songs[0].path);
+        }
       }
     }
-
     func();
+
+    console.log("Validated : " + validated.current);
   }, [songRegion, firstLoading])
 
   useEffect(() => {
@@ -204,7 +195,7 @@ function Home() {
     newSongs.splice(index, 1);
     setSongs(newSongs);
   }
-
+  
   const handleAddSong = (song) => {
     let newSongs = [...songs];
     newSongs.push(song);
@@ -257,9 +248,9 @@ function Home() {
   return (
     <div className={`${classes} ${classTheme}`}>
       {(loading === true) ? <Loading /> : (<>
-        <Dashboard songState={songState} volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs} />
+        <Dashboard userIcon={userIcon} validated={validated.current} username={username} songState={songState} volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs} />
         <audio ref={audioRef} id="audio" onTimeUpdate={(e) => updateTime(e)} src={src} onLoadedData={(e) => { setDuration(e.currentTarget.duration); }}></audio>
-        <Playlist classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} handleAddSong={handleAddSong}/>
+        <Playlist userDetail={userDetail.current[0]} validated={validated.current} classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} handleAddSong={handleAddSong}/>
       </>)}
     </div>
   );

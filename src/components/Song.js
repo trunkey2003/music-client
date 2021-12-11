@@ -16,9 +16,27 @@ export default function Song(props) {
     const handleCloseDelete = () => setShowDelete(false);
     const handleShowDelete = () => setShowDelete(true);
 
-    const modifySongPlay = function (index) {
+    const modifySongPlay = (index) => {
         props.modifySongPlay(index, true);
         props.modifyIsPlaying(false);
+    }
+
+    const handlePermanentlyDelte = async (id, username, index, songid) => {
+        const url = (songid)? `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songid/${songid}` : `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songs/${id}`;
+
+        console.log(props);
+        
+        await fetch(url, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({songid : props.songid})
+          })
+        .then((data) => console.log(data))
+        .catch(() => console.log("Err"));
+
+        props.handleSoftDelte(index);
     }
 
     if (props.songIndex === props.index) {
@@ -41,17 +59,17 @@ export default function Song(props) {
                 <i className="fas fa-ellipsis-h three-dot" onClick={() => {toogleThreeDot()}}></i>
                 <div className={classOption}>
                     <button onClick={handleShowDownload}>Download <i className="fas fa-download"></i></button>
-                    <button onClick={handleShowDelete} >Soft delete <i className="fas fa-trash"></i></button>
+                    <button onClick={handleShowDelete} >{(props.validated)? `Delete` : `Soft delete`} <i className="fas fa-trash"></i></button>
                 </div>
 
                 <Modal className="custom-modal-01" show={showDownload} onHide={handleCloseDownload}>
                     <Modal.Header closeButton>
                         <Modal.Title>Download {props.title}</Modal.Title>
-                        <button type="button" class="custom-btn-close-modal" onClick={handleCloseDownload} aria-label="Close"><i className="fas fa-times"></i></button>
+                        <button type="button" className="custom-btn-close-modal" onClick={handleCloseDownload} aria-label="Close"><i className="fas fa-times"></i></button>
                     </Modal.Header>
                     <Modal.Body>
                         Are you sure you want to download this song ?
-                        <div class="thumbnail">
+                        <div className="thumbnail">
                             <img alt={props.title} src={props.thumb} className="thumbnail-img"></img>
                             <div className="thumbnail-content">
                             <h5><b>Song</b> : {props.title}</h5>
@@ -72,11 +90,11 @@ export default function Song(props) {
                 <Modal className="custom-modal-01 darkTheme" show={showDelete} onHide={handleCloseDelete}>
                     <Modal.Header closeButton>
                         <Modal.Title>Remove {props.title} </Modal.Title>
-                        <button type="button" class="custom-btn-close-modal" aria-label="Close" onClick={handleCloseDelete}><i className="fas fa-times"></i></button>
+                        <button type="button" className="custom-btn-close-modal" aria-label="Close" onClick={handleCloseDelete}><i className="fas fa-times"></i></button>
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to remove this song from your list ? <br/> <span class="custom-text-note">Note that this song won't be deleted permanently from my database :)</span>
-                        <div class="thumbnail">
+                        Are you sure you want to remove this song from your list ? <br/> <span className="custom-text-note">{(props.validated)? "" : `Note that this song won't be deleted permanently from my database :)`}</span>
+                        <div className="thumbnail">
                             <img alt={props.title} src={props.thumb} className="thumbnail-img"></img>
                             <div className="thumbnail-content">
                             <h5><b>Song</b> : {props.title}</h5>
@@ -88,7 +106,13 @@ export default function Song(props) {
                         <Button variant="secondary" className="custom-close-btn" onClick={handleCloseDelete}>
                             Close
                         </Button>
-                        <Button variant="danger" className="custom-delete-btn" onClick={() => {props.handleSoftDelte(props.index); toogleThreeDot(); handleCloseDelete();}}>
+                        <Button variant="danger" className="custom-delete-btn" onClick={() => {
+                            if (props.validated){
+                                handlePermanentlyDelte(props.objectid, props.username, props.index, props.songid);
+                            }else{
+                                props.handleSoftDelte(props.index); toogleThreeDot(); handleCloseDelete();
+                            }
+                        }}>
                             Delete <i className="fas fa-trash"></i>
                         </Button>
                     </Modal.Footer>
