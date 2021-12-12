@@ -1,6 +1,15 @@
 @import "./home/theme/defualt-theme.scss";
 @import "./home/AddSong/AddSong.scss";
 
+input {
+  font-family: Verdana;
+  letter-spacing: 0.125em;
+}
+
+.on-hover:hover{
+  opacity: 0.8;
+}
+
 @keyframes fadedDashboard-PC{
   from{
     opacity: 0;
@@ -48,6 +57,7 @@
     visibility: visible;
   }
 }
+
 
 .custom-modal-01 .modal-dialog .modal-content {
   background: var(--background-modal);
@@ -106,6 +116,66 @@
 
 .custom-modal-01 .custom-btn-close-modal:hover {
   color: var(--color-btn-close-modal-hover);
+}
+
+.custom-modal-login .modal-content{
+  margin-bottom: 10vh;
+  font-family: Verdana;
+  letter-spacing: 0.1em;
+  .custom-header-login{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 0.1em;
+  }
+  .to-sign-up:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  label:hover{
+    opacity: 0.8;
+  }
+}
+
+.custom-modal-login {
+  .modal-dialog .modal-content{
+    background: linear-gradient(0deg, rgba(66,12,12,1) 0%, rgb(75, 82, 128) 100%);
+  }
+
+  .custom-btn-close-modal{
+  position: absolute;
+  top:15px;
+  right:15px;
+  }
+
+  .modal-body{
+    padding: 50px 30px;
+  }
+
+  .custom-login-button{
+    width: 100%;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,81,253,1) 100%);
+    border-radius: 3rem;
+    font-family: Verdana;
+    letter-spacing: 0.12em;
+  }
+  
+  .social-buttons button{
+    margin: 0 10px;
+    border-radius: 50%;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,81,253,1) 100%);
+    color: #fff;
+    border: none;
+  }
+}
+
+
+.custom-modal-login .custom-login-button:hover, .custom-modal-login .social-buttons button:hover{
+  background: linear-gradient(0deg, rgb(27, 134, 136) 0%, rgb(32, 55, 168) 100%);
+}
+
+.login-page{
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(0deg, rgb(64, 18, 66) 0%, rgba(5,9,29,1) 100%);
 }
 
 .hidden {
@@ -215,9 +285,7 @@ html {
   color: var(--color-option-songs-btn-hover);
 }
 
-.custom-modal-01 {
-  top: 20vh;
-}
+
 
 // @import "./Sound/volume-button-animation.scss";
 @import "./home/Sound/volume-button.scss";
@@ -393,9 +461,9 @@ html {
     left: 40%;
     width: 50%;
     height: 100%;
-    /* top:0; */
+    top:0;
     bottom: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     animation: fadedSong-PC 0.8s ease-in-out;
   }
@@ -521,6 +589,19 @@ html {
     display: block;
     cursor: pointer;
     border-radius: 50%;
+  }
+
+  .user-icon-home{
+    height: 2.5rem;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    right: 5px;
+    top: 7.2rem;
+  }
+
+  #change-list-btn:hover, .volume-container:hover, .user-icon-home:hover, .user-icon:hover{
+    opacity: 0.8;
   }
 
   ::-webkit-scrollbar {
@@ -666,7 +747,7 @@ html {
     position: fixed;
     left: 0;
     top: 0;
-    animation: fadedDashboard-Mobile 0.8s ease-in-out;
+    animation: fadedDashboard-Mobile 1s ease-in-out;
     display: block;
     width: 100%;
     z-index: 1;
@@ -758,7 +839,7 @@ html {
   .playlist {
     padding-top: 420px;
     padding: 420px 15px 15px 15px;
-    animation: fadedSong-Mobile 0.8s ease-in-out;
+    animation: fadedSong-Mobile 1s ease-in-out;
   }
 
   .song {
@@ -767,17 +848,6 @@ html {
     margin-bottom: 3px;
     background: var(--background-song);
     padding: 8px 16px;
-    /* border-bottom: 3px solid transparent;
-      border-image: linear-gradient(
-        to right,
-        #ff0000,
-        #ff3300,
-        #fbff00,
-        #07ff30,
-        #00eeff,
-        #6f00ff,
-        #ff009d
-      ); */
     border-image-slice: 1;
     cursor: pointer;
   }
@@ -842,7 +912,7 @@ html {
   }
 
   #change-list-btn {
-    height: 2.2rem;
+    height: 42px;
     position: absolute;
     top: 5px;
     right: 5px;
@@ -851,13 +921,21 @@ html {
   }
 
   .user-icon {
-    height: 2.5rem;
+    height: 42px;
     position: absolute;
     top: 5px;
     right: 5px;
     display: block;
     cursor: pointer;
     border-radius: 50%;
+  }
+
+  .user-icon-home{
+    height: 42px;
+    position: absolute;
+    border-radius: 50%;
+    right: 5px;
+    top : 7.2rem;
   }
 
   .progress {

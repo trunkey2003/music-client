@@ -24,3 +24,6 @@ yarn-error.log*
 
 src/theme
 
+desktop.ini
+src/css/home/
+src/home/

@@ -12,7 +12,7 @@
 @keyframes fromVolume1ToVolume2 {
   0% {
     width: 0;
-    height: 0; }
+    height: 0; } 
   66% {
     top: 4px;
     left: 4px;

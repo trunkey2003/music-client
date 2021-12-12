@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 
 
-function Home({path}) {
+function HomeUser({path}) {
   var {username} = useParams();
   const validated = useRef();
   const userDetail = useRef();
@@ -18,7 +18,7 @@ function Home({path}) {
   const audioRef = useRef();
   const [songIndex, setSongIndex] = useState(0);
   const [src, setSrc] = useState("");
-  const [cdThumb, setCdThumb] = useState("");
+  const [cdThumb, setCdThumb] = useState("https://trunkey2003.github.io/general-img/cd-icon.jpg");
   const [song, setSong] = useState("Song");
   const [singer, setSinger] = useState("Singer");
   const [isPlaying, setIsPlaying] = useState(false);
@@ -256,4 +256,4 @@ function Home({path}) {
   );
 }
 
-export default Home;
+export default HomeUser;
