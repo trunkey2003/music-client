@@ -82,12 +82,14 @@ function Home({path}) {
     }
 
     func();
+    // eslint-disable-next-line
   }, [songRegion, firstLoading])
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
+    // eslint-disable-next-line
   }, [volume, audioRef.current])
 
 
@@ -217,11 +219,8 @@ function Home({path}) {
       modifySongPlay(songs.length-1, true);
       setSongAdded(false);
     }
+    // eslint-disable-next-line
   }, [handleAddSong, songAdded])
-
-  const handleOnChangeVolume = (e) => {
-    setVolume(e.target.value);
-  }
 
   const ModifySongVolume = (e) => {
     switch (volume) {

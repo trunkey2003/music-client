@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from './Loading';
 const axios = require('axios');
-axios.defaults.withCredentials = true;
 
 
 function HomeUser({ path, userValidated }) {
@@ -55,7 +54,7 @@ function HomeUser({ path, userValidated }) {
         console.log(`${path}/${username}`);
         axios.get(`${path}/${username}`, {mode: 'cors', withCredentials: true})
         .then((result) => {
-          if (result.data.username != username) window.location = `/user/${result.data.username}`;
+          if (result.data.username !== username) window.location = `/user/${result.data.username}`;
           validated.current = true;
           userDetail.current = result.data;
           setUserIcon(userDetail.current.avatar);
@@ -67,18 +66,21 @@ function HomeUser({ path, userValidated }) {
         })
         .finally(() =>{
           setLoading(false);
+          setFirstLoading(false);
         })
       }
     }
 
     func();
     console.log("Validated : " + validated.current);
+    // eslint-disable-next-line
   }, [songRegion, firstLoading])
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
+    // eslint-disable-next-line
   }, [volume, audioRef.current])
 
 
@@ -208,11 +210,8 @@ function HomeUser({ path, userValidated }) {
       modifySongPlay(songs.length - 1, true);
       setSongAdded(false);
     }
+    // eslint-disable-next-line
   }, [handleAddSong, songAdded])
-
-  const handleOnChangeVolume = (e) => {
-    setVolume(e.target.value);
-  }
 
   const ModifySongVolume = (e) => {
     switch (volume) {

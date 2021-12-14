@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+const axios = require('axios');
+axios.defaults.withCredentials = true; 
 
 
 
@@ -22,19 +24,15 @@ export default function Song(props) {
     }
 
     const handlePermanentlyDelte = async (id, username, index, songid) => {
-        const url = (songid)? `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songid/${songid}` : `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songs/${id}`;
+        const devUrl = "http://localhost:5000";
+        // eslint-disable-next-line
+        const proUrl = "https://api-trunkeymusicplayer.herokuapp.com";
+        const url = (songid)? `${devUrl}/api/user/${username}/songid/${songid}` : `${devUrl}/api/user/${username}/songs/${id}`;
 
         console.log(props);
-        
-        await fetch(url, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({songid : props.songid})
-          })
-        .then((data) => console.log(data))
-        .catch(() => console.log("Err"));
+        let data;
+
+        await axios.delete(url,data,{withCredentials: true});
 
         props.handleSoftDelte(index);
     }

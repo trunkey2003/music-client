@@ -74,7 +74,7 @@ export default function SignUpModal(props) {
           <></>
         )}
         <Form onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="formSignUpUserName">
             <Form.Label>User name</Form.Label>
             <Form.Control
               onChange={(e) => setUsername(e.target.value)}
@@ -84,7 +84,7 @@ export default function SignUpModal(props) {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="formSignUpEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               onChange={(e) => setEmail(e.target.value)}
@@ -94,7 +94,7 @@ export default function SignUpModal(props) {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3" controlId="formSignUpPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               onChange={(e) => setPassword(e.target.value)}
@@ -174,7 +174,7 @@ export default function SignUpModal(props) {
       >
         <div className="text-center">
           <div className="on-hover">Already have an account ?</div>{" "}
-          <a onClick={() => { props.onHide(); props.signIn() }} className="to-sign-up text-info">Sign In</a>
+          <u onClick={() => { props.onHide(); props.signin() }} className="to-sign-up text-info">Sign In</u>
         </div>
       </Modal.Footer>
     </Modal>

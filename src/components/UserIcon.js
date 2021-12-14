@@ -8,7 +8,7 @@ export default function UserIcon(props){
     return (
         <div>
             <img onClick={() => {setModalShow(true)}} className={(props.className)? props.className : "user-icon"} src={props.userIcon} alt="user-icon"/>
-            <LoginModal modifyUserValidated={props.modifyUserValidated} show={modalShow} onHide={() => setModalShow(false)} signIn={() => setModalShow(true)} closeAble={true}/>
+            <LoginModal show={modalShow} onHide={() => setModalShow(false)} signin={() => {setModalShow(true)}} closeable="true"/>
         </div>
     )
 }

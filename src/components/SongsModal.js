@@ -3,7 +3,7 @@ import {
 } from "nhaccuatui-api-full";
 import { v4 as uuidv4 } from 'uuid';
 
-export default function SongsModal({userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
+export default function SongsModal({index, userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
     var singers = "";
     const username = userDetail.username;
     const userid = userDetail.userid;
@@ -11,7 +11,8 @@ export default function SongsModal({userDetail,addSongToDatabase, handleAddSong,
     image = (image)? image : "https://i1.sndcdn.com/avatars-000606604806-j6ghpm-t500x500.jpg";
     if (artists) {artists.map((singer, index) => {
         singers = singers + singer.name;
-        if (artists.length-1 != index) singers = singers + " - ";
+        if (artists.length-1 !== index) singers = singers + " - ";
+        return 0;
     })}
 
     const handleAddButton = async (songID) =>{
@@ -28,7 +29,7 @@ export default function SongsModal({userDetail,addSongToDatabase, handleAddSong,
         await handleAddSong(newSong);
     }
     return(
-        <div className="songs-modal">
+        <div className="songs-modal" key={index}>
             <div className="songs-modal-img">
                 <img alt="hello" src={image}></img>
             </div>

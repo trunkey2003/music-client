@@ -5,7 +5,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useState } from 'react';
 import SignUpModal from './SignUpModal';
 const axios = require('axios');
-axios.defaults.withCredentials = true; 
 
 export default function LoginModal(props) {
     const [username, setUsername] = useState("");
@@ -13,23 +12,9 @@ export default function LoginModal(props) {
     const [loading, setLoading] = useState(false);
     const [modalSignUp, setModalSignUp] = useState(false);
 
-    async function login(url = '', data = {}) {
-        const response = await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-        });
-        return response.json();
-    }
 
     const handleSubmit = async (e) => {
+        // eslint-disable-next-line
         const url = "https://api-trunkeymusicplayer.herokuapp.com/api/user/login";
         const urldev = "http://localhost:5000/api/user/login";
         e.preventDefault();
@@ -38,9 +23,9 @@ export default function LoginModal(props) {
         submitData.password = password;
         if (!username || !password) return;
         setLoading(true);
-        const result = await axios.post(url, submitData, {mode: 'cors', credentials:'include', withCredentials: true});
-        if (result.status === 200){
-            window.location.href = `user/${result.data.username}`;
+        const result = await axios.post(urldev, submitData, {mode: 'cors', credentials:'include', withCredentials: true});
+        if (result.status === 200 && result.data.username){
+            window.location = `/user/${result.data.username}`;
         }
         console.log(result);
         setLoading(false);
@@ -57,7 +42,7 @@ export default function LoginModal(props) {
             >
                 <Modal.Body>
                     <h4 className="text-center text-info pb-3 custom-header-login on-hover">Sign in</h4>
-                    {(props.closeAble) ? <button type="button" className="custom-btn-close-modal" onClick={props.onHide} aria-label="Close"><i className="fas fa-times"></i></button> : <></>}
+                    {(props.closeable) ? <button type="button" className="custom-btn-close-modal" onClick={props.onHide} aria-label="Close"><i className="fas fa-times"></i></button> : <></>}
                     <Form onSubmit={(e) => handleSubmit(e)}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>User name</Form.Label>
@@ -95,10 +80,10 @@ export default function LoginModal(props) {
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-                    <div className="text-center"><div className="on-hover">Not a member yet? </div> <a onClick={() => { props.onHide(); setModalSignUp(true) }} className="to-sign-up text-info">Sign Up</a></div>
+                    <div className="text-center"><div className="on-hover">Not a member yet? </div><u onClick={() => { props.onHide(); setModalSignUp(true) }} className="to-sign-up text-info">Sign Up</u></div>
                 </Modal.Footer>
             </Modal>
-            <SignUpModal show={modalSignUp} onHide={() => setModalSignUp(false)} signIn={() => { props.signIn() }} closeAble={true}></SignUpModal>
+            <SignUpModal show={modalSignUp} onHide={() => {setModalSignUp(false)}} signin={() => {props.signin()}} closeable="true"></SignUpModal>
         </>
     );
 }
