@@ -58,15 +58,16 @@ function HomeUser({ path, userValidated }) {
           validated.current = true;
           userDetail.current = result.data;
           setUserIcon(userDetail.current.avatar);
-          axios.get(`${path}/${username}/songs`, {mode: 'cors', withCredentials: true}).then((songs) => {setSongs(songs.data);})
+          axios.get(`${path}/${username}/songs`, {mode: 'cors', withCredentials: true})
+          .then((songs) => {setSongs(songs.data);})
+          .finally(() =>{
+            setLoading(false);
+            setFirstLoading(false);
+          })
         })
         .catch((err) => {
           console.log(err);
           window.location.href = "/user/login";
-        })
-        .finally(() =>{
-          setLoading(false);
-          setFirstLoading(false);
         })
       }
     }

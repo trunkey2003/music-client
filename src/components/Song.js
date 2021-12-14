@@ -27,7 +27,10 @@ export default function Song(props) {
         const devUrl = "http://localhost:5000";
         // eslint-disable-next-line
         const proUrl = "https://api-trunkeymusicplayer.herokuapp.com";
-        const url = (songid)? `${devUrl}/api/user/${username}/songid/${songid}` : `${devUrl}/api/user/${username}/songs/${id}`;
+        
+        const url = (id)? `${devUrl}/api/user/${username}/songs/${id}` : `${devUrl}/api/user/${username}/songid/${songid}`;
+        
+        console.log(url);
 
         console.log(props);
         let data;
