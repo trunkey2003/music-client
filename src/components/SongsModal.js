@@ -1,6 +1,7 @@
 import {
     getSong,
 } from "nhaccuatui-api-full";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function SongsModal({userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
     var singers = "";
@@ -22,7 +23,7 @@ export default function SongsModal({userDetail,addSongToDatabase, handleAddSong,
             path: path,
             image: image,
         }
-        let SongToDabase = Object.assign(newSong, {username: username, userid : userid, songid: songID});
+        let SongToDabase = Object.assign(newSong, {username: username, userid : userid, songid: uuidv4()});
         await addSongToDatabase(url, SongToDabase).then((data) => {console.log(data);})
         await handleAddSong(newSong);
     }

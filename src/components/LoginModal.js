@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import { useState } from 'react';
 import SignUpModal from './SignUpModal';
+const axios = require('axios');
+axios.defaults.withCredentials = true; 
 
 export default function LoginModal(props) {
     const [username, setUsername] = useState("");
@@ -29,24 +31,19 @@ export default function LoginModal(props) {
 
     const handleSubmit = async (e) => {
         const url = "https://api-trunkeymusicplayer.herokuapp.com/api/user/login";
+        const urldev = "http://localhost:5000/api/user/login";
         e.preventDefault();
         const submitData = {};
         submitData.username = username;
         submitData.password = password;
         if (!username || !password) return;
         setLoading(true);
-        await login(url, submitData)
-            .then(data => {
-                setLoading(false);
-                return data;
-            })
-            .then(data => {
-                window.location = `http://localhost:3000/user/${data.username}`;
-            })
-            .catch(err => {
-                console.log(err);
-            })
-            .finally(() => { setLoading(false); })
+        const result = await axios.post(url, submitData, {mode: 'cors', credentials:'include', withCredentials: true});
+        if (result.status === 200){
+            window.location.href = `user/${result.data.username}`;
+        }
+        console.log(result);
+        setLoading(false);
     }
 
     return (
@@ -98,10 +95,10 @@ export default function LoginModal(props) {
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-                    <div className="text-center"><div className="on-hover">Not a member yet? </div> <a onClick={() => {props.onHide(); setModalSignUp(true)}} className="to-sign-up text-info">Sign Up</a></div>
+                    <div className="text-center"><div className="on-hover">Not a member yet? </div> <a onClick={() => { props.onHide(); setModalSignUp(true) }} className="to-sign-up text-info">Sign Up</a></div>
                 </Modal.Footer>
             </Modal>
-            <SignUpModal show={modalSignUp} onHide={() => setModalSignUp(false)} signIn={() => {props.signIn()}} closeAble={true}></SignUpModal>
+            <SignUpModal show={modalSignUp} onHide={() => setModalSignUp(false)} signIn={() => { props.signIn() }} closeAble={true}></SignUpModal>
         </>
     );
 }

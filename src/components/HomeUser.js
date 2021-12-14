@@ -2,12 +2,14 @@ import '../css/App.css';
 import Dashboard from './Dashboard';
 import Playlist from './Playlist';
 import { useState, useRef, useEffect } from 'react';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Loading from './Loading';
+const axios = require('axios');
+axios.defaults.withCredentials = true;
 
 
-function HomeUser({path}) {
-  var {username} = useParams();
+function HomeUser({ path, userValidated }) {
+  var { username } = useParams();
   const validated = useRef();
   const userDetail = useRef();
   const [userIcon, setUserIcon] = useState("https://trunkey2003.github.io/general-img/default-profile-pic.jpg");
@@ -48,30 +50,28 @@ function HomeUser({path}) {
   useEffect(() => {
     const func = async () => {
       if (firstLoading) {
+        const path = "http://localhost:5000/api/user";
         setLoading(true);
-        await fetch(`${path}/${username}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data) 
-          userDetail.current = data;
-          console.log(userDetail.current);
-          setUserIcon(data[0].avatar);
+        console.log(`${path}/${username}`);
+        axios.get(`${path}/${username}`, {mode: 'cors', withCredentials: true})
+        .then((result) => {
+          if (result.data.username != username) window.location = `/user/${result.data.username}`;
           validated.current = true;
+          userDetail.current = result.data;
+          setUserIcon(userDetail.current.avatar);
+          axios.get(`${path}/${username}/songs`, {mode: 'cors', withCredentials: true}).then((songs) => {setSongs(songs.data);})
         })
-        .catch(() => {validated.current = false;setLoading(false)})
-        if (validated.current){
-        await fetch(`${path}/${username}/songs`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data) setSongs(data);
-          })
-          .catch(() => {console.log("Cannot get user songs");})
-          .finally(() => { setLoading(false); setFirstLoading(false); })
-        }
+        .catch((err) => {
+          console.log(err);
+          window.location.href = "/user/login";
+        })
+        .finally(() =>{
+          setLoading(false);
+        })
       }
     }
-    func();
 
+    func();
     console.log("Validated : " + validated.current);
   }, [songRegion, firstLoading])
 
@@ -151,14 +151,14 @@ function HomeUser({path}) {
           index = songIndex;
         }
       }
-      if (songs[index]){
-      setSongIndex(index);
-      setTimeManually(0);
-      setPercentage(0);
-      modifySong(songs[index].name);
-      modifySinger(songs[index].singer);
-      modifySrc(songs[index].path);
-      modifyCdThumb(songs[index].image);
+      if (songs[index]) {
+        setSongIndex(index);
+        setTimeManually(0);
+        setPercentage(0);
+        modifySong(songs[index].name);
+        modifySinger(songs[index].singer);
+        modifySrc(songs[index].path);
+        modifyCdThumb(songs[index].image);
       }
     }
   }
@@ -195,7 +195,7 @@ function HomeUser({path}) {
     newSongs.splice(index, 1);
     setSongs(newSongs);
   }
-  
+
   const handleAddSong = (song) => {
     let newSongs = [...songs];
     newSongs.push(song);
@@ -203,9 +203,9 @@ function HomeUser({path}) {
     setSongAdded(true);
   }
 
-  useEffect(() =>{
-    if (songAdded){
-      modifySongPlay(songs.length-1, true);
+  useEffect(() => {
+    if (songAdded) {
+      modifySongPlay(songs.length - 1, true);
       setSongAdded(false);
     }
   }, [handleAddSong, songAdded])
@@ -250,7 +250,7 @@ function HomeUser({path}) {
       {(loading === true) ? <Loading /> : (<>
         <Dashboard userIcon={userIcon} validated={validated.current} username={username} songState={songState} volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs} />
         <audio ref={audioRef} id="audio" onTimeUpdate={(e) => updateTime(e)} src={src} onLoadedData={(e) => { setDuration(e.currentTarget.duration); }}></audio>
-        <Playlist userDetail={userDetail.current[0]} validated={validated.current} classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} handleAddSong={handleAddSong}/>
+        <Playlist userDetail={userDetail.current} validated={validated.current} classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} handleAddSong={handleAddSong} />
       </>)}
     </div>
   );
