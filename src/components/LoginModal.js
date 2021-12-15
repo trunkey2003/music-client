@@ -34,11 +34,11 @@ export default function LoginModal(props) {
     return (
         <>
             <Modal
-                {...props}
+                show={props.show} onHide={props.onHide}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                className="custom-modal-01 custom-modal-login"
+                className="custom-modal-login"
             >
                 <Modal.Body>
                     <h4 className="text-center text-info pb-3 custom-header-login on-hover">Sign in</h4>

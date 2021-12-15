@@ -35,7 +35,7 @@ export default function AddSong(props) {
       method: 'POST',
       mode: 'cors', 
       cache: 'no-cache', 
-      credentials: 'same-origin', 
+      credentials: 'include', 
       headers: {
         'Content-Type': 'application/json'
       },

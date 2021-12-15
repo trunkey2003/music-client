@@ -19,7 +19,7 @@ function HomeUser({ path, userValidated }) {
   const audioRef = useRef();
   const [songIndex, setSongIndex] = useState(0);
   const [src, setSrc] = useState("");
-  const [cdThumb, setCdThumb] = useState("https://trunkey2003.github.io/general-img/cd-icon.jpg");
+  const [cdThumb, setCdThumb] = useState("https://i1.sndcdn.com/avatars-000606604806-j6ghpm-t500x500.jpg");
   const [song, setSong] = useState("Song");
   const [singer, setSinger] = useState("Singer");
   const [isPlaying, setIsPlaying] = useState(false);

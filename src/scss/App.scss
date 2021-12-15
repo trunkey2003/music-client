@@ -8,6 +8,7 @@ input {
 
 .on-hover:hover{
   opacity: 0.8;
+  cursor: pointer;
 }
 
 @keyframes fadedDashboard-PC{
@@ -107,14 +108,14 @@ input {
   display: none;
 }
 
-.custom-modal-01 .custom-btn-close-modal {
+.custom-btn-close-modal {
   border: 0;
   background: none;
   color: var(--color-btn-close-modal);
   font-size: 20px;
 }
 
-.custom-modal-01 .custom-btn-close-modal:hover {
+.custom-btn-close-modal:hover {
   color: var(--color-btn-close-modal-hover);
 }
 
@@ -138,6 +139,7 @@ input {
 .custom-modal-login {
   .modal-dialog .modal-content{
     background: linear-gradient(0deg, rgba(66,12,12,1) 0%, rgb(75, 82, 128) 100%);
+    color: white;
   }
 
   .custom-btn-close-modal{
@@ -170,6 +172,55 @@ input {
 
 .custom-modal-login .custom-login-button:hover, .custom-modal-login .social-buttons button:hover{
   background: linear-gradient(0deg, rgb(27, 134, 136) 0%, rgb(32, 55, 168) 100%);
+}
+
+.custom-modal-user{
+  .modal-user-box{
+    img{
+      width: 30%;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    button{
+      width: 100%;
+      margin: 5px auto;
+      border-radius: 2rem;
+      background: linear-gradient(to bottom, rgb(23, 21, 148), rgb(0,0,0));
+      &:hover{
+        background: linear-gradient(to bottom, rgb(5, 4, 39), rgb(18, 7, 32));
+      }
+    }
+  }
+
+  .modal-dialog .modal-content{
+    width: 300px;
+    margin: auto;
+    margin-top: 35vh;
+    background: linear-gradient(0deg, rgb(17, 15, 129) 0%, rgb(105, 30, 139)100%);
+    color: white;
+    border-radius: 20%;
+  } 
+  
+  .modal-content{
+    font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    letter-spacing: 0.1em;
+    .custom-header-login{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: 0.1em;
+    }
+    .to-sign-up:hover{
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    label:hover{
+      opacity: 0.8;
+    }
+  }
 }
 
 .login-page{

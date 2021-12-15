@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import LoginModal from './LoginModal';
+import UserModal from './UserModal';
 
 
 export default function UserIcon(props){
-    const [modalShow, setModalShow] = useState(false);
+    const [modalLoginShow, setModalLoginShow] = useState(false);
+    const [modalUserShow, setModalUserShow] = useState(false);
 
     return (
         <div>
-            <img onClick={() => {setModalShow(true)}} className={(props.className)? props.className : "user-icon"} src={props.userIcon} alt="user-icon"/>
-            <LoginModal show={modalShow} onHide={() => setModalShow(false)} signin={() => {setModalShow(true)}} closeable="true"/>
+            <img onClick={() => {if(!props.validated) setModalLoginShow(true); else setModalUserShow(true)}} className={(props.className)? props.className : "user-icon"} src={props.userIcon} alt="user-icon"/>
+            <LoginModal show={modalLoginShow} onHide={() => setModalLoginShow(false)} signin={() => {setModalLoginShow(true)}} closeable="true"/>
+            <UserModal userIcon={props.userIcon} show={modalUserShow} onHide={() => setModalUserShow(false)}></UserModal>
         </div>
     )
 }

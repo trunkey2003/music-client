@@ -150,7 +150,8 @@ input {
   letter-spacing: 0.125em; }
 
 .on-hover:hover {
-  opacity: 0.8; }
+  opacity: 0.8;
+  cursor: pointer; }
 
 @keyframes fadedDashboard-PC {
   from {
@@ -229,13 +230,13 @@ input {
 .custom-modal-01 .btn-close {
   display: none; }
 
-.custom-modal-01 .custom-btn-close-modal {
+.custom-btn-close-modal {
   border: 0;
   background: none;
   color: var(--color-btn-close-modal);
   font-size: 20px; }
 
-.custom-modal-01 .custom-btn-close-modal:hover {
+.custom-btn-close-modal:hover {
   color: var(--color-btn-close-modal-hover); }
 
 .custom-modal-login .modal-content {
@@ -252,7 +253,8 @@ input {
     opacity: 0.8; }
 
 .custom-modal-login .modal-dialog .modal-content {
-  background: linear-gradient(0deg, #420c0c 0%, #4b5280 100%); }
+  background: linear-gradient(0deg, #420c0c 0%, #4b5280 100%);
+  color: white; }
 
 .custom-modal-login .custom-btn-close-modal {
   position: absolute;
@@ -278,6 +280,44 @@ input {
 
 .custom-modal-login .custom-login-button:hover, .custom-modal-login .social-buttons button:hover {
   background: linear-gradient(0deg, #1b8688 0%, #2037a8 100%); }
+
+.custom-modal-user .modal-user-box {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .custom-modal-user .modal-user-box img {
+    width: 30%;
+    border-radius: 50%;
+    margin-bottom: 10px; }
+  .custom-modal-user .modal-user-box button {
+    width: 100%;
+    margin: 5px auto;
+    border-radius: 2rem;
+    background: linear-gradient(to bottom, #171594, black); }
+    .custom-modal-user .modal-user-box button:hover {
+      background: linear-gradient(to bottom, #050427, #120720); }
+
+.custom-modal-user .modal-dialog .modal-content {
+  width: 300px;
+  margin: auto;
+  margin-top: 35vh;
+  background: linear-gradient(0deg, #110f81 0%, #691e8b 100%);
+  color: white;
+  border-radius: 20%; }
+
+.custom-modal-user .modal-content {
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  letter-spacing: 0.1em; }
+  .custom-modal-user .modal-content .custom-header-login {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.1em; }
+  .custom-modal-user .modal-content .to-sign-up:hover {
+    cursor: pointer;
+    opacity: 0.8; }
+  .custom-modal-user .modal-content label:hover {
+    opacity: 0.8; }
 
 .login-page {
   width: 100%;
