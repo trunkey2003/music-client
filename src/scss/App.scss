@@ -11,6 +11,15 @@ input {
   cursor: pointer;
 }
 
+@keyframes faded{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
 @keyframes fadedDashboard-PC{
   from{
     opacity: 0;
@@ -119,24 +128,25 @@ input {
   color: var(--color-btn-close-modal-hover);
 }
 
-.custom-modal-login .modal-content{
-  margin-bottom: 10vh;
-  font-family: Verdana;
-  letter-spacing: 0.1em;
-  .custom-header-login{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    letter-spacing: 0.1em;
-  }
-  .to-sign-up:hover{
-    cursor: pointer;
-    opacity: 0.8;
-  }
-  label:hover{
-    opacity: 0.8;
-  }
-}
 
 .custom-modal-login {
+  .modal-content{
+    margin-bottom: 10vh;
+    font-family: Verdana;
+    letter-spacing: 0.1em;
+    .custom-header-login{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      letter-spacing: 0.1em;
+    }
+    .to-sign-up:hover{
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    label:hover{
+      opacity: 0.8;
+    }
+  }
+
   .modal-dialog .modal-content{
     background: linear-gradient(0deg, rgba(66,12,12,1) 0%, rgb(75, 82, 128) 100%);
     color: white;
@@ -1123,3 +1133,25 @@ html {
 @import "./home/theme/custom-theme-01.scss";
 @import "./home/theme/custom-theme-02.scss";
 @import "./home/theme/custom-theme-03.scss";
+
+.alert-box{
+  width: 100%;
+  font-size: 0.8rem;
+  position: relative;
+  padding-left: 20px;
+  background: linear-gradient(to bottom, rgb(177, 92, 92), rgb(94, 45, 45));
+  border-radius: 0.5rem;
+  margin: 15px 0;
+  height: 40px;
+  line-height: 40px;
+  button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    color: white;
+    line-height: 20px;
+  }
+  animation: faded 0.70022003s ease-in-out;
+}

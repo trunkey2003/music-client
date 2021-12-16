@@ -11,9 +11,11 @@ export default function LoginModal(props) {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [modalSignUp, setModalSignUp] = useState(false);
+    const [alert, setAlert] = useState(false);
 
 
     const handleSubmit = async (e) => {
+        try{
         // eslint-disable-next-line
         const url = "https://api-trunkeymusicplayer.herokuapp.com/api/user/login";
         const urldev = "http://localhost:5000/api/user/login";
@@ -23,12 +25,16 @@ export default function LoginModal(props) {
         submitData.password = password;
         if (!username || !password) return;
         setLoading(true);
-        const result = await axios.post(urldev, submitData, {mode: 'cors', credentials:'include', withCredentials: true});
-        if (result.status === 200 && result.data.username){
+        const result = await axios.post(urldev, submitData, { mode: 'cors', credentials: 'include', withCredentials: true });
+        if (result.status === 200 && result.data.username) {
             window.location = `/user/${result.data.username}`;
         }
         console.log(result);
         setLoading(false);
+    }   catch (error) {
+            setLoading(false);
+            if (error.toString().includes("403") || error.toString().includes("409")) setAlert(true);
+        }
     }
 
     return (
@@ -42,6 +48,10 @@ export default function LoginModal(props) {
             >
                 <Modal.Body>
                     <h4 className="text-center text-info pb-3 custom-header-login on-hover">Sign in</h4>
+                    {alert && <div className="alert-box">
+                        Wrong username or password <i className="fas fa-exclamation-circle"></i>
+                    <button onClick={() => {setAlert(false)}}><i className="fas fa-times"></i></button>
+                    </div>}
                     {(props.closeable) ? <button type="button" className="custom-btn-close-modal" onClick={props.onHide} aria-label="Close"><i className="fas fa-times"></i></button> : <></>}
                     <Form onSubmit={(e) => handleSubmit(e)}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -54,7 +64,7 @@ export default function LoginModal(props) {
                             <Form.Control required onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Auto login" />
+                            <Form.Check type="checkbox" label="Keep Me Logged In" />
                         </Form.Group>
                         <Button className="custom-login-button" variant="primary" type="submit">
                             Login {(loading) ? <Spinner animation="border" variant="info" size="sm"></Spinner> : <></>}
@@ -83,7 +93,7 @@ export default function LoginModal(props) {
                     <div className="text-center"><div className="on-hover">Not a member yet? </div><u onClick={() => { props.onHide(); setModalSignUp(true) }} className="to-sign-up text-info">Sign Up</u></div>
                 </Modal.Footer>
             </Modal>
-            <SignUpModal show={modalSignUp} onHide={() => {setModalSignUp(false)}} signin={() => {props.signin()}} closeable="true"></SignUpModal>
+            <SignUpModal show={modalSignUp} onHide={() => { setModalSignUp(false) }} signin={() => { props.signin() }} closeable="true"></SignUpModal>
         </>
     );
 }

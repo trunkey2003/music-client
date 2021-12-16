@@ -12,20 +12,45 @@
   cursor: pointer; }
 
 .search-song-input {
-  
   width: 80%;
   margin-left: 10%; }
 
 .songs-modal-container {
+  height: 330px;
   max-height: 330px;
   overflow-y: scroll;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background-color: black; }
+
+.songs-modal-header {
+  display: flex;
+  margin-top: 15px;
+  background: linear-gradient(to top, #9a9b95, #86c2cc);
+  height: 50px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem; }
+  .songs-modal-header button {
+    font-size: 0.8rem;
+    border: none;
+    width: 30vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(to bottom, #0a5b74, black);
+    height: 40px;
+    margin: 5px;
+    color: white;
+    border-radius: 1rem; }
+  .songs-modal-header .btn-active {
+    background: linear-gradient(to bottom, #2a3383, black);
+    box-shadow: 0 5px 15px rgba(36, 52, 124, 0.918); }
+  .songs-modal-header .btn-unactive {
+    background: linear-gradient(to bottom, #0a5b74, black); }
 
 .songs-modal {
   position: relative;
   margin: 10px 0;
   display: flex;
   background-color: black;
+  border: #5e5d5b solid 2px;
   max-height: 100px;
   width: 100%; }
   .songs-modal .songs-modal-img {

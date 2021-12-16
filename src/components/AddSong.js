@@ -1,49 +1,60 @@
-import { useRef, useState } from 'react';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner';
-
+import { debounce } from "debounce";
 import {
-  searchByKeyword,
+  searchByKeyword
 } from "nhaccuatui-api-full";
-import SongsModal from './SongsModal';
+import { useCallback, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import SongModal from './SongModal';
+import LocalSongsModal from './LocalSongsModal';
 
 export default function AddSong(props) {
-  const valueRef = useRef();
   const [show, setShow] = useState(false);
   const [songsList, setSongsList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+  const [platform, setPlatform] = useState("nhaccuatui");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleInputOnchange = (value) => {
-    if (!value) return;
-    setLoading(true);
+  const debounceSearchSong = useCallback(debounce((value) => searchSong(value), 1000), []);
+
+  const searchSong = (value) => {
     searchByKeyword(value).then((data) => {
-      if (data.status === 'success') {if (valueRef.current.value === value) setSongsList(data.search.song.song); setLoading(false); setError(false); }
+      if (data.status === 'success') { setSongsList(data.search.song.song); setLoading(false); setError(false); }
       else if (data.status === 'error') {
         console.log("Error search");
         setError(true);
       }
     });
+  }
+
+  const handleInputOnchange = (value) => {
+    if (!value) return;
+    setLoading(true);
+    debounceSearchSong(value);
   };
+
+  function songsPlatform(platform) {
+    if (platform === "nhaccuatui") return <SongModal setError={(error) => {setError(error)}} setLoading={(loading) => {setLoading(loading)}} setSongsList={(songs) => {setSongsList(songs)}} error={error} loading={loading} songsList={songsList} userDetail={props.userDetail} addSongToDatabase={addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} />
+    if (platform === "local") return <LocalSongsModal handleAddSong={props.handleAddSong} userDetail={props.userDetail}></LocalSongsModal>
+  }
 
   async function addSongToDatabase(url = '', data = {}) {
     const response = await fetch(url, {
       method: 'POST',
-      mode: 'cors', 
-      cache: 'no-cache', 
-      credentials: 'include', 
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
       redirect: 'follow',
-      referrerPolicy: 'no-referrer', 
-      body: JSON.stringify(data) 
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data)
     });
-    return response.json(); 
+    return response.json();
   }
 
 
@@ -59,14 +70,15 @@ export default function AddSong(props) {
           <button type="button" className="custom-btn-close-modal" onClick={handleClose} aria-label="Close"><i className="fas fa-times"></i></button>
         </Modal.Header>
         <Modal.Body>
-          <h2 className="text-center">Search song</h2>
-          <input ref={valueRef} onChange={(e) => { handleInputOnchange(e.target.value); }} className="search-song-input"></input>
+          {/* <input onChange={(e) => { handleInputOnchange(e.target.value); }} className="search-song-input"></input> */}
+          <div className="songs-modal-header">
+            <button onClick={() => setPlatform("nhaccuatui")} className={(platform === "nhaccuatui")? "btn-active" : "btn-unactive"}>NhacCuaTui</button>
+            <button onClick={() => setPlatform("zingmp3")} className={(platform === "zingmp3")? "btn-active" : "btn-unactive"}>ZingMP3</button>
+            <button onClick={() => setPlatform("local")} className={(platform === "local")? "btn-active" : "btn-unactive"}>Local</button>
+            <button onClick={() => setPlatform("uploadfiles")} className={(platform === "uploadfiles")? "btn-active" : "btn-unactive"}>Upload Files</button>
+          </div>
           <div className="songs-modal-container">
-            {(!error) ? <>{((songsList) ? ((!loading) ? songsList.map((song, index) => {
-              return (
-                <SongsModal index={index} userDetail={props.userDetail} addSongToDatabase={addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} id={song.key} song={song.title} artists={song.artists} image={song.thumbnail}></SongsModal>
-              )
-            }) : <div className="songs-modal-loading"><h4>Loading <Spinner animation="border" className="spinner" variant="info" /></h4></div>) : "")}</> : <div className="error"><img alt="failed-loading"src="https://firebasestorage.googleapis.com/v0/b/trunkey-music-player.appspot.com/o/error.jpg?alt=media&token=8411cc5c-4456-489d-b0a1-3eb129ddd564"></img></div>}
+            {songsPlatform(platform)}
           </div>
 
         </Modal.Body>

@@ -19,9 +19,51 @@
 }
 
 .songs-modal-container{
+    height: 330px;
     max-height: 330px;
     overflow-y: scroll;
     overflow-x: hidden;
+    background-color: black;
+}
+// @keyframes ToogleActiveButton{
+//     0%{
+//         background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0,0,0));
+//     }
+
+//     50%{
+//         background: linear-gradient(to bottom, rgb(37, 70, 80), rgb(0,0,0));
+//     }
+    
+//     100%{
+//         background: linear-gradient(to bottom, rgb(42, 51, 131), rgb(0,0,0));
+//         box-shadow: 0 5px 15px rgba(36, 52, 124, 0.918);
+//     }
+// }
+.songs-modal-header{
+    display: flex;
+    margin-top: 15px;
+    background: linear-gradient(to top, rgb(154, 155, 149), rgb(134, 194, 204));
+    height: 50px;
+    button{
+        font-size: 0.8rem;
+        border: none;
+        width: 30vw;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0,0,0));
+        height: 40px;
+        margin: 5px;
+        color: white;
+        border-radius: 1rem;
+    }
+    .btn-active{
+        background: linear-gradient(to bottom, rgb(42, 51, 131), rgb(0,0,0));
+        box-shadow: 0 5px 15px rgba(36, 52, 124, 0.918);
+    }
+    .btn-unactive{
+        background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0,0,0));
+    }
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 .songs-modal{
@@ -29,6 +71,7 @@
     margin: 10px 0;
     display: flex;
     background-color: rgb(0, 0, 0);
+    border: rgb(94, 93, 91) solid 2px;
     max-height: 100px;
     width: 100%;
     .songs-modal-img{

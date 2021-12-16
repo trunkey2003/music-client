@@ -203,16 +203,7 @@ function HomeUser({ path, userValidated }) {
     let newSongs = [...songs];
     newSongs.push(song);
     setSongs(newSongs);
-    setSongAdded(true);
   }
-
-  useEffect(() => {
-    if (songAdded) {
-      modifySongPlay(songs.length - 1, true);
-      setSongAdded(false);
-    }
-    // eslint-disable-next-line
-  }, [handleAddSong, songAdded])
 
   const ModifySongVolume = (e) => {
     switch (volume) {

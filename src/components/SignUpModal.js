@@ -2,13 +2,18 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
-import { useState } from "react";
+import { BsFillCheckCircleFill, BsFillXCircleFill } from "react-icons/bs";
+import { useState, useCallback } from "react";
+import { debounce } from "debounce";
+const axios = require('axios');
 
 export default function SignUpModal(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingUserName, setLoadingUserName] = useState(true);
+  const [validUserName, setValidUserName] = useState();
 
   async function signUp(url = '', data = {}) {
     const response = await fetch(url, {
@@ -48,6 +53,29 @@ export default function SignUpModal(props) {
       })
       .finally(() => { setLoading(false); })
   }
+  
+  const validateUserName = (username) => { 
+    var usernameRegex = /^[a-zA-Z0-9]+$/;
+    return usernameRegex.test(username);
+  }
+
+  const fetchUserAndCheck = (username) => {
+    if (!validateUserName(username)) {
+      setLoadingUserName(false);
+      setValidUserName(false);
+      return;
+    }
+    axios.post("http://localhost:5000/api/user/signup/checkusername", {username: username})
+    .then((res) => {setLoadingUserName(false); setValidUserName(res.data)});
+  }
+
+  const debounceCheck = useCallback(debounce((value) => fetchUserAndCheck(value), 1000), []);
+
+  const handleUserNameOnChanged = (e) => {
+    setUsername(e.target.value);
+    setLoadingUserName(true);
+    if (e.target.value) debounceCheck(e.target.value);
+  }
 
   return (
     <Modal
@@ -75,9 +103,9 @@ export default function SignUpModal(props) {
         )}
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group className="mb-3" controlId="formSignUpUserName">
-            <Form.Label>User name</Form.Label>
+            <Form.Label>User name {(username === "")? <></> : ((loadingUserName)? <Spinner animation="border" variant="info" size="sm"></Spinner> : ((validUserName)? <BsFillCheckCircleFill className="text-info"/> : <BsFillXCircleFill className="text-danger"/>))}</Form.Label>
             <Form.Control
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => handleUserNameOnChanged(e)}
               type="text"
               placeholder="Enter your username"
               required
@@ -115,7 +143,7 @@ export default function SignUpModal(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Simple password" />
+            <Form.Check type="checkbox" label="Auto Sign In" />
           </Form.Group>
           <Button
             className="custom-login-button"

@@ -3,7 +3,7 @@ import {
 } from "nhaccuatui-api-full";
 import { v4 as uuidv4 } from 'uuid';
 
-export default function SongsModal({index, userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
+export default function NCTSongs({index, userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
     var singers = "";
     const username = userDetail.username;
     const userid = userDetail.userid;
@@ -29,6 +29,7 @@ export default function SongsModal({index, userDetail,addSongToDatabase, handleA
         await addSongToDatabase(devUrl, SongToDabase).then((data) => {console.log(data);})
         await handleAddSong(newSong);
     }
+    
     return(
         <div className="songs-modal" key={index}>
             <div className="songs-modal-img">
