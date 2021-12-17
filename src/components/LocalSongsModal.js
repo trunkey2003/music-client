@@ -40,6 +40,7 @@ export default function LocalSongsModal(props) {
             let value1 = removeVietnameseTones(song.name);
             let value2 = removeVietnameseTones(value);
             if (value1.includes(value2)) songsRender.push(song);
+            return 0;
         })
         setSongs(songsRender);
     }

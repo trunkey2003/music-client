@@ -1,12 +1,9 @@
-import { debounce } from "debounce";
-import {
-  searchByKeyword
-} from "nhaccuatui-api-full";
-import { useCallback, useState } from 'react';
+import {useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import SongModal from './SongModal';
 import LocalSongsModal from './LocalSongsModal';
+import UploadSongs from "./UploadSongs";
 
 export default function AddSong(props) {
   const [show, setShow] = useState(false);
@@ -18,27 +15,11 @@ export default function AddSong(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const debounceSearchSong = useCallback(debounce((value) => searchSong(value), 1000), []);
-
-  const searchSong = (value) => {
-    searchByKeyword(value).then((data) => {
-      if (data.status === 'success') { setSongsList(data.search.song.song); setLoading(false); setError(false); }
-      else if (data.status === 'error') {
-        console.log("Error search");
-        setError(true);
-      }
-    });
-  }
-
-  const handleInputOnchange = (value) => {
-    if (!value) return;
-    setLoading(true);
-    debounceSearchSong(value);
-  };
 
   function songsPlatform(platform) {
     if (platform === "nhaccuatui") return <SongModal setError={(error) => {setError(error)}} setLoading={(loading) => {setLoading(loading)}} setSongsList={(songs) => {setSongsList(songs)}} error={error} loading={loading} songsList={songsList} userDetail={props.userDetail} addSongToDatabase={addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} />
     if (platform === "local") return <LocalSongsModal handleAddSong={props.handleAddSong} userDetail={props.userDetail}></LocalSongsModal>
+    if (platform === "uploadsongs") return <UploadSongs handleAddSong={props.handleAddSong} userDetail={props.userDetail}/>
   }
 
   async function addSongToDatabase(url = '', data = {}) {
@@ -70,12 +51,11 @@ export default function AddSong(props) {
           <button type="button" className="custom-btn-close-modal" onClick={handleClose} aria-label="Close"><i className="fas fa-times"></i></button>
         </Modal.Header>
         <Modal.Body>
-          {/* <input onChange={(e) => { handleInputOnchange(e.target.value); }} className="search-song-input"></input> */}
           <div className="songs-modal-header">
             <button onClick={() => setPlatform("nhaccuatui")} className={(platform === "nhaccuatui")? "btn-active" : "btn-unactive"}>NhacCuaTui</button>
             <button onClick={() => setPlatform("zingmp3")} className={(platform === "zingmp3")? "btn-active" : "btn-unactive"}>ZingMP3</button>
             <button onClick={() => setPlatform("local")} className={(platform === "local")? "btn-active" : "btn-unactive"}>Local</button>
-            <button onClick={() => setPlatform("uploadfiles")} className={(platform === "uploadfiles")? "btn-active" : "btn-unactive"}>Upload Files</button>
+            <button onClick={() => setPlatform("uploadsongs")} className={(platform === "uploadsongs")? "btn-active" : "btn-unactive"}>Upload Files</button>
           </div>
           <div className="songs-modal-container">
             {songsPlatform(platform)}

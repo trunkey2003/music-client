@@ -33,7 +33,7 @@
     font-size: 0.8rem;
     border: none;
     width: 30vw;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     background: linear-gradient(to bottom, #0a5b74, black);
     height: 40px;
     margin: 5px;
@@ -85,3 +85,19 @@
 
 .error img {
   width: 100%; }
+
+.upload-songs-form {
+  padding-top: 1.5rem; }
+  .upload-songs-form input {
+    margin: auto;
+    width: 80%; }
+  .upload-songs-form button {
+    width: 20%;
+    margin-left: 70%;
+    border-radius: 1rem;
+    height: 2rem;
+    border: none;
+    background: var(--background-close-btn);
+    color: white; }
+    .upload-songs-form button:hover {
+      background: var(--background-close-btn-hover); }

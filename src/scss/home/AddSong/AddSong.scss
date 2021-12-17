@@ -1,29 +1,29 @@
-.add-song-section{
-    height: 64px;
-    width: 100%;
-    background: var(--background-song);
-    color: white;
-    text-align: center;
-    line-height: 64px;
-    font-size: 1.5rem;
+.add-song-section {
+  height: 64px;
+  width: 100%;
+  background: var(--background-song);
+  color: white;
+  text-align: center;
+  line-height: 64px;
+  font-size: 1.5rem;
 }
 
-.add-song-section:hover{
-    background: var(--background-song-active);
-    cursor: pointer;
+.add-song-section:hover {
+  background: var(--background-song-active);
+  cursor: pointer;
 }
 
-.search-song-input{
-    width: 80%;
-    margin-left: 10%;
+.search-song-input {
+  width: 80%;
+  margin-left: 10%;
 }
 
-.songs-modal-container{
-    height: 330px;
-    max-height: 330px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: black;
+.songs-modal-container {
+  height: 330px;
+  max-height: 330px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: black;
 }
 // @keyframes ToogleActiveButton{
 //     0%{
@@ -33,87 +33,106 @@
 //     50%{
 //         background: linear-gradient(to bottom, rgb(37, 70, 80), rgb(0,0,0));
 //     }
-    
+
 //     100%{
 //         background: linear-gradient(to bottom, rgb(42, 51, 131), rgb(0,0,0));
 //         box-shadow: 0 5px 15px rgba(36, 52, 124, 0.918);
 //     }
 // }
-.songs-modal-header{
-    display: flex;
-    margin-top: 15px;
-    background: linear-gradient(to top, rgb(154, 155, 149), rgb(134, 194, 204));
-    height: 50px;
-    button{
-        font-size: 0.8rem;
-        border: none;
-        width: 30vw;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0,0,0));
-        height: 40px;
-        margin: 5px;
-        color: white;
-        border-radius: 1rem;
-    }
-    .btn-active{
-        background: linear-gradient(to bottom, rgb(42, 51, 131), rgb(0,0,0));
-        box-shadow: 0 5px 15px rgba(36, 52, 124, 0.918);
-    }
-    .btn-unactive{
-        background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0,0,0));
-    }
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-}
-
-.songs-modal{
-    position: relative;
-    margin: 10px 0;
-    display: flex;
-    background-color: rgb(0, 0, 0);
-    border: rgb(94, 93, 91) solid 2px;
-    max-height: 100px;
-    width: 100%;
-    .songs-modal-img{
-        width: 20%;
-        img{
-            height: 100%;
-            border-radius: 50%;
-        }
-    }
-    .songs-modal-detail{
-        margin-left: auto;
-        padding-top: 15px;
-        width: 75%;
-        // padding: 20px;
-    }
-}
-
-.songs-modal:hover{
-    background-color: rgb(29, 29, 29);
-    cursor: pointer;
-}
-
-.song-modal-detail-button{
-    position: absolute;
-    top: calc(45% - 10px);
-    right: 10%;
+.songs-modal-header {
+  display: flex;
+  margin-top: 15px;
+  background: linear-gradient(to top, rgb(154, 155, 149), rgb(134, 194, 204));
+  height: 50px;
+  button {
+    font-size: 0.8rem;
     border: none;
-    padding: 5px 15px 5px 15px;
+    width: 30vw;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0, 0, 0));
+    height: 40px;
+    margin: 5px;
+    color: white;
+    border-radius: 1rem;
+  }
+  .btn-active {
+    background: linear-gradient(to bottom, rgb(42, 51, 131), rgb(0, 0, 0));
+    box-shadow: 0 5px 15px rgba(36, 52, 124, 0.918);
+  }
+  .btn-unactive {
+    background: linear-gradient(to bottom, rgb(10, 91, 116), rgb(0, 0, 0));
+  }
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
-.songs-modal-loading{
-    width: 100%;
-    height: 100px;
-    text-align: center;
-    background-color: rgb(0, 0, 0);
+.songs-modal {
+  position: relative;
+  margin: 10px 0;
+  display: flex;
+  background-color: rgb(0, 0, 0);
+  border: rgb(94, 93, 91) solid 2px;
+  max-height: 100px;
+  width: 100%;
+  .songs-modal-img {
+    width: 20%;
+    img {
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+  .songs-modal-detail {
+    margin-left: auto;
+    padding-top: 15px;
+    width: 75%;
+    // padding: 20px;
+  }
 }
 
-.songs-modal-loading h4{
-    line-height: 100px;
+.songs-modal:hover {
+  background-color: rgb(29, 29, 29);
+  cursor: pointer;
 }
 
-.error img{
-    width: 100%;
+.song-modal-detail-button {
+  position: absolute;
+  top: calc(45% - 10px);
+  right: 10%;
+  border: none;
+  padding: 5px 15px 5px 15px;
 }
 
+.songs-modal-loading {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+}
+
+.songs-modal-loading h4 {
+  line-height: 100px;
+}
+
+.error img {
+  width: 100%;
+}
+
+.upload-songs-form {
+  padding-top: 1.5rem;  
+  input {
+    margin: auto;
+    width: 80%;
+  }
+  button {
+    width: 20%;
+    margin-left: 70%;
+    border-radius: 1rem;
+    height: 2rem;
+    border: none;
+    background: var(--background-close-btn);
+    color: white;
+    &:hover{
+        background: var(--background-close-btn-hover);
+    }
+  }
+}

@@ -13,7 +13,7 @@ export default function Dashboard({validated, userIcon ,songState ,volumeIcon, v
     useEffect(()=>{
         if (songs.length !== 0) modifySongPlay(songDetail.songIndex,true);
         // eslint-disable-next-line
-    }, [songCount])
+    }, [])
     return (
         <div key={`${songDetail.songRegion} ${songDetail.classTheme}`} className="dashboard">
             <div className="volume-container"><div className={volumeBackground}></div><i className={`${volumeIcon} volume-icon`} onClick={() => {ModifySongVolume()}}/></div>

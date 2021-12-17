@@ -14,7 +14,6 @@ function HomeUser({ path, userValidated }) {
   const [userIcon, setUserIcon] = useState("https://trunkey2003.github.io/general-img/default-profile-pic.jpg");
   const [songRegion, setSongRegion] = useState("usuk");
   const [songs, setSongs] = useState([]);
-  const [songAdded, setSongAdded] = useState(false);
   const [loading, setLoading] = useState(true);
   const audioRef = useRef();
   const [songIndex, setSongIndex] = useState(0);
@@ -24,7 +23,7 @@ function HomeUser({ path, userValidated }) {
   const [singer, setSinger] = useState("Singer");
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [percentage, setPercentage] = useState(0);
+  const [percentage, setPercentage] = useState();
   const [activeRandom, setActiveRandom] = useState(false);
   const [activeRepeat, setActiveRepeat] = useState(false);
   const [firstLoading, setFirstLoading] = useState(true);
@@ -51,7 +50,6 @@ function HomeUser({ path, userValidated }) {
       if (firstLoading) {
         const path = "http://localhost:5000/api/user";
         setLoading(true);
-        console.log(`${path}/${username}`);
         axios.get(`${path}/${username}`, {mode: 'cors', withCredentials: true})
         .then((result) => {
           if (result.data.username !== username) window.location = `/user/${result.data.username}`;
