@@ -12,7 +12,7 @@ export default function UploadSongs(props) {
     const handleUploadSongsSubmit = (e) => {
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
-        const url = `http://localhost:5000/api/user/${username}/songs`;
+        const url = `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songs`;
         e.preventDefault();
         let newSong = {
             name: song,

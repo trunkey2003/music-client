@@ -48,7 +48,6 @@ function HomeUser({ path, userValidated }) {
   useEffect(() => {
     const func = async () => {
       if (firstLoading) {
-        const path = "http://localhost:5000/api/user";
         setLoading(true);
         axios.get(`${path}/${username}`, {mode: 'cors', withCredentials: true})
         .then((result) => {

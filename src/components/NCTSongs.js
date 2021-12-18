@@ -26,7 +26,7 @@ export default function NCTSongs({index, userDetail,addSongToDatabase, handleAdd
             image: image,
         }
         let SongToDabase = Object.assign(newSong, {username: username, userid : userid, songid: uuidv4()});
-        await addSongToDatabase(devUrl, SongToDabase).then((data) => {console.log(data);})
+        await addSongToDatabase(url, SongToDabase).then((data) => {console.log(data);})
         await handleAddSong(newSong);
     }
     

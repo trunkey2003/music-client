@@ -20,7 +20,7 @@ export default function LocalSongs(props){
     const handleAddButton = () =>{
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
-        const url = `http://localhost:5000/api/user/${props.userDetail.username}/songs`;
+        const url = `https://api-trunkeymusicplayer.herokuapp.com/api/user/${props.userDetail.username}/songs`;
         let newSong = {
             name: props.song,
             singer: props.singer,

@@ -30,7 +30,6 @@ export default function SignUpModal(props) {
     });
     return response.json();
   }
-
   const handleSubmit = async (e) => {
     const url = "https://api-trunkeymusicplayer.herokuapp.com/api/user/signup";
     e.preventDefault();
@@ -46,7 +45,7 @@ export default function SignUpModal(props) {
         return data;
       })
       .then(data => {
-        window.location = `http://localhost:3000/user/${data.username}`;
+        window.location = `/user/${data.username}`;
       })
       .catch(err => {
         console.log(err);
@@ -65,7 +64,7 @@ export default function SignUpModal(props) {
       setValidUserName(false);
       return;
     }
-    axios.post("http://localhost:5000/api/user/signup/checkusername", {username: username})
+    axios.post("https://api-trunkeymusicplayer.herokuapp.com/api/user/signup/checkusername", {username: username})
     .then((res) => {setLoadingUserName(false); setValidUserName(res.data)});
   }
 

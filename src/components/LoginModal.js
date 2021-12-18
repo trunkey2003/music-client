@@ -25,7 +25,7 @@ export default function LoginModal(props) {
         submitData.password = password;
         if (!username || !password) return;
         setLoading(true);
-        const result = await axios.post(urldev, submitData, { mode: 'cors', credentials: 'include', withCredentials: true });
+        const result = await axios.post(url, submitData, { mode: 'cors', credentials: 'include', withCredentials: true });
         if (result.status === 200 && result.data.username) {
             window.location = `/user/${result.data.username}`;
         }

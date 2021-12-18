@@ -45,8 +45,8 @@ export default function LocalSongsModal(props) {
         setSongs(songsRender);
     }
     const fetchLocalSongs = async () => {
-        const songsus = await (await fetch(`http://localhost:5000/api/admin/us`)).json()
-        const songsvn = await (await fetch(`http://localhost:5000/api/admin/vn`)).json()
+        const songsus = await (await fetch(`https://api-trunkeymusicplayer.herokuapp.com/api/admin/us`)).json()
+        const songsvn = await (await fetch(`https://api-trunkeymusicplayer.herokuapp.com/api/admin/vn`)).json()
         setSongs(songsus.concat(songsvn));
         songsRef.current = songsus.concat(songsvn);
     }
