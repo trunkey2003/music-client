@@ -1,24 +1,14 @@
-import NCTSongs from "./NCTSongs"
 import Spinner from "react-bootstrap/esm/Spinner";
-import {
-    searchByKeyword
-  } from "nhaccuatui-api-full";
 import {useCallback} from 'react';
 import { debounce } from "debounce";
+import NCTSongs from "./NCTSongs";
+import axios from 'axios';
 
-export default function SongModal(props) {
+export default function ZingMp3Songs(props) {
     const debounceSearchSong = useCallback(debounce((value) => searchSong(value), 1000), []);
     const searchSong = (value) => {
-        searchByKeyword(value).then((data) => {
-            console.log(data);
-            if (data.status === 'success') { console.log(data.search); props.setSongsList(data.search.playlist.playlist); props.setLoading(false); props.setError(false); }
-            else if (data.status === 'error') {
-                console.log("Error search");
-                props.setError(true);
-            }
-        })
-        .catch((err) => {console.log(err)})
-        ;
+        axios.post("http://localhost:5000/api/zingmp3/songs", {value: value})
+        .then((res) => console.log(res));
     }
 
     const handleInputOnchange = (value) => {

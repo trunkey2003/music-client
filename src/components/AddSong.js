@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import SongModal from './SongModal';
 import LocalSongsModal from './LocalSongsModal';
 import UploadSongs from "./UploadSongs";
+import ZingMp3Songs from './ZingMp3Songs';
 
 export default function AddSong(props) {
   const [show, setShow] = useState(false);
@@ -14,10 +15,9 @@ export default function AddSong(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
   function songsPlatform(platform) {
     if (platform === "nhaccuatui") return <SongModal setError={(error) => {setError(error)}} setLoading={(loading) => {setLoading(loading)}} setSongsList={(songs) => {setSongsList(songs)}} error={error} loading={loading} songsList={songsList} userDetail={props.userDetail} addSongToDatabase={addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} />
+    if (platform === "zingmp3") return <ZingMp3Songs setError={(error) => {setError(error)}} setLoading={(loading) => {setLoading(loading)}} setSongsList={(songs) => {setSongsList(songs)}} error={error} loading={loading} songsList={songsList} userDetail={props.userDetail} addSongToDatabase={addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} />
     if (platform === "local") return <LocalSongsModal handleAddSong={props.handleAddSong} userDetail={props.userDetail}></LocalSongsModal>
     if (platform === "uploadsongs") return <UploadSongs handleAddSong={props.handleAddSong} userDetail={props.userDetail}/>
   }

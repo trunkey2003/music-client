@@ -10,10 +10,12 @@ const axios = require('axios');
 export default function SignUpModal(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingUserName, setLoadingUserName] = useState(true);
   const [validUserName, setValidUserName] = useState();
+  const [validConfirmPassword, setValidConfirmPassword] = useState();
 
   async function signUp(url = '', data = {}) {
     const response = await fetch(url, {
@@ -76,6 +78,29 @@ export default function SignUpModal(props) {
     if (e.target.value) debounceCheck(e.target.value);
   }
 
+  const handlePasswordOnchange = (value) =>{
+    setPassword(value);
+    
+    if (value.length === 0) {
+      setValidConfirmPassword(undefined);
+      return;
+    }
+
+    if (value != confirmPassword) setValidConfirmPassword(false); else setValidConfirmPassword(true);
+  }
+
+  const handleConfirmPasswordOnchange = (value) =>{
+    setConfirmPassword(value);
+
+    if (value.length === 0) {
+      setValidConfirmPassword(undefined);
+      return;
+    }
+
+    setConfirmPassword(value);
+    if (value != password) setValidConfirmPassword(false); else setValidConfirmPassword(true);
+  }
+
   return (
     <Modal
       show={props.show} onHide={props.onHide}
@@ -124,7 +149,7 @@ export default function SignUpModal(props) {
           <Form.Group className="mb-3" controlId="formSignUpPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handlePasswordOnchange(e.target.value)}
               type="password"
               placeholder="Password"
               required
@@ -132,9 +157,9 @@ export default function SignUpModal(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Confirm Password {(validConfirmPassword == undefined)? "" : (validConfirmPassword)? <BsFillCheckCircleFill className="text-info"/> : <BsFillXCircleFill className="text-danger"/>}</Form.Label>
             <Form.Control
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleConfirmPasswordOnchange(e.target.value)}
               type="password"
               placeholder="Confirm assword"
               required

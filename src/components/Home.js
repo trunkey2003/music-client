@@ -46,7 +46,9 @@ function Home({path}) {
     const func = async () => {
       if (firstLoading) {
         setLoading(true);
-        axios.get(`https://api-trunkeymusicplayer.herokuapp.com/api/user/checktoken`, {mode: 'cors', withCredentials: true}).then((res) => {window.location = `/user/${res.data.username}`})
+        axios.get(`https://api-trunkeymusicplayer.herokuapp.com/api/user/checktoken`, 
+          {mode: 'cors', withCredentials: true})
+        .then((res) => {window.location = `/user/${res.data.username}`})
         
         await fetch(`${path}/admin/us`)
           .then((response) => response.json())
@@ -69,7 +71,7 @@ function Home({path}) {
         setSinger(songs[0].singer);
         setSrc(songs[0].path);
         setSongIndex(0);
-        // setTimeManually(0);
+        setTimeManually(0);
         setPercentage(0);
       } else {
         let songs;
@@ -167,7 +169,7 @@ function Home({path}) {
       }
       if (songs[index]){
       setSongIndex(index);
-      // setTimeManually(0);
+      setTimeManually(0);
       setPercentage(0);
       modifySong(songs[index].name);
       modifySinger(songs[index].singer);
@@ -200,9 +202,9 @@ function Home({path}) {
     }
   }
 
-  // const setTimeManually = (e) => {
-  //   audioRef.current.currentTime = e;
-  // }
+  const setTimeManually = (e) => {
+    audioRef.current.currentTime = e;
+  }
 
   const handleSoftDelte = (index) => {
     let newSongs = [...songs];
@@ -259,7 +261,7 @@ function Home({path}) {
   return (
     <div className={`${classes} ${classTheme}`}>
       {(loading === true) ? <Loading /> : (<>
-        <Dashboard songState={songState} volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} songs={songs} />
+        <Dashboard modifyCurruntTime={setTimeManually} songState={songState} volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} songs={songs} />
         <audio ref={audioRef} id="audio" onTimeUpdate={(e) => updateTime(e)} src={src} onLoadedData={(e) => { setDuration(e.currentTarget.duration); }}></audio>
         <Playlist classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} handleAddSong={handleAddSong}/>
       </>)}
