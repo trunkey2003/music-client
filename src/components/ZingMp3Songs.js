@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function ZingMp3Songs(props) {
     const debounceSearchSong = useCallback(debounce((value) => searchSong(value), 1000), []);
     const searchSong = (value) => {
-        axios.post("http://localhost:5000/api/zingmp3/songs", {value: value})
+        axios.post("https://api-trunkeymusicplayer.herokuapp.com/api/zingmp3/songs", {value: value})
         .then((res) => console.log(res));
     }
 
