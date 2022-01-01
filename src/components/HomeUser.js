@@ -72,7 +72,7 @@ function HomeUser({ path, userValidated }) {
     func();
     console.log("Validated : " + validated.current);
     // eslint-disable-next-line
-  }, [songRegion, firstLoading])
+  }, [firstLoading])
 
   useEffect(() => {
     if (audioRef.current) {

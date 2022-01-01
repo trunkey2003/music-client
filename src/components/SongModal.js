@@ -11,7 +11,7 @@ export default function SongModal(props) {
     const searchSong = (value) => {
         searchByKeyword(value).then((data) => {
             console.log(data);
-            if (data.status === 'success') { console.log(data.search); props.setSongsList(data.search.playlist.playlist); props.setLoading(false); props.setError(false); }
+            if (data.status === 'success') { console.log(data.search); props.setSongsList(data.search.song.song); props.setLoading(false); props.setError(false); }
             else if (data.status === 'error') {
                 console.log("Error search");
                 props.setError(true);
