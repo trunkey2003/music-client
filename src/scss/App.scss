@@ -1,5 +1,6 @@
 @import "./home/theme/defualt-theme.scss";
 @import "./home/AddSong/AddSong.scss";
+@import "./profile/home.scss";
 
 input {
   font-family: Verdana;
@@ -231,6 +232,10 @@ input {
       opacity: 0.8;
     }
   }
+}
+
+.custom-modal-fullname .modal-content{
+  margin-top: 35vh;
 }
 
 .login-page{
