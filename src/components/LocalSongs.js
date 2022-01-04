@@ -21,6 +21,7 @@ export default function LocalSongs(props){
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
         const url = `https://api-trunkeymusicplayer.herokuapp.com/api/user/${props.userDetail.username}/songs`;
+        const urldev = `http://localhost:5000/api/user/${props.userDetail.username}/songs`;
         let newSong = {
             name: props.song,
             singer: props.singer,
@@ -31,7 +32,7 @@ export default function LocalSongs(props){
             songid: uuidv4(),
         }
         console.log(newSong);
-        addSongToDatabase(url, newSong).then((response) => {props.handleAddSong(newSong); console.log(response);});
+        addSongToDatabase(url, newSong).then((response) => {props.handleAddSong(newSong); console.log(response);}).catch(() => {console.log("Cannot add song local")});
     }
 
     return(

@@ -46,7 +46,7 @@ export default function UserProfile({ path }) {
             setUserIconPreview(result.data.avatar);
             setFullName(result.data.fullName);
             setUserName(result.data.username);
-            axios.get(`${path}/${userName}/songs`, { mode: 'cors', withCredentials: true }).then((res) => { SetSongs(res.data); console.log(res.data); });
+            axios.get(`${path}/${userName}/songs`, { mode: 'cors', withCredentials: true }).then((res) => { SetSongs(res.data); console.log(res.data);});
             return validated.current;
           })
           .catch(() => {

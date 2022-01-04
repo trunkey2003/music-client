@@ -6,7 +6,6 @@ import UserModal from './UserModal';
 export default function UserIcon(props){
     const [modalLoginShow, setModalLoginShow] = useState(false);
     const [modalUserShow, setModalUserShow] = useState(false);
-    console.log(props);
 
     return (
         <div>
