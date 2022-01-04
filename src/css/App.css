@@ -31,7 +31,7 @@
       rgba(121, 9, 28, 1) 52%,
       rgba(25, 0, 255, 1) 96%
     );
-  --background-modal: linear-gradient(to right, #c31432, #240b36);
+  --background-modal: linear-gradient(to right, #3f0e16, #0b0f36);
   --color-modal: rgb(255, 255, 255);
   --color-note: rgb(190, 186, 186);
   --background-close-btn: linear-gradient(
@@ -187,10 +187,29 @@
     .upload-songs-form button:hover {
       background: var(--background-close-btn-hover); }
 
+@keyframes fadedProfile-PC {
+  from {
+    opacity: 0;
+    height: 0; }
+  to {
+    opacity: 1;
+    height: 100vh; } }
+
 .user-profile {
   background: url("https://wallpaperaccess.com/full/3136252.jpg");
   width: 100vw;
   height: 100vh; }
+
+.user-modify-loading {
+  z-index: 1;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  line-height: 100vh;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.671);
+  color: white;
+  font-size: 40px; }
 
 .user-profile-container {
   border-radius: 2rem;
@@ -198,7 +217,8 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.911);
   color: white;
-  margin: auto; }
+  margin: auto;
+  animation: fadedProfile-PC 1s ease-in-out; }
   .user-profile-container .user-profile-info {
     border-radius: 2rem;
     position: relative;
@@ -232,24 +252,40 @@
       left: 15rem;
       font-size: 1.5em;
       font-weight: 700;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       padding: 2px 10px;
       border-radius: 1rem;
       background: rgba(0, 0, 0, 0.548); }
-    .user-profile-container .user-profile-info .user-profile-container-user-name-input {
+    .user-profile-container .user-profile-info .user-full-name-input {
       position: absolute;
       font-weight: 700;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       top: 5rem;
       left: 15rem; }
-      .user-profile-container .user-profile-info .user-profile-container-user-name-input input[type=text] {
+      .user-profile-container .user-profile-info .user-full-name-input input[type="text"] {
         background: rgba(0, 0, 0, 0.548);
         border-top-color: transparent;
         border-left-color: transparent;
         border-right-color: transparent;
         color: white;
         font-size: 1.5em;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 700;
+        letter-spacing: 1px; }
+    .user-profile-container .user-profile-info .user-name-input {
+      position: absolute;
+      font-weight: 700;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      top: 8rem;
+      left: 15rem; }
+      .user-profile-container .user-profile-info .user-name-input input[type="text"] {
+        background: rgba(0, 0, 0, 0.548);
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        color: white;
+        font-size: 1.2em;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         font-weight: 700;
         letter-spacing: 1px; }
     .user-profile-container .user-profile-info h5 {
@@ -275,6 +311,62 @@
         text-align: center; }
         .user-profile-container .user-profile-info .user-profile-follow-container div div {
           width: 100%; }
+  .user-profile-container .user-profile-overview {
+    overflow-y: auto;
+    height: 70%; }
+    .user-profile-container .user-profile-overview .overview-songs {
+      width: 100%;
+      height: 60%;
+      padding: 30px; }
+      .user-profile-container .user-profile-overview .overview-songs h5 {
+        font-family: cursive;
+        font-size: 1.5em; }
+      .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container,
+      .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container {
+        display: flex;
+        width: 100%;
+        margin: 10px 0;
+        overflow-y: auto;
+        overflow-x: auto; }
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song,
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song {
+          min-width: 20%; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img {
+            width: calc(14vw);
+            height: calc(14vw);
+            margin: 0 5%;
+            border-radius: 2rem; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-name,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-name {
+            margin-left: 15px;
+            font-size: 1.2rem; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-artists,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-artists {
+            margin-left: 15px;
+            font-size: 0.7rem; }
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist,
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist {
+          min-width: 20%;
+          min-height: calc(14vw + 50px);
+          padding: 15px; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail {
+            min-width: 20%;
+            height: calc(14vw);
+            background-color: rgba(51, 51, 51, 0.397); }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail img,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail img {
+              width: 50%;
+              padding: 2.5px; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .song-name,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .song-name {
+            margin-left: 15px;
+            font-size: 1rem; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .song-artists,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .song-artists {
+            margin-left: 15px;
+            font-size: 0.5rem; }
 
 input {
   font-family: Verdana;
@@ -457,7 +549,66 @@ input {
     opacity: 0.8; }
 
 .custom-modal-fullname .modal-content {
-  margin-top: 35vh; }
+  margin-top: 35vh;
+  font-size: 1.5rem; }
+  .custom-modal-fullname .modal-content .user-preview {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to left, #7c560a, black); }
+    .custom-modal-fullname .modal-content .user-preview img {
+      width: 20%;
+      padding: 5px;
+      border-radius: 50%; }
+    .custom-modal-fullname .modal-content .user-preview div {
+      padding: 5px 0 0 5px;
+      color: #f1eeea; }
+      .custom-modal-fullname .modal-content .user-preview div h5 {
+        margin: 0; }
+      .custom-modal-fullname .modal-content .user-preview div div {
+        line-height: 16px;
+        font-size: 16px; }
+    .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container {
+      display: flex;
+      position: absolute;
+      right: 5px;
+      top: 10px;
+      background-color: rgba(0, 0, 0, 0.582);
+      border-radius: 2rem;
+      padding: 5px 15px; }
+      .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container div {
+        padding: 0 5px;
+        text-align: center;
+        font-size: 12px; }
+
+.custom-modal-avatar .modal-content {
+  margin-top: 25vh; }
+  .custom-modal-avatar .modal-content img {
+    margin-left: calc(50% - 100px);
+    border-radius: 50%;
+    height: 200px;
+    width: 200px; }
+    .custom-modal-avatar .modal-content img:hover {
+      cursor: pointer;
+      opacity: 0.8; }
+  .custom-modal-avatar .modal-content .avatar-upload {
+    width: 60%;
+    margin: auto;
+    margin-top: 2rem;
+    display: flex;
+    position: relative; }
+    .custom-modal-avatar .modal-content .avatar-upload input[type=file] {
+      font-size: 12px; }
+    .custom-modal-avatar .modal-content .avatar-upload .fa-upload {
+      position: absolute;
+      top: 10%;
+      right: -35px;
+      color: white;
+      padding: 5px; }
+      .custom-modal-avatar .modal-content .avatar-upload .fa-upload:hover {
+        color: #474747;
+        cursor: pointer; }
 
 .login-page {
   width: 100%;
@@ -730,7 +881,7 @@ html {
     left: 10%;
     height: 100%;
     width: 30%;
-    animation: fadedDashboard-PC 0.8s ease-in-out; }
+    animation: fadedDashboard-PC 1s ease-in-out; }
   /* HEADER */
   header {
     text-align: center;
@@ -813,7 +964,7 @@ html {
     bottom: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    animation: fadedSong-PC 0.8s ease-in-out; }
+    animation: fadedSong-PC 1s ease-in-out; }
   .song {
     display: flex;
     align-items: center;
@@ -1222,7 +1373,7 @@ html {
 
 .song-wave span:nth-child(4) {
   left: 21px;
-  animation-delay: 0.8s; }
+  animation-delay: 1s; }
 
 .song-wave span:nth-child(5) {
   left: 28px;

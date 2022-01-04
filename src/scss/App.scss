@@ -236,6 +236,81 @@ input {
 
 .custom-modal-fullname .modal-content{
   margin-top: 35vh;
+  font-size: 1.5rem;
+  .user-preview{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to left, rgb(124, 86, 10), rgb(0, 0, 0));
+    img{
+      width: 20%;
+      padding: 5px;
+      border-radius: 50%;
+    }
+
+    div{
+      padding: 5px 0 0 5px;
+      color: rgb(241, 238, 234);
+      h5{
+        margin: 0;
+      }
+      div{
+        line-height: 16px;
+        font-size: 16px;
+      }
+    }
+
+    .user-profile-follow-container{
+      display: flex;
+      position: absolute;
+      right: 5px;
+      top: 10px;
+      background-color: rgba(0, 0, 0, 0.582);
+      border-radius: 2rem;
+      padding: 5px 15px;
+      div{
+        padding: 0 5px;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.custom-modal-avatar .modal-content{
+  margin-top: 25vh;
+  img{
+    margin-left: calc(50% - 100px);
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    &:hover{
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+  .avatar-upload{
+    width: 60%;
+    margin: auto;
+    margin-top: 2rem;
+    display: flex;
+    position: relative;
+    input[type=file]{
+      font-size: 12px;
+    }
+    .fa-upload{
+      position: absolute;
+      top: 10%;
+      right: -35px;
+      color: rgb(255, 255, 255);
+      padding: 5px;
+      &:hover{
+        color: rgb(71, 71, 71);
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .login-page{
@@ -414,7 +489,7 @@ html {
     left: 10%;
     height: 100%;
     width: 30%;
-    animation: fadedDashboard-PC 0.8s ease-in-out;
+    animation: fadedDashboard-PC 1s ease-in-out;
   }
 
   /* HEADER */
@@ -531,7 +606,7 @@ html {
     bottom: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    animation: fadedSong-PC 0.8s ease-in-out;
+    animation: fadedSong-PC 1s ease-in-out;
   }
 
   .song {
@@ -1097,7 +1172,7 @@ html {
 }
 .song-wave span:nth-child(4) {
   left: 21px;
-  animation-delay: 0.8s;
+  animation-delay: 1s;
 }
 .song-wave span:nth-child(5) {
   left: 28px;
