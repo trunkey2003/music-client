@@ -13,7 +13,6 @@ export default function UserProfile({ path }) {
 
   const [userDetail, setUserDetail] = useState();
   const [songs, SetSongs] = useState();
-  const [songsCurrunt, setSongCurrunt] = useState();
 
   const [onChangeUserFullName, setonChangeUserFullName] = useState(false);
   const [fullName, setFullName] = useState();
@@ -46,7 +45,7 @@ export default function UserProfile({ path }) {
             setUserIconPreview(result.data.avatar);
             setFullName(result.data.fullName);
             setUserName(result.data.username);
-            axios.get(`${path}/${userName}/songs`, { mode: 'cors', withCredentials: true }).then((res) => { SetSongs(res.data); console.log(res.data);});
+            axios.get(`${path}/${username}/songs`, { mode: 'cors', withCredentials: true }).then((res) => {SetSongs(res.data);});
             return validated.current;
           })
           .catch(() => {
