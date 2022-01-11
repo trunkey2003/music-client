@@ -4,16 +4,16 @@ import { Routes, Route} from "react-router-dom";
 import Login from './components/Login';
 import UserProfile from './components/UserProfile';
 
-const productionPath = "https://api-trunkeymusicplayer.herokuapp.com/api";
+const path = (process.env.REACT_APP_IS_DEV)? process.env.REACT_APP_API_DEV : process.env.REACT_APP_API_ENDPOINT;
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Home path={productionPath}/>}/>
-        <Route exact path="/user/:username" element={<HomeUser path={`${productionPath}/user`}/>}/>
+        <Route exact path="/" element={<Home path={path}/>}/>
+        <Route exact path="/user/:username" element={<HomeUser path={`${path}/user`}/>}/>
         <Route exact path="/user/login" element={<Login></Login>}/>
-        <Route exact path="/user/profile/:username" element={<UserProfile path={`${productionPath}/user`}/>}/>
+        <Route exact path="/user/profile/:username" element={<UserProfile path={`${path}/user`}/>}/>
       </Routes>
     </div>
   )

@@ -20,13 +20,15 @@
   height: 100vh; }
 
 .user-modify-loading {
-  z-index: 1;
-  position: absolute;
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   line-height: 100vh;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.671);
+  background-color: rgba(0, 0, 0, 0.70022);
   color: white;
   font-size: 40px; }
 
@@ -174,11 +176,13 @@
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail {
             min-width: 20%;
             height: calc(14vw);
-            background-color: rgba(51, 51, 51, 0.397); }
+            background-color: rgba(85, 58, 58, 0.397);
+            border-radius: 2rem; }
             .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail img,
             .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail img {
               width: 50%;
-              padding: 2.5px; }
+              padding: 2.5px;
+              border-radius: 2rem; }
           .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .song-name,
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .song-name {
             margin-left: 15px;

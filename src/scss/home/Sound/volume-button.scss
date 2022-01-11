@@ -12,7 +12,7 @@
   position: absolute;
   margin: auto;
   background: var(--background-btn-play);
-  animation: fromVolume4ToVolume0 1s ease;
+  animation: fromVolume4ToVolume0 0.8s ease-in-out;
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -22,7 +22,7 @@
   position: absolute;
   margin: auto;
   background: var(--background-btn-play);
-  animation: fromVolume0ToVolume1 1s ease;
+  animation: fromVolume0ToVolume1 0.8s ease-in-out;
   top: 5px;
   left: 5px;
   width: 0px;
@@ -34,7 +34,7 @@
   position: absolute;
   margin: auto;
   background: var(--background-btn-play);
-  animation: fromVolume1ToVolume2 1s ease;
+  animation: fromVolume1ToVolume2 0.8s ease-in-out;
   top: 4px;
   left: 4px;
   width: 32px;
@@ -46,7 +46,7 @@
   position: absolute;
   margin: auto;
   background: var(--background-btn-play);
-  animation: fromVolume2ToVolume3 1s ease;
+  animation: fromVolume2ToVolume3 0.8s ease-in-out;
   top: 3px;
   left: 3px;
   width: 34px;
@@ -58,7 +58,7 @@
   position: absolute;
   margin: auto;
   background: var(--background-btn-play);
-  animation: fromVolume3ToVolume4 1s ease;
+  animation: fromVolume3ToVolume4 0.8s ease-in-out;
   top: 2px;
   left: 2px;
   width: 36px;

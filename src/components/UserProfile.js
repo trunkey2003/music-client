@@ -4,8 +4,8 @@ import Loading from "./Loading";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
+import UserModifyLoading from "./UserModifyLoading";
 
 export default function UserProfile({ path }) {
   var { username } = useParams();
@@ -126,10 +126,7 @@ export default function UserProfile({ path }) {
       ) : (
         <div className="user-profile">
           {modifyDataLoading ? (
-            <div className="user-modify-loading">
-              {" "}
-              Saving Your Changes <Spinner animation="border" />
-            </div>
+            <UserModifyLoading/>
           ) : (
             <></>
           )}
@@ -199,7 +196,7 @@ export default function UserProfile({ path }) {
 
               <div className="user-profile-follow-container">
                 <div>
-                  Songs <div>100</div>
+                  Songs <div>{userDetail.songCount}</div>
                 </div>
                 <div>
                   Followers <div>0</div>

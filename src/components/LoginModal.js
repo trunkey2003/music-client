@@ -17,7 +17,7 @@ export default function LoginModal(props) {
     const handleSubmit = async (e) => {
         try{
         // eslint-disable-next-line
-        const url = "https://api-trunkeymusicplayer.herokuapp.com/api/user/login";
+        const url = `${process.env.REACT_APP_API_ENDPOINT}/user/login`;
         const urldev = "http://localhost:5000/api/user/login";
         e.preventDefault();
         const submitData = {};

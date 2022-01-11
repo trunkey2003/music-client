@@ -24,20 +24,19 @@ export default function Song(props) {
     }
 
     const handlePermanentlyDelte = async (id, username, index, songid) => {
+        props.modifyLoadingDelete(true);
         const devUrl = "http://localhost:5000";
         // eslint-disable-next-line
-        const proUrl = "https://api-trunkeymusicplayer.herokuapp.com";
+        const proUrl = process.env.REACT_APP_API_ENDPOINT;
         
-        const url = (id)? `${proUrl}/api/user/${username}/songs/${id}` : `${proUrl}/api/user/${username}/songid/${songid}`;
+        const url = `${proUrl}/user/${username}/songs/${songid}`;
         
         console.log(url);
 
         console.log(props);
         let data;
-
-        await axios.delete(url,data,{withCredentials: true});
-
-        props.handleSoftDelte(index);
+    
+        await axios.delete(url,data,{withCredentials: true}).then(() => {props.handleSoftDelte(index); props.modifyLoadingDelete(false);});
     }
 
     if (props.songIndex === props.index) {

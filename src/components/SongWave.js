@@ -1,5 +1,8 @@
-export default function SongWave(props) {
+import { memo } from 'react';
+
+export default memo(function SongWave(props) {
     let classes;
+    console.log("Hello");
 
     if (props.isPlaying) {
         classes = "song-wave song-wave-active";
@@ -16,4 +19,4 @@ export default function SongWave(props) {
             <span></span>
         </div>
     );
-}
+})

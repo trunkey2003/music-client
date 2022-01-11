@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import LocalSongs from "./LocalSongs";
 import Spinner from "react-bootstrap/esm/Spinner";
+import UserModifyLoading from "./UserModifyLoading";
 
 export default function LocalSongsModal(props) {
     const [songs, setSongs] = useState();
     const songsRef = useRef();
+    const [PostSongsLoading, setPostSongsLoading] = useState(false)
     
     function removeVietnameseTones(str) {
         str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
@@ -57,10 +59,11 @@ export default function LocalSongsModal(props) {
 
     return (
         <div>
+            {(PostSongsLoading)? <UserModifyLoading /> : <></>}
             <input onChange={(e) => { handleInputOnchange(e.target.value); }} className="search-song-input"></input>
             {(songs)? songs.map((song, index) => {
                 return (
-                    <LocalSongs handleAddSong={props.handleAddSong} userDetail={props.userDetail} path={song.path} index={index} image={song.image} song={song.name} singer={song.singer} />
+                    <LocalSongs handlePostSongsLoading={(show) => {setPostSongsLoading(show)}} handleAddSong={props.handleAddSong} userDetail={props.userDetail} path={song.path} index={index} image={song.image} song={song.name} singer={song.singer} />
                 )
             }): <div className="songs-modal-loading"><h4>Loading <Spinner animation="border" className="spinner" variant="info" /></h4></div>}
         </div>

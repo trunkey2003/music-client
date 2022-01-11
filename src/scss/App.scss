@@ -74,6 +74,7 @@ input {
   background: var(--background-modal);
   color: var(--color-modal);
   border: none;
+  z-index: 100;
 }
 
 .custom-modal-01 .modal-dialog .modal-content span {

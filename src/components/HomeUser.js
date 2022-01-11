@@ -7,7 +7,7 @@ import Loading from './Loading';
 const axios = require('axios');
 
 
-function HomeUser({ path, userValidated }) {
+function HomeUser({ path }) {
   var { username } = useParams();
   const validated = useRef();
   const userDetail = useRef();
@@ -51,8 +51,10 @@ function HomeUser({ path, userValidated }) {
         setLoading(true);
         axios.get(`${path}/${username}`, {mode: 'cors', withCredentials: true})
         .then((result) => {
+          console.log(result);
           if (result.data.username !== username) window.location = `/user/${result.data.username}`;
-          validated.current = true;
+          if (result.data.userid) validated.current = true;
+          if (result.data.username && !result.data.userid) validated.current = false;
           userDetail.current = result.data;
           setUserIcon(userDetail.current.avatar);
           axios.get(`${path}/${username}/songs`, {mode: 'cors', withCredentials: true})
@@ -60,6 +62,7 @@ function HomeUser({ path, userValidated }) {
           .finally(() =>{
             setLoading(false);
             setFirstLoading(false);
+            console.log("Validated : " + validated.current);
           })
         })
         .catch((err) => {
@@ -70,7 +73,6 @@ function HomeUser({ path, userValidated }) {
     }
 
     func();
-    console.log("Validated : " + validated.current);
     // eslint-disable-next-line
   }, [firstLoading])
 

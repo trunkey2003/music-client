@@ -27,3 +27,5 @@ src/theme
 desktop.ini
 src/css/home/
 src/home/
+
+.env

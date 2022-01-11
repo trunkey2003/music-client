@@ -28,13 +28,15 @@
 }
 
 .user-modify-loading {
-  z-index: 1;
-  position: absolute;
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   line-height: 100vh;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.671);
+  background-color: rgba(0, 0, 0, 0.70022003);
   color: white;
   font-size: 40px;
 }
@@ -213,11 +215,12 @@
           .overview-playlist-thumbnail {
             min-width: 20%;
             height: calc(14vw);
-            background-color: rgba(51, 51, 51, 0.397);
-           
+            background-color: rgba(85, 58, 58, 0.397);
+            border-radius: 2rem;
             img {
               width: 50%;
               padding: 2.5px;
+              border-radius: 2rem;
               // border-radius: 2rem;
             }
           }

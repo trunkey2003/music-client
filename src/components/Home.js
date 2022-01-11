@@ -46,9 +46,6 @@ function Home({path}) {
     const func = async () => {
       if (firstLoading) {
         setLoading(true);
-        axios.get(`https://api-trunkeymusicplayer.herokuapp.com/api/user/checktoken`, 
-          {mode: 'cors', withCredentials: true})
-        .then((res) => {console.log(res);});//window.location = `/user/${res.data.username}`})
         
         await fetch(`${path}/admin/us`)
           .then((response) => response.json())

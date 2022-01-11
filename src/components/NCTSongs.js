@@ -7,7 +7,7 @@ export default function NCTSongs({index, userDetail,addSongToDatabase, handleAdd
     var singers = "";
     const username = userDetail.username;
     const userid = userDetail.userid;
-    const url = `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songs`;
+    const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${username}/songs`;
     const devUrl = `http://localhost:5000/api/user/${username}/songs`;
     image = (image)? image : "https://i1.sndcdn.com/avatars-000606604806-j6ghpm-t500x500.jpg";
     if (artists) {artists.map((singer, index) => {
@@ -25,7 +25,7 @@ export default function NCTSongs({index, userDetail,addSongToDatabase, handleAdd
             path: path,
             image: image,
         }
-        let SongToDabase = Object.assign(newSong, {username: username, userid : userid, songid: uuidv4()});
+        let SongToDabase = Object.assign(newSong, {userid : userid, songid: uuidv4()});
         await addSongToDatabase(url, SongToDabase).then((data) => {console.log(data);})
         await handleAddSong(newSong);
     }
