@@ -25,6 +25,7 @@ export default function Song(props) {
 
     const handlePermanentlyDelte = async (id, username, index, songid) => {
         props.modifyLoadingDelete(true);
+         // eslint-disable-next-line
         const devUrl = "http://localhost:5000";
         // eslint-disable-next-line
         const proUrl = process.env.REACT_APP_API_ENDPOINT;

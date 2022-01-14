@@ -18,6 +18,7 @@ export default function LoginModal(props) {
         try{
         // eslint-disable-next-line
         const url = `${process.env.REACT_APP_API_ENDPOINT}/user/login`;
+         // eslint-disable-next-line
         const urldev = "http://localhost:5000/api/user/login";
         e.preventDefault();
         const submitData = {};

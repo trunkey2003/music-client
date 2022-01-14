@@ -7,6 +7,11 @@ input {
   letter-spacing: 0.125em;
 }
 
+.prevent-anchor{
+  color: #fff;
+  text-decoration: none;
+}
+
 .on-hover:hover{
   opacity: 0.8;
   cursor: pointer;

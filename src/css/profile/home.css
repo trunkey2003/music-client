@@ -14,6 +14,40 @@
     opacity: 1;
     height: 70%; } }
 
+.custom-modal-add-playlist .modal-content {
+  margin-top: 30vh;
+  font-family: Verdana;
+  letter-spacing: 0.1em; }
+  .custom-modal-add-playlist .modal-content .custom-header-add-playlist {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    letter-spacing: 0.1em; }
+
+.custom-modal-add-playlist .modal-dialog .modal-content {
+  background: linear-gradient(0deg, #420c0c 0%, #4b5280 100%);
+  color: white; }
+
+.custom-modal-add-playlist .custom-btn-close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px; }
+
+.custom-modal-add-playlist .modal-body h4 {
+  padding-top: 20px; }
+
+.custom-modal-add-playlist .modal-body label {
+  width: 100%;
+  text-align: center; }
+
+.custom-modal-add-playlist .custom-add-playlist-button {
+  margin-top: 30px;
+  width: 100%;
+  background: linear-gradient(0deg, #22c1c3 0%, #2d51fd 100%);
+  border-radius: 3rem;
+  font-family: Verdana;
+  letter-spacing: 0.12em; }
+  .custom-modal-add-playlist .custom-add-playlist-button:hover {
+    background: linear-gradient(0deg, #1b8688 0%, #2037a8 100%); }
+
 .user-profile {
   background: url("https://wallpaperaccess.com/full/3136252.jpg");
   width: 100vw;
@@ -53,6 +87,9 @@
       width: 150px;
       top: 5rem;
       left: 5rem; }
+      .user-profile-container .user-profile-info img:hover {
+        cursor: pointer;
+        opacity: 0.88; }
     .user-profile-container .user-profile-info .fa-image {
       position: absolute;
       padding: 5px;
@@ -138,8 +175,8 @@
     .user-profile-container .user-profile-overview .overview-songs {
       animation: fadedOverviewSongs-PC 1s ease-in-out;
       width: 100%;
-      height: 60%;
-      padding: 30px; }
+      height: 65%;
+      padding: 30px 20px; }
       .user-profile-container .user-profile-overview .overview-songs h5 {
         font-family: cursive;
         font-size: 1.5em; }
@@ -159,6 +196,10 @@
             height: calc(14vw);
             margin: 0 5%;
             border-radius: 2rem; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img:hover,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img:hover {
+              cursor: pointer;
+              opacity: 0.88; }
           .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-name,
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-name {
             margin-left: 15px;
@@ -169,20 +210,55 @@
             font-size: 0.7rem; }
         .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist,
         .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist {
-          min-width: 20%;
-          min-height: calc(14vw + 50px);
-          padding: 15px; }
+          max-width: 20%;
+          padding: 15px;
+          min-height: calc(14vw); }
           .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail,
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail {
-            min-width: 20%;
+            min-width: calc(14vw);
             height: calc(14vw);
+            display: flex;
+            flex-wrap: wrap;
             background-color: rgba(85, 58, 58, 0.397);
             border-radius: 2rem; }
             .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail img,
             .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail img {
-              width: 50%;
+              width: calc(14vw / 2);
+              height: calc(14vw / 2);
               padding: 2.5px;
-              border-radius: 2rem; }
+              border-radius: 1rem; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div {
+              width: calc(14vw / 2);
+              height: calc(14vw / 2);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 2.5px;
+              border-radius: 1rem;
+              background-color: rgba(143, 143, 143, 0.397); }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div:hover,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div:hover {
+                background-color: rgba(207, 207, 207, 0.397);
+                cursor: pointer; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 2.5px;
+              border-radius: 1rem;
+              background-color: rgba(143, 143, 143, 0.397); }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover {
+                background-color: rgba(207, 207, 207, 0.397);
+                cursor: pointer; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail:hover,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail:hover {
+              cursor: pointer;
+              opacity: 0.88; }
           .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .song-name,
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .song-name {
             margin-left: 15px;

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function UserModal(props) {
     const signOut = () => {
-        axios.get(`https://api-trunkeymusicplayer.herokuapp.com/api/user/signout`, {mode: 'cors', withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/signout`, {mode: 'cors', withCredentials: true})
         .then(() => window.location = window.location.origin)
         .catch((err) => console.log(err))
     }

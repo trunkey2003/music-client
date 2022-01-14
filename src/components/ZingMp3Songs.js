@@ -2,13 +2,14 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import {useCallback} from 'react';
 import { debounce } from "debounce";
 import NCTSongs from "./NCTSongs";
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function ZingMp3Songs(props) {
+    // eslint-disable-next-line
     const debounceSearchSong = useCallback(debounce((value) => searchSong(value), 1000), []);
     const searchSong = (value) => {
-        axios.post("https://api-trunkeymusicplayer.herokuapp.com/api/zingmp3/songs", {value: value})
-        .then((res) => console.log(res));
+        // axios.post("https://api-trunkeymusicplayer.herokuapp.com/api/zingmp3/songs", {value: value})
+        // .then((res) => console.log(res));
     }
 
     const handleInputOnchange = (value) => {

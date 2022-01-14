@@ -70,6 +70,7 @@ export default function SignUpModal(props) {
     .then((res) => {setLoadingUserName(false); setValidUserName(res.data)});
   }
 
+  // eslint-disable-next-line
   const debounceCheck = useCallback(debounce((value) => fetchUserAndCheck(value), 1000), []);
 
   const handleUserNameOnChanged = (e) => {
@@ -86,7 +87,7 @@ export default function SignUpModal(props) {
       return;
     }
 
-    if (value != confirmPassword) setValidConfirmPassword(false); else setValidConfirmPassword(true);
+    if (value !== confirmPassword) setValidConfirmPassword(false); else setValidConfirmPassword(true);
   }
 
   const handleConfirmPasswordOnchange = (value) =>{
@@ -98,7 +99,7 @@ export default function SignUpModal(props) {
     }
 
     setConfirmPassword(value);
-    if (value != password) setValidConfirmPassword(false); else setValidConfirmPassword(true);
+    if (value !== password) setValidConfirmPassword(false); else setValidConfirmPassword(true);
   }
 
   return (
@@ -157,7 +158,7 @@ export default function SignUpModal(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password {(validConfirmPassword == undefined)? "" : (validConfirmPassword)? <BsFillCheckCircleFill className="text-info"/> : <BsFillXCircleFill className="text-danger"/>}</Form.Label>
+            <Form.Label>Confirm Password {(validConfirmPassword === undefined)? "" : (validConfirmPassword)? <BsFillCheckCircleFill className="text-info"/> : <BsFillXCircleFill className="text-danger"/>}</Form.Label>
             <Form.Control
               onChange={(e) => handleConfirmPasswordOnchange(e.target.value)}
               type="password"

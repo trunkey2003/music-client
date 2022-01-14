@@ -3,7 +3,6 @@ import Dashboard from './Dashboard';
 import Playlist from './Playlist';
 import { useState, useRef, useEffect } from 'react';
 import Loading from './Loading';
-import axios from 'axios';
 
 
 function Home({path}) {
@@ -62,6 +61,7 @@ function Home({path}) {
           .catch((next) => console.log(next))
           .finally(() => { setLoading(false); setFirstLoading(false); })
         const songs = (songRegion === "usuk") ? songUs.current : songVn.current;
+        if (!songs) return;
         setSongs(songs);
         setCdThumb(songs[0].image);
         setSong(songs[0].name);
@@ -75,6 +75,7 @@ function Home({path}) {
         if (songs && songRegion === "usuk") songUs.current = songs;
         if (songs && songRegion === "vn") songVn.current = songs;
         songs = (songRegion === "usuk") ? songUs.current : songVn.current;
+        if (!songs) return;
         setSongs(songs);
         setCdThumb(songs[0].image);
         setSong(songs[0].name);

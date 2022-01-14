@@ -19,9 +19,11 @@ export default function LocalSongs(props) {
     }
 
     const handleAddButton = () => {
+        const playlistid = undefined;
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
         const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${props.userDetail.username}/songs`;
+        // eslint-disable-next-line
         const urldev = `http://localhost:5000/api/user/${props.userDetail.username}/songs`;
         let newSong = {
             name: props.song,
@@ -31,6 +33,7 @@ export default function LocalSongs(props) {
             username,
             userid,
             songid: uuidv4(),
+            playlistid: (playlistid)? playlistid : userid,
         }
         console.log(newSong);
         props.handlePostSongsLoading(true);

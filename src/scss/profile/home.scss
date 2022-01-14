@@ -20,6 +20,60 @@
   }
 }
 
+.custom-modal-add-playlist {
+  .modal-content {
+    margin-top: 30vh;
+    font-family: Verdana;
+    letter-spacing: 0.1em;
+    .custom-header-add-playlist {
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  .modal-dialog .modal-content {
+    background: linear-gradient(
+      0deg,
+      rgba(66, 12, 12, 1) 0%,
+      rgb(75, 82, 128) 100%
+    );
+    color: white;
+  }
+
+  .custom-btn-close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .modal-body{
+    h4{
+      padding-top: 20px;
+    }
+
+    label{
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .custom-add-playlist-button {
+    margin-top: 30px;
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgba(34, 193, 195, 1) 0%,
+      rgba(45, 81, 253, 1) 100%
+    );
+    border-radius: 3rem;
+    font-family: Verdana;
+    letter-spacing: 0.12em;
+    &:hover{
+      background: linear-gradient(0deg, rgb(27, 134, 136) 0%, rgb(32, 55, 168) 100%);
+    }
+  }
+}
 
 .user-profile {
   background: url("https://wallpaperaccess.com/full/3136252.jpg");
@@ -64,6 +118,10 @@
       width: 150px;
       top: 5rem;
       left: 5rem;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.88;
+      }
     }
 
     .fa-image {
@@ -172,8 +230,8 @@
     .overview-songs {
       animation: fadedOverviewSongs-PC 1s ease-in-out;
       width: 100%;
-      height: 60%;
-      padding: 30px;
+      height: 65%;
+      padding: 30px 20px;
       h5 {
         font-family: cursive;
         font-size: 1.5em;
@@ -189,12 +247,15 @@
 
         .overview-user-song {
           min-width: 20%;
-          // overflow-y: auto;
           img {
             width: calc(14vw);
             height: calc(14vw);
             margin: 0 5%;
             border-radius: 2rem;
+            &:hover {
+              cursor: pointer;
+              opacity: 0.88;
+            }
           }
           .song-name {
             margin-left: 15px;
@@ -207,21 +268,59 @@
         }
 
         .overview-user-playlist {
-          min-width: 20%;
-          min-height: calc(14vw + 50px);
+          max-width: 20%;
           padding: 15px;
+          min-height: calc(14vw);
           // border-radius: 2rem;
           // overflow-y: auto;
           .overview-playlist-thumbnail {
-            min-width: 20%;
+            min-width: calc(14vw);
             height: calc(14vw);
+            display: flex;
+            flex-wrap: wrap;
             background-color: rgba(85, 58, 58, 0.397);
             border-radius: 2rem;
             img {
-              width: 50%;
+              width: calc(14vw / 2);
+              height: calc(14vw / 2);
               padding: 2.5px;
-              border-radius: 2rem;
+              border-radius: 1rem;
               // border-radius: 2rem;
+            }
+
+            div {
+              width: calc(14vw / 2);
+              height: calc(14vw / 2);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 2.5px;
+              border-radius: 1rem;
+              background-color: rgba(143, 143, 143, 0.397);
+              &:hover {
+                background-color: rgba(207, 207, 207, 0.397);
+                cursor: pointer;
+              }
+            }
+
+            .add-playlist {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 2.5px;
+              border-radius: 1rem;
+              background-color: rgba(143, 143, 143, 0.397);
+              &:hover {
+                background-color: rgba(207, 207, 207, 0.397);
+                cursor: pointer;
+              }
+            }
+
+            &:hover {
+              cursor: pointer;
+              opacity: 0.88;
             }
           }
           .song-name {

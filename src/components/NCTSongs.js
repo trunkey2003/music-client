@@ -7,7 +7,9 @@ export default function NCTSongs({index, userDetail,addSongToDatabase, handleAdd
     var singers = "";
     const username = userDetail.username;
     const userid = userDetail.userid;
+     // eslint-disable-next-line
     const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${username}/songs`;
+     // eslint-disable-next-line
     const devUrl = `http://localhost:5000/api/user/${username}/songs`;
     image = (image)? image : "https://i1.sndcdn.com/avatars-000606604806-j6ghpm-t500x500.jpg";
     if (artists) {artists.map((singer, index) => {

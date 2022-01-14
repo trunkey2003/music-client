@@ -1,18 +1,20 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
-import axios from "axios";
+import axios, { Axios } from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import UserModifyLoading from "./UserModifyLoading";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function UserProfile({ path }) {
   var { username } = useParams();
+
   const validated = useRef();
 
   const [userDetail, setUserDetail] = useState();
-  const [songs, SetSongs] = useState();
+  const [songs, SetSongs] = useState([]);
 
   const [onChangeUserFullName, setonChangeUserFullName] = useState(false);
   const [fullName, setFullName] = useState();
@@ -20,6 +22,11 @@ export default function UserProfile({ path }) {
 
   const [onChangeUserName, setonChangeUserName] = useState(false);
   const [userName, setUserName] = useState();
+
+  const [playlists, setPlaylists] = useState([]);
+  const [showAddPlaylistModal, setShowAddPlaylistModal] = useState(false);
+  const [playlistName, setPlaylistName] = useState("");
+  const [playlistCount, setPlaylistCount] = useState(0);
 
   const [uploadedAvatar, setUploadedAvatar] = useState();
   const [showErrorAvatarUpload, setShowErrorAvatarUpload] = useState(false);
@@ -33,34 +40,33 @@ export default function UserProfile({ path }) {
   const [modifyDataLoading, setModifyDataLoading] = useState(false);
 
   useEffect(() => {
-    const func = async () => {
-      if (firstLoading) {
-        setLoading(true);
-        const authorization = await axios
-          .get(`${path}/${username}`, { mode: "cors", withCredentials: true })
-          .then((result) => {
-            validated.current = username;
-            setUserDetail(result.data);
-            setUserIcon(result.data.avatar);
-            setUserIconPreview(result.data.avatar);
-            setFullName(result.data.fullName);
-            setUserName(result.data.username);
-            axios.get(`${path}/${username}/songs`, { mode: 'cors', withCredentials: true }).then((res) => {SetSongs(res.data);});
-            return validated.current;
-          })
-          .catch(() => {
-            validated.current = "anonymous";
-            return validated.current;
-          })
-          .finally(() => {
-            setFirstLoading(false);
-            setLoading(false);
-          });
-      }
-    };
-
-    func();
-    console.log(userDetail);
+    if (firstLoading) {
+      setLoading(true);
+      axios
+        .get(`${path}/${username}`, { mode: "cors", withCredentials: true })
+        .then((result) => {
+          if (result.data.userid) validated.current = true;
+          setUserDetail(result.data);
+          setUserIcon(result.data.avatar);
+          setUserIconPreview(result.data.avatar);
+          setFullName(result.data.fullName);
+          setUserName(result.data.username);
+          const url = `${path}/${username}/allsongs`;
+          axios.get(url, { mode: 'cors', withCredentials: true })
+            .then((res) => SetSongs(res.data));
+          axios.get(`${path}/${username}/playlists`, { mode: 'cors', withCredentials: true }).then((res) => { console.log(res.data); setPlaylists(res.data); setPlaylistCount(res.data.length); })
+            .finally(() => {
+              setFirstLoading(false);
+              setLoading(false);
+            })
+          return validated.current;
+        })
+        .catch(() => {
+          validated.current = "anonymous";
+          return validated.current;
+        });
+    }
+    // eslint-disable-next-line
   }, [firstLoading]);
 
   const handleModifyFullName = () => {
@@ -117,6 +123,32 @@ export default function UserProfile({ path }) {
     }
   }
 
+  const handlePlaylistNameOnChange = (e) => {
+    setPlaylistName(e.target.value);
+  }
+
+  const handleAddPlaylistSubmit = (e) => {
+    setModifyDataLoading(true);
+    e.preventDefault();
+    const newObj = {
+      playlistid: uuidv4(),
+      playlistName: playlistName,
+      songCount: 0,
+    }
+
+
+    axios.post(`${path}/${username}/playlists`, newObj, { mode: 'cors', withCredentials: true })
+      .then(() => {
+        const newArray = [...playlists];
+        newArray.push(newObj);
+        setPlaylists(newArray);
+        setShowAddPlaylistModal(false);
+      })
+      .catch((err) => console.log(err))
+      .finally(()=>{
+        setModifyDataLoading(false);
+      });
+  }
 
   return (
     <>
@@ -125,13 +157,13 @@ export default function UserProfile({ path }) {
       ) : (
         <div className="user-profile">
           {modifyDataLoading ? (
-            <UserModifyLoading/>
+            <UserModifyLoading />
           ) : (
             <></>
           )}
           <div className="user-profile-container">
             <div className="user-profile-info">
-              <img src={userIcon}></img>
+              <img alt={username} src={userIcon}></img>
               <i
                 className="fas fa-image"
                 onClick={() => {
@@ -156,12 +188,12 @@ export default function UserProfile({ path }) {
               ) : (
                 <div className="user-full-name">
                   {fullName}{" "}
-                  <i
+                  {(validated.current) ? <i
                     className="fas fa-pencil-alt"
                     onClick={() => {
                       setonChangeUserFullName(!onChangeUserFullName);
                     }}
-                  ></i>
+                  ></i> : <></>}
                 </div>
               )}
               {onChangeUserName ? (
@@ -184,12 +216,12 @@ export default function UserProfile({ path }) {
               ) : (
                 <h5>
                   @{userName}{" "}
-                  <i
+                  {(validated.current) ? <i
                     className="fas fa-pencil-alt"
                     onClick={() => {
                       setonChangeUserName(!onChangeUserFullName);
                     }}
-                  ></i>
+                  ></i> : <></>}
                 </h5>
               )}
 
@@ -211,8 +243,8 @@ export default function UserProfile({ path }) {
                 <h5 className="overview-title" >Songs</h5>
                 <div className="overview-user-songs-container">
                   {songs && songs.map((song) => {
-                    return (<div className="overview-user-song">
-                      <img src={song.image}></img>
+                    return (<div key={song.songid} className="overview-user-song">
+                      <img alt={song.name} src={song.image}></img>
                       <div className="song-name">{song.name}</div>
                       <div className="song-artists">{song.singer}</div>
                     </div>)
@@ -230,57 +262,36 @@ export default function UserProfile({ path }) {
               <div className="overview-songs">
                 <h5 className="overview-title" >Playlist</h5>
                 <div className="overview-user-playlist-container">
-                  <div className="overview-user-playlist">
-                    <div className="overview-playlist-thumbnail">
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                    </div>
-                    <div className="song-name">Playlist</div>
-                    <div className="song-artists">Song Count</div>
-                  </div>
-                  <div className="overview-user-playlist">
-                    <div className="overview-playlist-thumbnail">
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                    </div>
-                    <div className="song-name">Playlist</div>
-                    <div className="song-artists">Song Count</div>
-                  </div>
-                  <div className="overview-user-playlist">
-                    <div className="overview-playlist-thumbnail">
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                    </div>
-                    <div className="song-name">Playlist</div>
-                    <div className="song-artists">Song Count</div>
-                  </div>
-                  <div className="overview-user-playlist">
-                    <div className="overview-playlist-thumbnail">
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                    </div>
-                    <div className="song-name">Playlistaa</div>
-                    <div className="song-artists">Song Count</div>
-                  </div>
-                  <div className="overview-user-playlist">
-                    <div className="overview-playlist-thumbnail">
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                      <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
-                    </div>
-                    <div className="song-name">Songs</div>
-                    <div className="song-artists">Song Count</div>
-                  </div>
+
+                  {(playlists.length) ?
+                    playlists.map((playlist) => (<div className="overview-user-playlist">
+                      <a style={{ color: "white", textDecoration: 'none' }} className="overview-playlist-thumbnail">
+                        {songs && songs.filter((item, idx) => { return (idx < 3 && item.playlistid == playlist.playlistid); }).map((song) =>
+                          <img alt={song.name} src={song.image}></img>
+                        )}
+                        {
+                          ((songs) ? (playlist.songCount < 3) ? <div><i className="fas fa-plus"></i></div> : <div><h5>{playlist.songCount - 3}+</h5></div> : <></>)
+                        }
+                      </a>
+                      <div className="song-name">{playlist.playlistName}</div>
+                      <div className="song-artists">{playlist.songCount} songs</div>
+                    </div>))
+                    : <></>
+                  }
+
+                  {(playlists.length < 5 && validated.current) ?
+                    (<div className="overview-user-playlist">
+                      <div className="overview-playlist-thumbnail">
+                        <div onClick={() => setShowAddPlaylistModal(true)} className="add-playlist"><i className="fas fa-plus"></i></div>
+                      </div>
+                    </div>)
+                    : <></>
+                  }
+
+
+
                 </div>
+
               </div>
 
             </div>
@@ -300,14 +311,14 @@ export default function UserProfile({ path }) {
                 <h5>Are you sure you want to change your name ?</h5>
               </Modal.Header>
               <div className="user-preview">
-                <img src={userDetail.avatar}></img>
+                <img alt={userDetail.username} src={userDetail.avatar}></img>
                 <div className="user-preview-detail">
                   <h5>{fullName}</h5>
                   <div className="text-secondary">@{userDetail.username}</div>
                 </div>
                 <div className="user-profile-follow-container">
                   <div>
-                    Songs <div>100</div>
+                    Songs <div>{userDetail.songCount}</div>
                   </div>
                   <div>
                     Followers <div>0</div>
@@ -354,7 +365,7 @@ export default function UserProfile({ path }) {
                 Invalid image format! Format must be JPG, JPEG, PNG, or GIF <i className="fas fa-exclamation-circle"></i>
                 <button onClick={() => { setShowErrorAvatarUpload(false) }}><i className="fas fa-times"></i></button>
               </div>}
-              <img src={userIconPreview}></img>
+              <img alt={userDetail.username} src={userIconPreview}></img>
               <Form.Group onChange={(e) => { handleUploadedAvatar(e) }} controlId="formFile" className="mb-3 avatar-upload">
                 <Form.Control type="file" accept="image/*" />
                 {(showAvatarUpload) ? <i className="fas fa-upload" onClick={() => { handleSubmitAvatar() }}></i> : <></>}
@@ -381,6 +392,35 @@ export default function UserProfile({ path }) {
                 Save Changes
               </Button>
             </Modal.Footer>
+          </Modal>
+
+          <Modal
+            className="custom-modal-add-playlist"
+            show={showAddPlaylistModal}
+            onHide={() => {
+              setShowAddPlaylistModal(false);
+            }}
+          >
+            <Modal.Body>
+              <h4 className="text-center text-info pb-3 custom-header-add-playlist on-hover">
+                Create New Playlist
+              </h4>
+              <button
+                type="button"
+                className="custom-btn-close-modal"
+                onClick={() => setShowAddPlaylistModal(false)}
+                aria-label="Close"
+              >
+                <i className="fas fa-times"></i>
+              </button>
+              <Form onSubmit={(e) => handleAddPlaylistSubmit(e)}>
+                <Form.Group>
+                  <Form.Label>Playlist Name</Form.Label>
+                  <Form.Control onChange={(e) => handlePlaylistNameOnChange(e)} placeholder="name" className="mb-3" type="text" required />
+                </Form.Group>
+                <Button className="custom-add-playlist-button" type="submit">Submit</Button>
+              </Form>
+            </Modal.Body>
           </Modal>
         </div>
       )}
