@@ -336,12 +336,13 @@ export default function UserProfile({ path }) {
                   Following <div>0</div>
                 </div>
               </div>
-
+              {(validated.current)?
               <div className="user-profile-taskbar">
                 <i className="fas fa-sign-out-alt" onClick={() => setShowSignOutModal(true)}></i>
                 <i className="fas fa-user-cog" onClick={() => {setShowAlert(true); setAlertMessage("Config user isn't available yet :(")}}></i>
                 <i className="fas fa-user-slash" onClick={() => setShowDeleteAccount(true)}></i>
               </div>
+              : ''}
             </div>
 
             <div className="user-profile-overview">
@@ -358,7 +359,7 @@ export default function UserProfile({ path }) {
                         </div>
                       );
                     })}
-                  <a href={`/user/${username}`} className="song-empty"><i className="fas fa-plus"></i></a>
+                  {(validated.current)? <a href={`/user/${username}`} className="song-empty"><i className="fas fa-plus"></i></a> : ''}
                   {/* {
                     <div className="overview-user-song">
                       <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
@@ -427,7 +428,7 @@ export default function UserProfile({ path }) {
                                   );
                                 })}
                             {songs ? (
-                              playlist.songCount < 4 ? (
+                              (playlist.songCount < 4 && validated.current) ? (
                                 <div>
                                   <i className="fas fa-plus"></i>
                                 </div>
