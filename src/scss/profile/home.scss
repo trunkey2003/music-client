@@ -20,48 +20,96 @@
   }
 }
 
-
-.three-dot-user-profile{
+.three-dot-user-profile {
   position: relative;
-  &:hover{
+  &:hover {
     color: rgb(119, 116, 116);
     cursor: pointer;
   }
 }
 
-.alert-error-box{
+.alert-error-box {
   z-index: 2000;
   position: fixed;
   top: 90vh;
   left: 1vw;
   padding: 1vh;
-  width: 20vw;
+  min-width: 20vw;
+  max-width: 30vw;
   height: 5vh;
   background-color: rgb(190, 65, 103);
   border-radius: 0.5rem;
   color: white;
   border: none;
-  i{
+  i {
     display: flex;
     height: 100%;
     justify-self: center;
     align-items: center;
     float: right;
     font-size: 1.3rem;
-    &:hover{
+    &:hover {
       color: rgb(216, 216, 216);
       cursor: pointer;
     }
   }
 }
 
-.playlist-overview{
+.custom-modal-task-bar-profile {
+  .modal-content {
+    color: white;
+    background: linear-gradient(
+      to right,
+      #2c5364,
+      #203a43,
+      #0f2027
+    ); 
+    border: none;
+  }
+
+  h5 {
+    text-align: center;
+  }
+
+  .button-section {
+    width: 100%;
+    padding: 10px 0 0 0;
+    
+    button {
+      width: 40%;
+      margin: 0 5%;
+      font-weight: bold;
+      overflow-y: hidden;
+      max-height: 100px;
+      &:hover{
+        color: white;
+        background-color: rgb(20, 25, 54);
+      }
+    }
+    .custom-delete-account-btn{
+      width: 40%;
+    }
+  }
+
+  input[type="text"]{
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  span{
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.856);
+    border-radius: 0.3rem;
+  }
+}
+
+.playlist-overview {
   position: relative;
   display: flex;
   width: 100%;
   height: 100px;
   background-color: rgba(0, 0, 0, 0.473);
-  .playlist-song-count-overview{
+  .playlist-song-count-overview {
     position: absolute;
     width: 80px;
     height: 80px;
@@ -72,7 +120,7 @@
     line-height: 80px;
     margin: 10px;
   }
-  .playlist-name-overview{
+  .playlist-name-overview {
     position: absolute;
     left: 120px;
     top: 10px;
@@ -106,12 +154,12 @@
     right: 15px;
   }
 
-  .modal-body{
-    h4{
+  .modal-body {
+    h4 {
       padding-top: 20px;
     }
 
-    label{
+    label {
       width: 100%;
       text-align: center;
     }
@@ -128,8 +176,12 @@
     border-radius: 3rem;
     font-family: Verdana;
     letter-spacing: 0.12em;
-    &:hover{
-      background: linear-gradient(0deg, rgb(27, 134, 136) 0%, rgb(32, 55, 168) 100%);
+    &:hover {
+      background: linear-gradient(
+        0deg,
+        rgb(27, 134, 136) 0%,
+        rgb(32, 55, 168) 100%
+      );
     }
   }
 }
@@ -281,6 +333,19 @@
         }
       }
     }
+
+    .user-profile-taskbar {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.705);
+      padding: 10px;
+      border-radius: 1rem;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      i {
+        padding: 0 10px;
+      }
+    }
   }
 
   .user-profile-overview {
@@ -306,6 +371,22 @@
         overflow-y: auto;
         overflow-x: auto;
         // overflow-x: hidden;
+        .song-empty {
+          width: calc(14vw);
+          height: calc(14vw);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 2.5px;
+          border-radius: 1rem;
+          background-color: rgba(143, 143, 143, 0.397);
+          color: white;
+          text-decoration: none;
+          &:hover {
+            background-color: rgba(207, 207, 207, 0.397);
+            cursor: pointer;
+          }
+        }
 
         .overview-user-song {
           min-width: 20%;
@@ -385,12 +466,12 @@
               opacity: 0.88;
             }
           }
-          .playlist-detail{
+          .playlist-detail {
             min-height: 55px;
             .song-name {
               margin-left: 15px;
               font-size: 1.2rem;
-              i{
+              i {
                 float: right;
                 line-height: 30px;
               }

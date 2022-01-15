@@ -147,6 +147,8 @@ export default function SignUpModal(props) {
               onChange={(e) => handleUserNameOnChanged(e)}
               type="text"
               placeholder="Enter your username"
+              minlength="3"
+              maxlength="16"
               required
             />
           </Form.Group>
@@ -157,6 +159,7 @@ export default function SignUpModal(props) {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Enter your email@email.com"
+              maxlength="40"
               required
             />
           </Form.Group>
@@ -167,6 +170,8 @@ export default function SignUpModal(props) {
               onChange={(e) => handlePasswordOnchange(e.target.value)}
               type="password"
               placeholder="Password"
+              minlength="3"
+              maxlength="20"
               required
             />
           </Form.Group>
@@ -177,6 +182,8 @@ export default function SignUpModal(props) {
               onChange={(e) => handleConfirmPasswordOnchange(e.target.value)}
               type="password"
               placeholder="Confirm assword"
+              minlength="3"
+              maxlength="20"
               required
             />
           </Form.Group>

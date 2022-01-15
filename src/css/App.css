@@ -215,7 +215,8 @@
   top: 90vh;
   left: 1vw;
   padding: 1vh;
-  width: 20vw;
+  min-width: 20vw;
+  max-width: 30vw;
   height: 5vh;
   background-color: #be4167;
   border-radius: 0.5rem;
@@ -231,6 +232,38 @@
     .alert-error-box i:hover {
       color: #d8d8d8;
       cursor: pointer; }
+
+.custom-modal-task-bar-profile .modal-content {
+  color: white;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  border: none; }
+
+.custom-modal-task-bar-profile h5 {
+  text-align: center; }
+
+.custom-modal-task-bar-profile .button-section {
+  width: 100%;
+  padding: 10px 0 0 0; }
+  .custom-modal-task-bar-profile .button-section button {
+    width: 40%;
+    margin: 0 5%;
+    font-weight: bold;
+    overflow-y: hidden;
+    max-height: 100px; }
+    .custom-modal-task-bar-profile .button-section button:hover {
+      color: white;
+      background-color: #141936; }
+  .custom-modal-task-bar-profile .button-section .custom-delete-account-btn {
+    width: 40%; }
+
+.custom-modal-task-bar-profile input[type="text"] {
+  margin: 5px 0;
+  width: 100%; }
+
+.custom-modal-task-bar-profile span {
+  padding: 2px;
+  background-color: rgba(0, 0, 0, 0.856);
+  border-radius: 0.3rem; }
 
 .playlist-overview {
   position: relative;
@@ -408,6 +441,16 @@
         text-align: center; }
         .user-profile-container .user-profile-info .user-profile-follow-container div div {
           width: 100%; }
+    .user-profile-container .user-profile-info .user-profile-taskbar {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.705);
+      padding: 10px;
+      border-radius: 1rem;
+      top: 10px;
+      right: 10px;
+      display: flex; }
+      .user-profile-container .user-profile-info .user-profile-taskbar i {
+        padding: 0 10px; }
   .user-profile-container .user-profile-overview {
     overflow-y: auto;
     height: 70%; }
@@ -429,6 +472,22 @@
         margin: 10px 0;
         overflow-y: auto;
         overflow-x: auto; }
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty,
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty {
+          width: calc(14vw);
+          height: calc(14vw);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 2.5px;
+          border-radius: 1rem;
+          background-color: rgba(143, 143, 143, 0.397);
+          color: white;
+          text-decoration: none; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty:hover,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty:hover {
+            background-color: rgba(207, 207, 207, 0.397);
+            cursor: pointer; }
         .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song,
         .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song {
           min-width: 20%; }

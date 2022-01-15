@@ -31,7 +31,9 @@ export default function UserProfile({ path }) {
   const [showAddPlaylistModal, setShowAddPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [playlistCount, setPlaylistCount] = useState(0);
+
   const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const [uploadedAvatar, setUploadedAvatar] = useState();
   const [showErrorAvatarUpload, setShowErrorAvatarUpload] = useState(false);
@@ -43,6 +45,10 @@ export default function UserProfile({ path }) {
   const [userIcon, setUserIcon] = useState("");
   const [userIconPreview, setUserIconPreview] = useState("");
   const [modifyDataLoading, setModifyDataLoading] = useState(false);
+
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
+  const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+  const [confirmUsername, setConfirmUsername] = useState();
 
   useEffect(() => {
     if (firstLoading) {
@@ -103,6 +109,13 @@ export default function UserProfile({ path }) {
   };
 
   const submitModifyUserName = () => {
+    console.log(userName.length);
+    if (userName.length < 3 || userName.length > 16){
+      setShowAlert(true);
+      setAlertMessage("Username length should be between 3-16");
+      return;
+    }
+
     setShowUserNameModal(false);
     setModifyDataLoading(true);
     axios
@@ -113,10 +126,21 @@ export default function UserProfile({ path }) {
         userDetail.username = userName;
         setModifyDataLoading(false);
         window.location.href = `/user/profile/${userName}`;
+      })
+      .catch(() => {
+        setAlertMessage(`Username @${userName} already exist`);
+        setShowAlert(true);
+        setModifyDataLoading(false);
       });
   };
 
   const submitModifyFullName = () => {
+    if (fullName.length < 3 || fullName.length > 30){
+      setShowAlert(true);
+      setAlertMessage("Fullname length should be between 3-30");
+      return;
+    }
+
     setShowFullNameModal(false);
     setModifyDataLoading(true);
     axios
@@ -145,6 +169,8 @@ export default function UserProfile({ path }) {
   };
 
   const handleSubmitAvatar = () => {
+    setShowAlert(true);
+    setAlertMessage("Uploading avatar to server isn't available yet :(");
     const uploadData = new FormData();
     uploadData.append("file", uploadedAvatar);
     const src = URL.createObjectURL(uploadedAvatar);
@@ -190,6 +216,32 @@ export default function UserProfile({ path }) {
       });
   };
 
+  const signOut = () =>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/signout`, {mode: 'cors', withCredentials: true})
+        .then(() => window.location = window.location.origin)
+        .catch((err) => console.log(err));
+  }
+
+  const handleDeleteAccount = () =>{
+    if (confirmUsername !== username) {
+      setShowAlert(true);
+      setAlertMessage("User name doesn't match!!");
+      return;
+    }
+    const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${username}`;
+    setModifyDataLoading(true);
+    axios.delete(url).then(() =>{
+      window.location = window.location.origin;
+    })
+    .catch((err) => console.log(err))
+    .finally(() => setModifyDataLoading(false));
+  }
+
+  const handleShowDeleteAccount = (bl) =>{
+    setShowDeleteAccount(bl);
+    setConfirmUsername("");
+  }
+
   return (
     <>
       {loading === true ? (
@@ -210,6 +262,8 @@ export default function UserProfile({ path }) {
                 <div className="user-full-name-input">
                   <input
                     type="text"
+                    minlength="3"
+                    maxlength="30"
                     value={fullName}
                     onChange={(e) => {
                       setFullName(e.target.value);
@@ -239,6 +293,8 @@ export default function UserProfile({ path }) {
               {onChangeUserName ? (
                 <div className="user-name-input">
                   <input
+                    minlength="3"
+                    maxlength="16"
                     type="text"
                     value={"@" + userName}
                     onChange={(e) => {
@@ -260,7 +316,7 @@ export default function UserProfile({ path }) {
                     <i
                       className="fas fa-pencil-alt"
                       onClick={() => {
-                        setonChangeUserName(!onChangeUserFullName);
+                        setonChangeUserName(!onChangeUserName);
                       }}
                     ></i>
                   ) : (
@@ -280,6 +336,12 @@ export default function UserProfile({ path }) {
                   Following <div>0</div>
                 </div>
               </div>
+
+              <div className="user-profile-taskbar">
+                <i className="fas fa-sign-out-alt" onClick={() => setShowSignOutModal(true)}></i>
+                <i className="fas fa-user-cog" onClick={() => {setShowAlert(true); setAlertMessage("Config user isn't available yet :(")}}></i>
+                <i className="fas fa-user-slash" onClick={() => setShowDeleteAccount(true)}></i>
+              </div>
             </div>
 
             <div className="user-profile-overview">
@@ -296,6 +358,7 @@ export default function UserProfile({ path }) {
                         </div>
                       );
                     })}
+                  <a href={`/user/${username}`} className="song-empty"><i className="fas fa-plus"></i></a>
                   {/* {
                     <div className="overview-user-song">
                       <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
@@ -318,7 +381,8 @@ export default function UserProfile({ path }) {
                               {playlist.playlistName}{" "}
                               {validated.current ? (
                                 <ThreeDots
-                                  modifyShowAlert = {(bl) => setShowAlert(bl)}
+                                  modifyAlertMessage={(msg) => setAlertMessage(msg)}
+                                  modifyShowAlert={(bl) => setShowAlert(bl)}
                                   userid={userid.current}
                                   modifyModifyLoading={(bl) =>
                                     setModifyDataLoading(bl)
@@ -402,7 +466,7 @@ export default function UserProfile({ path }) {
               </div>
             </div>
           </div>
-          <Alert show={showAlert} className="alert-error-box" variant="danger">Cannot delete the default playlist <i className="fas fa-times" onClick={() => {setShowAlert(false)}}></i></Alert>
+          <Alert show={showAlert} className="alert-error-box" variant="danger">{alertMessage}<i className="fas fa-times" onClick={() => { setShowAlert(false) }}></i></Alert>
           {/* Modal Section */}
           {/* Full Name Modify Modal */}
           <Modal
@@ -611,6 +675,28 @@ export default function UserProfile({ path }) {
                   Submit
                 </Button>
               </Form>
+            </Modal.Body>
+          </Modal>
+
+          <Modal className="custom-modal-task-bar-profile" show={showSignOutModal} onHide={() => setShowSignOutModal(false)}>
+            <Modal.Body>
+              <h5>Are you sure you want to sign out ? </h5>
+              <div className="button-section">
+                <Button className="custom-sign-out-btn" variant="info" onClick={() => setShowSignOutModal(false)}>Close <i className="fas fa-times"></i></Button>
+                <Button className="custom-sign-out-btn" variant="info" onClick={() => signOut()} >Sign Out <i className="fas fa-sign-out-alt"></i></Button>
+              </div>
+            </Modal.Body>
+          </Modal>
+
+          <Modal className="custom-modal-task-bar-profile" show={showDeleteAccount} onHide={() => handleShowDeleteAccount(false)}>
+            <Modal.Body>
+              <h5>Are you sure you want to delete your account </h5>
+              Please type your <span>username</span> to confirm. <br/>
+              <input type="text" maxlength="16" onChange={(e) => {setConfirmUsername(e.target.value); console.log(e.target.value);}}></input>
+              <div className="button-section">
+                <Button className="custom-sign-out-btn" variant="info" onClick={() => handleShowDeleteAccount(false)}>Close <i className="fas fa-times"></i></Button>
+                <Button className="custom-delete-account-btn" variant="info" onClick={() => handleDeleteAccount(false)}>Delete {confirmUsername}</Button>
+              </div>
             </Modal.Body>
           </Modal>
         </div>

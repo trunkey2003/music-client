@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import axios from "axios";
 
-export default function ThreeDots({ modifyShowAlert, modifyModifyLoading, playlists, modifyPlaylists, path, link, playlistid, playlistName, playlistSongCount, username, userid }) {
+export default function ThreeDots({ modifyAlertMessage, modifyShowAlert, modifyModifyLoading, playlists, modifyPlaylists, path, link, playlistid, playlistName, playlistSongCount, username, userid }) {
     const [classOption, setClassOption] = useState("option-songs-btn");
     const [showModalDeletePlaylist, setShowModalDeletePlaylist] = useState(false);
 
@@ -22,6 +22,7 @@ export default function ThreeDots({ modifyShowAlert, modifyModifyLoading, playli
 
     const handleDeletePlaylist = (playlistid) => {
         if (playlistid == userid) {
+            modifyAlertMessage("Cannot delete the Default Playlist")
             modifyShowAlert(true);
             return;
         }
