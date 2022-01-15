@@ -5,6 +5,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { BsFillCheckCircleFill, BsFillXCircleFill } from "react-icons/bs";
 import { useState, useCallback } from "react";
 import { debounce } from "debounce";
+const { v4: uuidv4 } = require('uuid');
 const axios = require('axios');
 
 export default function SignUpModal(props) {
@@ -16,6 +17,7 @@ export default function SignUpModal(props) {
   const [loadingUserName, setLoadingUserName] = useState(true);
   const [validUserName, setValidUserName] = useState();
   const [validConfirmPassword, setValidConfirmPassword] = useState();
+  const [checkAutoSignIn, setCheckAutoSignIn] = useState(false);
 
   async function signUp(url = '', data = {}) {
     const response = await fetch(url, {
@@ -33,21 +35,33 @@ export default function SignUpModal(props) {
     return response.json();
   }
   const handleSubmit = async (e) => {
-    const url = "https://api-trunkeymusicplayer.herokuapp.com/api/user/signup";
     e.preventDefault();
+
+    const url = `${process.env.REACT_APP_API_ENDPOINT}/user/signup`;
     const newUser = {};
+    const userid = uuidv4();
     newUser.username = username;
     newUser.password = password;
-    newUser.Email = email;
-    console.log(newUser);
+    newUser.email = email;
+    newUser.userid = userid;
+
     setLoading(true);
     await signUp(url, newUser)
-      .then(data => {
-        setLoading(false);
+      .then(async data => {
+        await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/user/signup/${userid}`);
         return data;
       })
       .then(data => {
-        window.location = `/user/${data.username}`;
+        if (checkAutoSignIn && data) {
+          const submitData = {};
+          submitData.username = username;
+          submitData.password = password;
+          const url = `${process.env.REACT_APP_API_ENDPOINT}/user/login`;
+          axios.post(url, submitData, { mode: 'cors', credentials: 'include', withCredentials: true }).then((result) =>{
+            if (result.status === 200 && result.data.username)  window.location = `/user/${result.data.username}`;
+            setLoading(false);
+          })
+        } else window.location = `/user/login`;
       })
       .catch(err => {
         console.log(err);
@@ -66,7 +80,7 @@ export default function SignUpModal(props) {
       setValidUserName(false);
       return;
     }
-    axios.post("https://api-trunkeymusicplayer.herokuapp.com/api/user/signup/checkusername", {username: username})
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/user/signup/checkusername`, {username: username})
     .then((res) => {setLoadingUserName(false); setValidUserName(res.data)});
   }
 
@@ -168,7 +182,7 @@ export default function SignUpModal(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Auto Sign In" />
+            <Form.Check onChange={(e) => {setCheckAutoSignIn(e.target.checked);}} type="checkbox" label="Auto Sign In" />
           </Form.Group>
           <Button
             className="custom-login-button"

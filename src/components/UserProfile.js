@@ -1,17 +1,20 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import UserModifyLoading from "./UserModifyLoading";
-import { v4 as uuidv4 } from 'uuid';
+import ThreeDots from "./ThreeDots";
+import Alert from "react-bootstrap/Alert";
+import { v4 as uuidv4 } from "uuid";
 
 export default function UserProfile({ path }) {
   var { username } = useParams();
 
   const validated = useRef();
+  const userid = useRef();
 
   const [userDetail, setUserDetail] = useState();
   const [songs, SetSongs] = useState([]);
@@ -22,11 +25,13 @@ export default function UserProfile({ path }) {
 
   const [onChangeUserName, setonChangeUserName] = useState(false);
   const [userName, setUserName] = useState();
+  const [showUserNameModal, setShowUserNameModal] = useState(false);
 
   const [playlists, setPlaylists] = useState([]);
   const [showAddPlaylistModal, setShowAddPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [playlistCount, setPlaylistCount] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
 
   const [uploadedAvatar, setUploadedAvatar] = useState();
   const [showErrorAvatarUpload, setShowErrorAvatarUpload] = useState(false);
@@ -45,20 +50,32 @@ export default function UserProfile({ path }) {
       axios
         .get(`${path}/${username}`, { mode: "cors", withCredentials: true })
         .then((result) => {
-          if (result.data.userid) validated.current = true;
+          if (result.data.userid) {
+            validated.current = true;
+            userid.current = result.data.userid;
+          }
           setUserDetail(result.data);
           setUserIcon(result.data.avatar);
           setUserIconPreview(result.data.avatar);
           setFullName(result.data.fullName);
           setUserName(result.data.username);
           const url = `${path}/${username}/allsongs`;
-          axios.get(url, { mode: 'cors', withCredentials: true })
+          axios
+            .get(url, { mode: "cors", withCredentials: true })
             .then((res) => SetSongs(res.data));
-          axios.get(`${path}/${username}/playlists`, { mode: 'cors', withCredentials: true }).then((res) => { console.log(res.data); setPlaylists(res.data); setPlaylistCount(res.data.length); })
+          axios
+            .get(`${path}/${username}/playlists`, {
+              mode: "cors",
+              withCredentials: true,
+            })
+            .then((res) => {
+              setPlaylists(res.data);
+              setPlaylistCount(res.data.length);
+            })
             .finally(() => {
               setFirstLoading(false);
               setLoading(false);
-            })
+            });
           return validated.current;
         })
         .catch(() => {
@@ -78,21 +95,39 @@ export default function UserProfile({ path }) {
   };
 
   const handleModifyUserName = () => {
-    if (userDetail.fullName !== fullName) {
-      // setShowFullNameModal(true);
+    if (userDetail.username !== userName) {
+      setShowUserNameModal(true);
     } else {
       setonChangeUserName(!onChangeUserName);
     }
   };
 
+  const submitModifyUserName = () => {
+    setShowUserNameModal(false);
+    setModifyDataLoading(true);
+    axios
+      .put(`${path}/edit/${userDetail.username}/username`, {
+        username: userName,
+      })
+      .then(() => {
+        userDetail.username = userName;
+        setModifyDataLoading(false);
+        window.location.href = `/user/profile/${userName}`;
+      });
+  };
+
   const submitModifyFullName = () => {
     setShowFullNameModal(false);
     setModifyDataLoading(true);
-    axios.put(`${path}/edit/fullname`, { fullName: fullName }).then(() => {
-      setonChangeUserFullName(!onChangeUserFullName);
-      userDetail.fullName = fullName;
-      setModifyDataLoading(false);
-    });
+    axios
+      .put(`${path}/edit/${userDetail.username}/fullname`, {
+        fullName: fullName,
+      })
+      .then(() => {
+        setonChangeUserFullName(!onChangeUserFullName);
+        userDetail.fullName = fullName;
+        setModifyDataLoading(false);
+      });
   };
 
   const handleUploadedAvatar = (e) => {
@@ -104,16 +139,18 @@ export default function UserProfile({ path }) {
     }
 
     setUploadedAvatar(e.target.files[0]);
-    if (e.target.files.length) { setShowAvatarUpload(true); } else setShowAvatarUpload(false);
-  }
+    if (e.target.files.length) {
+      setShowAvatarUpload(true);
+    } else setShowAvatarUpload(false);
+  };
 
   const handleSubmitAvatar = () => {
     const uploadData = new FormData();
-    uploadData.append('file', uploadedAvatar);
+    uploadData.append("file", uploadedAvatar);
     const src = URL.createObjectURL(uploadedAvatar);
     console.log(src);
     setUserIconPreview(src);
-  }
+  };
 
   const handleSaveChangeAvatar = () => {
     setShowAvatarModal(false);
@@ -121,11 +158,11 @@ export default function UserProfile({ path }) {
       const src = URL.createObjectURL(uploadedAvatar);
       setUserIcon(src);
     }
-  }
+  };
 
   const handlePlaylistNameOnChange = (e) => {
     setPlaylistName(e.target.value);
-  }
+  };
 
   const handleAddPlaylistSubmit = (e) => {
     setModifyDataLoading(true);
@@ -134,10 +171,13 @@ export default function UserProfile({ path }) {
       playlistid: uuidv4(),
       playlistName: playlistName,
       songCount: 0,
-    }
+    };
 
-
-    axios.post(`${path}/${username}/playlists`, newObj, { mode: 'cors', withCredentials: true })
+    axios
+      .post(`${path}/${username}/playlists`, newObj, {
+        mode: "cors",
+        withCredentials: true,
+      })
       .then(() => {
         const newArray = [...playlists];
         newArray.push(newObj);
@@ -145,10 +185,10 @@ export default function UserProfile({ path }) {
         setShowAddPlaylistModal(false);
       })
       .catch((err) => console.log(err))
-      .finally(()=>{
+      .finally(() => {
         setModifyDataLoading(false);
       });
-  }
+  };
 
   return (
     <>
@@ -156,11 +196,7 @@ export default function UserProfile({ path }) {
         <Loading />
       ) : (
         <div className="user-profile">
-          {modifyDataLoading ? (
-            <UserModifyLoading />
-          ) : (
-            <></>
-          )}
+          {modifyDataLoading ? <UserModifyLoading /> : <></>}
           <div className="user-profile-container">
             <div className="user-profile-info">
               <img alt={username} src={userIcon}></img>
@@ -188,12 +224,16 @@ export default function UserProfile({ path }) {
               ) : (
                 <div className="user-full-name">
                   {fullName}{" "}
-                  {(validated.current) ? <i
-                    className="fas fa-pencil-alt"
-                    onClick={() => {
-                      setonChangeUserFullName(!onChangeUserFullName);
-                    }}
-                  ></i> : <></>}
+                  {validated.current ? (
+                    <i
+                      className="fas fa-pencil-alt"
+                      onClick={() => {
+                        setonChangeUserFullName(!onChangeUserFullName);
+                      }}
+                    ></i>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               )}
               {onChangeUserName ? (
@@ -216,12 +256,16 @@ export default function UserProfile({ path }) {
               ) : (
                 <h5>
                   @{userName}{" "}
-                  {(validated.current) ? <i
-                    className="fas fa-pencil-alt"
-                    onClick={() => {
-                      setonChangeUserName(!onChangeUserFullName);
-                    }}
-                  ></i> : <></>}
+                  {validated.current ? (
+                    <i
+                      className="fas fa-pencil-alt"
+                      onClick={() => {
+                        setonChangeUserName(!onChangeUserFullName);
+                      }}
+                    ></i>
+                  ) : (
+                    <></>
+                  )}
                 </h5>
               )}
 
@@ -240,15 +284,18 @@ export default function UserProfile({ path }) {
 
             <div className="user-profile-overview">
               <div className="overview-songs">
-                <h5 className="overview-title" >Songs</h5>
+                <h5 className="overview-title">Songs</h5>
                 <div className="overview-user-songs-container">
-                  {songs && songs.map((song) => {
-                    return (<div key={song.songid} className="overview-user-song">
-                      <img alt={song.name} src={song.image}></img>
-                      <div className="song-name">{song.name}</div>
-                      <div className="song-artists">{song.singer}</div>
-                    </div>)
-                  })}
+                  {songs &&
+                    songs.map((song) => {
+                      return (
+                        <div key={song.songid} className="overview-user-song">
+                          <img alt={song.name} src={song.image}></img>
+                          <div className="song-name">{song.name}</div>
+                          <div className="song-artists">{song.singer}</div>
+                        </div>
+                      );
+                    })}
                   {/* {
                     <div className="overview-user-song">
                       <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
@@ -260,43 +307,102 @@ export default function UserProfile({ path }) {
               </div>
 
               <div className="overview-songs">
-                <h5 className="overview-title" >Playlist</h5>
+                <h5 className="overview-title">Playlist</h5>
                 <div className="overview-user-playlist-container">
+                  {playlists.length ? (
+                    playlists.map((playlist) => {
+                      return (
+                        <div className="overview-user-playlist">
+                          <div className="playlist-detail">
+                            <div className="song-name">
+                              {playlist.playlistName}{" "}
+                              {validated.current ? (
+                                <ThreeDots
+                                  modifyShowAlert = {(bl) => setShowAlert(bl)}
+                                  userid={userid.current}
+                                  modifyModifyLoading={(bl) =>
+                                    setModifyDataLoading(bl)
+                                  }
+                                  playlists={playlists}
+                                  modifyPlaylists={(newObj) =>
+                                    setPlaylists(newObj)
+                                  }
+                                  path={path}
+                                  username={username}
+                                  playlistid={playlist.playlistid}
+                                  playlistName={playlist.playlistName}
+                                  playlistSongCount={playlist.songCount}
+                                  link={`${window.location.host}/user/${username}/${playlist.playlistid}`}
+                                />
+                              ) : (
+                                <></>
+                              )}
+                            </div>
+                            <div className="song-artists">
+                              {playlist.songCount} songs
+                            </div>
+                          </div>
+                          <a
+                            href={
+                              playlist.playlistName == "Default Playlist"
+                                ? `/user/${username}`
+                                : `/user/${username}/${playlist.playlistid}`
+                            }
+                            style={{ color: "white", textDecoration: "none" }}
+                            className="overview-playlist-thumbnail"
+                          >
+                            {songs &&
+                              songs
+                                .filter((item, idx) => {
+                                  return item.playlistid == playlist.playlistid;
+                                })
+                                .filter((item, index) => index < 3)
+                                .map((song) => {
+                                  return (
+                                    <img alt={song.name} src={song.image}></img>
+                                  );
+                                })}
+                            {songs ? (
+                              playlist.songCount < 4 ? (
+                                <div>
+                                  <i className="fas fa-plus"></i>
+                                </div>
+                              ) : (
+                                <div>
+                                  <h5>{playlist.songCount - 3}+</h5>
+                                </div>
+                              )
+                            ) : (
+                              <></>
+                            )}
+                          </a>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
 
-                  {(playlists.length) ?
-                    playlists.map((playlist) => (<div className="overview-user-playlist">
-                      <a style={{ color: "white", textDecoration: 'none' }} className="overview-playlist-thumbnail">
-                        {songs && songs.filter((item, idx) => { return (idx < 3 && item.playlistid == playlist.playlistid); }).map((song) =>
-                          <img alt={song.name} src={song.image}></img>
-                        )}
-                        {
-                          ((songs) ? (playlist.songCount < 3) ? <div><i className="fas fa-plus"></i></div> : <div><h5>{playlist.songCount - 3}+</h5></div> : <></>)
-                        }
-                      </a>
-                      <div className="song-name">{playlist.playlistName}</div>
-                      <div className="song-artists">{playlist.songCount} songs</div>
-                    </div>))
-                    : <></>
-                  }
-
-                  {(playlists.length < 5 && validated.current) ?
-                    (<div className="overview-user-playlist">
+                  {playlists.length < 5 && validated.current ? (
+                    <div className="overview-user-playlist">
+                      <div className="playlist-detail"></div>
                       <div className="overview-playlist-thumbnail">
-                        <div onClick={() => setShowAddPlaylistModal(true)} className="add-playlist"><i className="fas fa-plus"></i></div>
+                        <div
+                          onClick={() => setShowAddPlaylistModal(true)}
+                          className="add-playlist"
+                        >
+                          <i className="fas fa-plus"></i>
+                        </div>
                       </div>
-                    </div>)
-                    : <></>
-                  }
-
-
-
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
-
               </div>
-
             </div>
           </div>
-
+          <Alert show={showAlert} className="alert-error-box" variant="danger">Cannot delete the default playlist <i className="fas fa-times" onClick={() => {setShowAlert(false)}}></i></Alert>
           {/* Modal Section */}
           {/* Full Name Modify Modal */}
           <Modal
@@ -351,6 +457,59 @@ export default function UserProfile({ path }) {
             </Modal.Footer>
           </Modal>
 
+          {/* Username modify */}
+          <Modal
+            className="custom-modal-01 custom-modal-fullname"
+            show={showUserNameModal}
+            onHide={() => {
+              setShowUserNameModal(false);
+            }}
+          >
+            <Modal.Body>
+              <Modal.Header>
+                <h5>Are you sure you want to change your name ?</h5>
+              </Modal.Header>
+              <div className="user-preview">
+                <img alt={userName} src={userDetail.avatar}></img>
+                <div className="user-preview-detail">
+                  <h5>{userDetail.fullName}</h5>
+                  <div className="text-secondary">@{userName}</div>
+                </div>
+                <div className="user-profile-follow-container">
+                  <div>
+                    Songs <div>{userDetail.songCount}</div>
+                  </div>
+                  <div>
+                    Followers <div>0</div>
+                  </div>
+                  <div>
+                    Following <div>0</div>
+                  </div>
+                </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                className="custom-close-btn"
+                variant="secondary"
+                onClick={() => {
+                  setShowUserNameModal(false);
+                }}
+              >
+                Close
+              </Button>
+              <Button
+                className="custom-close-btn"
+                variant="primary"
+                onClick={() => {
+                  submitModifyUserName();
+                }}
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
           {/* Avatar Modify Modal */}
           <Modal
             className="custom-modal-01 custom-modal-avatar"
@@ -361,14 +520,38 @@ export default function UserProfile({ path }) {
           >
             <Modal.Header>Update Your Avatar</Modal.Header>
             <Modal.Body>
-              {showErrorAvatarUpload && <div className="alert-box">
-                Invalid image format! Format must be JPG, JPEG, PNG, or GIF <i className="fas fa-exclamation-circle"></i>
-                <button onClick={() => { setShowErrorAvatarUpload(false) }}><i className="fas fa-times"></i></button>
-              </div>}
+              {showErrorAvatarUpload && (
+                <div className="alert-box">
+                  Invalid image format! Format must be JPG, JPEG, PNG, or GIF{" "}
+                  <i className="fas fa-exclamation-circle"></i>
+                  <button
+                    onClick={() => {
+                      setShowErrorAvatarUpload(false);
+                    }}
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                </div>
+              )}
               <img alt={userDetail.username} src={userIconPreview}></img>
-              <Form.Group onChange={(e) => { handleUploadedAvatar(e) }} controlId="formFile" className="mb-3 avatar-upload">
+              <Form.Group
+                onChange={(e) => {
+                  handleUploadedAvatar(e);
+                }}
+                controlId="formFile"
+                className="mb-3 avatar-upload"
+              >
                 <Form.Control type="file" accept="image/*" />
-                {(showAvatarUpload) ? <i className="fas fa-upload" onClick={() => { handleSubmitAvatar() }}></i> : <></>}
+                {showAvatarUpload ? (
+                  <i
+                    className="fas fa-upload"
+                    onClick={() => {
+                      handleSubmitAvatar();
+                    }}
+                  ></i>
+                ) : (
+                  <></>
+                )}
               </Form.Group>
             </Modal.Body>
 
@@ -416,9 +599,17 @@ export default function UserProfile({ path }) {
               <Form onSubmit={(e) => handleAddPlaylistSubmit(e)}>
                 <Form.Group>
                   <Form.Label>Playlist Name</Form.Label>
-                  <Form.Control onChange={(e) => handlePlaylistNameOnChange(e)} placeholder="name" className="mb-3" type="text" required />
+                  <Form.Control
+                    onChange={(e) => handlePlaylistNameOnChange(e)}
+                    placeholder="name"
+                    className="mb-3"
+                    type="text"
+                    required
+                  />
                 </Form.Group>
-                <Button className="custom-add-playlist-button" type="submit">Submit</Button>
+                <Button className="custom-add-playlist-button" type="submit">
+                  Submit
+                </Button>
               </Form>
             </Modal.Body>
           </Modal>

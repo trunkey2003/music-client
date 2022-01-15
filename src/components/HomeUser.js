@@ -1,14 +1,15 @@
 import '../css/App.css';
 import Dashboard from './Dashboard';
 import Playlist from './Playlist';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, createContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from './Loading';
 const axios = require('axios');
 
+export const PlaylistidContext = createContext();
 
 function HomeUser({ path }) {
-  var { username } = useParams();
+  var { username, playlistid } = useParams();
   const validated = useRef();
   const userDetail = useRef();
   const [userIcon, setUserIcon] = useState("https://trunkey2003.github.io/general-img/default-profile-pic.jpg");
@@ -51,13 +52,12 @@ function HomeUser({ path }) {
         setLoading(true);
         axios.get(`${path}/${username}`, {mode: 'cors', withCredentials: true})
         .then((result) => {
-          console.log(result);
-          if (result.data.username !== username) window.location = `/user/${result.data.username}`;
           if (result.data.userid) validated.current = true;
-          if (result.data.username && !result.data.userid) validated.current = false;
+          if (result.data.username != result.data.onAccess && result.data.onAccess) validated.current = false;
           userDetail.current = result.data;
           setUserIcon(userDetail.current.avatar);
-          axios.get(`${path}/${username}/songs`, {mode: 'cors', withCredentials: true})
+          const additionalPath = (playlistid)? `/${playlistid}` : '';
+          axios.get(`${path}/${username}${additionalPath}/songs`, {mode: 'cors', withCredentials: true})
           .then((songs) => {setSongs(songs.data);})
           .finally(() =>{
             setLoading(false);
@@ -67,7 +67,7 @@ function HomeUser({ path }) {
         })
         .catch((err) => {
           console.log(err);
-          window.location.href = "/user/login";
+          // window.location.href = "/user/login";
         })
       }
     }
@@ -236,6 +236,7 @@ function HomeUser({ path }) {
   }
 
   return (
+    <PlaylistidContext.Provider value={playlistid}>
     <div className={`${classes} ${classTheme}`}>
       {(loading === true) ? <Loading /> : (<>
         <Dashboard userDetail={userDetail.current} userIcon={userIcon} validated={validated.current} username={username} songState={songState} volumeIcon={volumeIcon} volumeBackground={volumeBackground} ModifySongVolume={ModifySongVolume} modifyClassTheme={modifyClassTheme} modifySongRegion={modifySongRegion} modifySongState={modifySongState} songCount={songs.length} songDetail={songDetail} modifyIsPlaying={modifyIsPlaying} modifySongPlay={modifySongPlay} percentage={percentage} modifyPercentage={modifyPercentage} modifyCurruntTime={setTimeManually} songs={songs} />
@@ -243,6 +244,7 @@ function HomeUser({ path }) {
         <Playlist userDetail={userDetail.current} validated={validated.current} classTheme={classTheme} songRegion={songRegion} handleSoftDelte={handleSoftDelte} songIndex={songIndex} src={src} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} songs={songs} handleAddSong={handleAddSong} />
       </>)}
     </div>
+    </PlaylistidContext.Provider>
   );
 }
 

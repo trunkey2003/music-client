@@ -19,8 +19,8 @@ export default function Dashboard({userDetail, validated, userIcon ,songState ,v
             <div className="volume-container"><div className={volumeBackground}></div><i className={`${volumeIcon} volume-icon`} onClick={() => {ModifySongVolume()}}/></div>
             <SongWave isPlaying={songDetail.isPlaying}/>
             <ChangeTheme modifyClassTheme={modifyClassTheme}/>
-            {(validated)? <UserIcon userDetail={userDetail} validated={validated} userIcon={userIcon}/> : ((validated === undefined)? <ChangeList songRegion={songDetail.songRegion} modifySongRegion={modifySongRegion}></ChangeList> : <UserIcon userIcon={userIcon}/>)}
-            {(validated === undefined)? <UserIcon className="user-icon-home" userIcon={"https://trunkey2003.github.io/general-img/default-profile-pic.jpg"}></UserIcon> : <></>}
+            {(validated)? <UserIcon userDetail={userDetail} validated={validated} userIcon={userIcon}/> : ((validated === undefined && !userIcon)? <ChangeList songRegion={songDetail.songRegion} modifySongRegion={modifySongRegion}></ChangeList> : <UserIcon userDetail={userDetail} validated={validated} userIcon={userIcon}/>)}
+            {(validated === undefined && !userIcon)? <UserIcon className="user-icon-home" userIcon={"https://trunkey2003.github.io/general-img/default-profile-pic.jpg"}></UserIcon> : <></>}
             <Header song={songDetail.song} singer={songDetail.singer} />
             <Cd image={songDetail.cdThumb} isPlaying={songDetail.isPlaying} modifyIsPlaying={modifyIsPlaying} />
             <Control songState={songState} modifySongState={modifySongState} songCount={songCount} songIndex={songDetail.songIndex} isPlaying={songDetail.isPlaying} modifySongPlay={modifySongPlay} modifyIsPlaying={modifyIsPlaying} />

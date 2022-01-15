@@ -32,9 +32,6 @@ export default function Song(props) {
         
         const url = `${proUrl}/user/${username}/songs/${songid}`;
         
-        console.log(url);
-
-        console.log(props);
         let data;
     
         await axios.delete(url,data,{withCredentials: true}).then(() => {props.handleSoftDelte(index); props.modifyLoadingDelete(false);});

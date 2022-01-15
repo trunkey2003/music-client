@@ -2,11 +2,14 @@ import {
     getSong,
 } from "nhaccuatui-api-full";
 import { v4 as uuidv4 } from 'uuid';
+import {PlaylistidContext} from "./HomeUser";
+import { useContext } from 'react';
 
 export default function NCTSongs({index, userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
     var singers = "";
     const username = userDetail.username;
     const userid = userDetail.userid;
+    const playlistid = (useContext(PlaylistidContext))? playlistid : userid;
      // eslint-disable-next-line
     const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${username}/songs`;
      // eslint-disable-next-line
@@ -19,13 +22,13 @@ export default function NCTSongs({index, userDetail,addSongToDatabase, handleAdd
     })}
 
     const handleAddButton = async (songID) =>{
-        await getSong(songID).then((data) => path = data.song.streamUrls[0].streamUrl);
-        console.log(path);
+        await getSong(songID).then((data) => {console.log(data); path = data.song?.streamUrls[0].streamUrl});
         let newSong = {
             name: song,
             singer: singers,
             path: path,
             image: image,
+            playlistid: playlistid,
         }
         let SongToDabase = Object.assign(newSong, {userid : userid, songid: uuidv4()});
         await addSongToDatabase(url, SongToDabase).then((data) => {console.log(data);})

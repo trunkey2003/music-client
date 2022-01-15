@@ -1,6 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
+import {PlaylistidContext} from "./HomeUser";
+import { useContext } from 'react';
 
 export default function LocalSongs(props) {
+    const playlistid = useContext(PlaylistidContext);
     
     async function addSongToDatabase(url = '', data = {}) {
         const response = await fetch(url, {
@@ -19,7 +22,6 @@ export default function LocalSongs(props) {
     }
 
     const handleAddButton = () => {
-        const playlistid = undefined;
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
         const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${props.userDetail.username}/songs`;

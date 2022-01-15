@@ -11,7 +11,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/" element={<Home path={path}/>}/>
-        <Route exact path="/user/:username" element={<HomeUser path={`${path}/user`}/>}/>
+        <Route path="/user/:username" element={<HomeUser path={`${path}/user`}/>}/>
+        <Route path="/user/:username/:playlistid" element={<HomeUser path={`${path}/user`}/>}/>
         <Route exact path="/user/login" element={<Login></Login>}/>
         <Route exact path="/user/profile/:username" element={<UserProfile path={`${path}/user`}/>}/>
       </Routes>

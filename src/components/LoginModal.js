@@ -30,7 +30,6 @@ export default function LoginModal(props) {
         if (result.status === 200 && result.data.username) {
             window.location = `/user/${result.data.username}`;
         }
-        console.log(result);
         setLoading(false);
     }   catch (error) {
             setLoading(false);
