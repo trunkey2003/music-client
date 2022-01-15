@@ -432,10 +432,11 @@ export default function UserProfile({ path }) {
                                 <div>
                                   <i className="fas fa-plus"></i>
                                 </div>
-                              ) : (
+                              ) : ((playlist.songCount >= 4)? 
                                 <div>
                                   <h5>{playlist.songCount - 3}+</h5>
                                 </div>
+                                : ''
                               )
                             ) : (
                               <></>
