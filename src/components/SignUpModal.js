@@ -18,6 +18,7 @@ export default function SignUpModal(props) {
   const [validUserName, setValidUserName] = useState();
   const [validConfirmPassword, setValidConfirmPassword] = useState();
   const [checkAutoSignIn, setCheckAutoSignIn] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   async function signUp(url = '', data = {}) {
     const response = await fetch(url, {
@@ -57,8 +58,8 @@ export default function SignUpModal(props) {
           submitData.username = username;
           submitData.password = password;
           const url = `${process.env.REACT_APP_API_ENDPOINT}/user/login`;
-          axios.post(url, submitData, { mode: 'cors', credentials: 'include', withCredentials: true }).then((result) =>{
-            if (result.status === 200 && result.data.username)  window.location = `/user/${result.data.username}`;
+          axios.post(url, submitData, { mode: 'cors', credentials: 'include', withCredentials: true }).then((result) => {
+            if (result.status === 200 && result.data.username) window.location = `/user/${result.data.username}`;
             setLoading(false);
           })
         } else window.location = `/user/login`;
@@ -68,8 +69,8 @@ export default function SignUpModal(props) {
       })
       .finally(() => { setLoading(false); })
   }
-  
-  const validateUserName = (username) => { 
+
+  const validateUserName = (username) => {
     var usernameRegex = /^[a-zA-Z0-9]+$/;
     return usernameRegex.test(username);
   }
@@ -80,8 +81,8 @@ export default function SignUpModal(props) {
       setValidUserName(false);
       return;
     }
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/user/signup/checkusername`, {username: username})
-    .then((res) => {setLoadingUserName(false); setValidUserName(res.data)});
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/user/signup/checkusername`, { username: username })
+      .then((res) => { setLoadingUserName(false); setValidUserName(res.data) });
   }
 
   // eslint-disable-next-line
@@ -93,9 +94,9 @@ export default function SignUpModal(props) {
     if (e.target.value) debounceCheck(e.target.value);
   }
 
-  const handlePasswordOnchange = (value) =>{
+  const handlePasswordOnchange = (value) => {
     setPassword(value);
-    
+
     if (value.length === 0) {
       setValidConfirmPassword(undefined);
       return;
@@ -104,7 +105,7 @@ export default function SignUpModal(props) {
     if (value !== confirmPassword) setValidConfirmPassword(false); else setValidConfirmPassword(true);
   }
 
-  const handleConfirmPasswordOnchange = (value) =>{
+  const handleConfirmPasswordOnchange = (value) => {
     setConfirmPassword(value);
 
     if (value.length === 0) {
@@ -114,6 +115,10 @@ export default function SignUpModal(props) {
 
     setConfirmPassword(value);
     if (value !== password) setValidConfirmPassword(false); else setValidConfirmPassword(true);
+  }
+
+  const popUpAlert = () => {
+    setAlert("This service isn't available right now")
   }
 
   return (
@@ -128,6 +133,10 @@ export default function SignUpModal(props) {
         <h4 className="text-center text-info pb-3 custom-header-login on-hover">
           Sign Up
         </h4>
+        {alert && <div className="alert-box">
+          {alert} <i className="fas fa-exclamation-circle"></i>
+          <button onClick={() => { setAlert(false) }}><i className="fas fa-times"></i></button>
+        </div>}
         {props.closeable ? (
           <button
             type="button"
@@ -142,7 +151,7 @@ export default function SignUpModal(props) {
         )}
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group className="mb-3" controlId="formSignUpUserName">
-            <Form.Label>User name {(username === "")? <></> : ((loadingUserName)? <Spinner animation="border" variant="info" size="sm"></Spinner> : ((validUserName)? <BsFillCheckCircleFill className="text-info"/> : <BsFillXCircleFill className="text-danger"/>))}</Form.Label>
+            <Form.Label>User name {(username === "") ? <></> : ((loadingUserName) ? <Spinner animation="border" variant="info" size="sm"></Spinner> : ((validUserName) ? <BsFillCheckCircleFill className="text-info" /> : <BsFillXCircleFill className="text-danger" />))}</Form.Label>
             <Form.Control
               onChange={(e) => handleUserNameOnChanged(e)}
               type="text"
@@ -177,7 +186,7 @@ export default function SignUpModal(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password {(validConfirmPassword === undefined)? "" : (validConfirmPassword)? <BsFillCheckCircleFill className="text-info"/> : <BsFillXCircleFill className="text-danger"/>}</Form.Label>
+            <Form.Label>Confirm Password {(validConfirmPassword === undefined) ? "" : (validConfirmPassword) ? <BsFillCheckCircleFill className="text-info" /> : <BsFillXCircleFill className="text-danger" />}</Form.Label>
             <Form.Control
               onChange={(e) => handleConfirmPasswordOnchange(e.target.value)}
               type="password"
@@ -189,7 +198,7 @@ export default function SignUpModal(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check onChange={(e) => {setCheckAutoSignIn(e.target.checked);}} type="checkbox" label="Auto Sign In" />
+            <Form.Check onChange={(e) => { setCheckAutoSignIn(e.target.checked); }} type="checkbox" label="Auto Sign In" />
           </Form.Group>
           <Button
             className="custom-login-button"
@@ -209,31 +218,13 @@ export default function SignUpModal(props) {
             or use a social network
           </div>
           <div className="d-flex justify-content-center social-buttons">
-            <button
-              type="button"
-              className="btn"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Twitter"
-            >
+            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Twitter" onClick={() => { popUpAlert() }}>
               <i className="fab fa-twitter"></i>
             </button>
-            <button
-              type="button"
-              className="btn"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Facebook"
-            >
+            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Facebook" onClick={() => { popUpAlert() }}>
               <i className="fab fa-facebook"></i>
             </button>
-            <button
-              type="button"
-              className="btn"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Linkedin"
-            >
+            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Linkedin" onClick={() => { popUpAlert() }}>
               <i className="fab fa-google"></i>
             </button>
           </div>
