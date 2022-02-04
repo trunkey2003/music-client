@@ -2,16 +2,31 @@ import Form from 'react-bootstrap/Form'
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import Alert from "react-bootstrap/Alert";
 
 export default function UploadSongs(props) {
     const [song, setSong] = useState();
     const [singer, setSinger] = useState();
     const [image, setImage] = useState();
     const [path, setPath] = useState();
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
 
     const handleUploadSongsSubmit = (e) => {
+        e.preventDefault();
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
+        //Only me is admin 
+        if (userid != "9b4836dc-1e08-4a54-9c90-c121ecf8f7bc") {
+            setShowAlert(true);
+            setAlertMessage("Only Admin can take this action")
+            return;
+        } else {
+            setShowAlert(true);
+            setAlertMessage("This service isn't available right now")
+            return;
+        }
+        //this URL is outdated
         const url = `https://api-trunkeymusicplayer.herokuapp.com/api/user/${username}/songs`;
         e.preventDefault();
         let newSong = {
@@ -27,6 +42,7 @@ export default function UploadSongs(props) {
     }
     return (
         <div className="upload-songs-form">
+            <Alert show={showAlert} className="alert-error-box" variant="danger">{alertMessage}<i className="fas fa-times" onClick={() => { setShowAlert(false) }}></i></Alert>
             <Form onSubmit={(e) => {handleUploadSongsSubmit(e)}}>
                 <Form.Group className="mb-3">
                     <Form.Control onChange={(e) => setSong(e.target.value)} type="text" placeholder="Song Name" />

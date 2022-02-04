@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import { useState } from 'react';
 import SignUpModal from './SignUpModal';
+import Alert from "react-bootstrap/Alert";
+
 const axios = require('axios');
 
 export default function LoginModal(props) {
@@ -33,8 +35,12 @@ export default function LoginModal(props) {
         setLoading(false);
     }   catch (error) {
             setLoading(false);
-            if (error.toString().includes("403") || error.toString().includes("409")) setAlert(true);
+            if (error.toString().includes("403") || error.toString().includes("409")) setAlert("Wrong username or password");
         }
+    }
+
+    const popUpAlert = () => {
+        setAlert("This service isn't available right now")
     }
 
     return (
@@ -49,7 +55,7 @@ export default function LoginModal(props) {
                 <Modal.Body>
                     <h4 className="text-center text-info pb-3 custom-header-login on-hover">Sign in</h4>
                     {alert && <div className="alert-box">
-                        Wrong username or password <i className="fas fa-exclamation-circle"></i>
+                        {alert} <i className="fas fa-exclamation-circle"></i>
                     <button onClick={() => {setAlert(false)}}><i className="fas fa-times"></i></button>
                     </div>}
                     {(props.closeable) ? <button type="button" className="custom-btn-close-modal" onClick={props.onHide} aria-label="Close"><i className="fas fa-times"></i></button> : <></>}
@@ -73,13 +79,13 @@ export default function LoginModal(props) {
                     <div className="mt-4">
                         <div className="text-center text-info mb-3 on-hover">or use a social network</div>
                         <div className="d-flex justify-content-center social-buttons">
-                            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Twitter">
+                            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Twitter" onClick={() => {popUpAlert()}}>
                                 <i className="fab fa-twitter"></i>
                             </button>
-                            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Facebook">
+                            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Facebook" onClick={() => {popUpAlert()}}>
                                 <i className="fab fa-facebook"></i>
                             </button>
-                            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Linkedin">
+                            <button type="button" className="btn" data-toggle="tooltip" data-placement="top" title="Linkedin" onClick={() => {popUpAlert()}}>
                                 <i className="fab fa-google"></i>
                             </button>
                         </div>
