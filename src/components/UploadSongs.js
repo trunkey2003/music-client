@@ -17,7 +17,7 @@ export default function UploadSongs(props) {
         const username = props.userDetail.username;
         const userid = props.userDetail.userid;
         //Only me is admin 
-        if (userid != "9b4836dc-1e08-4a54-9c90-c121ecf8f7bc") {
+        if (userid != process.env.REACT_APP_ADMIN_USERID) {
             setShowAlert(true);
             setAlertMessage("Only Admin can take this action")
             return;
