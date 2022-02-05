@@ -465,7 +465,7 @@
           overflow-x: auto; }
           .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty,
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty {
-            width: calc(14vw);
+            min-width: calc(14vw);
             height: calc(14vw);
             display: flex;
             justify-content: center;
@@ -873,7 +873,7 @@
           overflow-x: auto; }
           .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty,
           .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty {
-            width: calc(35vw);
+            min-width: calc(35vw);
             height: calc(35vw);
             display: flex;
             justify-content: center;
