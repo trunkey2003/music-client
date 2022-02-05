@@ -684,7 +684,7 @@ export default function UserProfile({ path }) {
             <Modal.Body>
               <h5>Are you sure you want to sign out ? </h5>
               <div className="button-section">
-                <Button className="custom-sign-out-btn" variant="info" onClick={() => setShowSignOutModal(false)}>Close <i className="fas fa-times"></i></Button>
+                <Button className="custom-sign-out-btn" variant="info" onClick={() => setShowSignOutModal(false)}>Cancel <i className="fas fa-times"></i></Button>
                 <Button className="custom-sign-out-btn" variant="info" onClick={() => signOut()} >Sign Out <i className="fas fa-sign-out-alt"></i></Button>
               </div>
             </Modal.Body>

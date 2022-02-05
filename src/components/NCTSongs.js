@@ -5,11 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 import {PlaylistidContext} from "./HomeUser";
 import { useContext } from 'react';
 
-export default function NCTSongs({index, userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
+export default function NCTSongs({modifyPostSongsLoading, index, userDetail,addSongToDatabase, handleAddSong, song, artists, image, path, id}) {
     var singers = "";
     const username = userDetail.username;
     const userid = userDetail.userid;
-    const playlistid = (useContext(PlaylistidContext))? playlistid : userid;
+    const playlistid =  useContext(PlaylistidContext);
      // eslint-disable-next-line
     const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${username}/songs`;
      // eslint-disable-next-line
@@ -28,10 +28,15 @@ export default function NCTSongs({index, userDetail,addSongToDatabase, handleAdd
             singer: singers,
             path: path,
             image: image,
-            playlistid: playlistid,
+            playlistid: (playlistid)? playlistid : userid,
         }
         let SongToDabase = Object.assign(newSong, {userid : userid, songid: uuidv4()});
-        await addSongToDatabase(url, SongToDabase).then((data) => {console.log(data);})
+        console.log(SongToDabase);
+        modifyPostSongsLoading(true);
+        await addSongToDatabase(url, SongToDabase)
+        .then((data) => {console.log(data);})
+        .catch((err) => console.log(err))
+        .finally(() => modifyPostSongsLoading(false))
         await handleAddSong(newSong);
     }
     

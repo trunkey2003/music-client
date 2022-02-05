@@ -240,49 +240,6 @@ input {
   }
 }
 
-.custom-modal-fullname .modal-content{
-  margin-top: 35vh;
-  font-size: 1.5rem;
-  .user-preview{
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 10%;
-    background: linear-gradient(to left, rgb(124, 86, 10), rgb(0, 0, 0));
-    img{
-      width: 20%;
-      padding: 5px;
-      border-radius: 50%;
-    }
-
-    div{
-      padding: 5px 0 0 5px;
-      color: rgb(241, 238, 234);
-      h5{
-        margin: 0;
-      }
-      div{
-        line-height: 16px;
-        font-size: 16px;
-      }
-    }
-
-    .user-profile-follow-container{
-      display: flex;
-      position: absolute;
-      right: 5px;
-      top: 10px;
-      background-color: rgba(0, 0, 0, 0.582);
-      border-radius: 2rem;
-      padding: 5px 15px;
-      div{
-        padding: 0 5px;
-        text-align: center;
-        font-size: 12px;
-      }
-    }
-  }
-}
 
 .custom-modal-avatar .modal-content{
   margin-top: 25vh;
@@ -834,7 +791,7 @@ html {
   }
 }
 
-@media (max-width: 1199.999px) {
+@media (max-width: 1199.99999px) {
   .slider {
     -webkit-appearance: none;
     width: 100px;
@@ -1043,12 +1000,12 @@ html {
   }
 
   .song .title {
-    font-size: 18px;
+    font-size: calc(12px + 0.4vw);
     color: var(--color-song);
   }
 
   .song .author {
-    font-size: 12px;
+    font-size: calc(12px + 0.4vw);
     color: var(--color-song);
   }
 

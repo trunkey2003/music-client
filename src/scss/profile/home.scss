@@ -20,467 +20,1041 @@
   }
 }
 
-.three-dot-user-profile {
-  position: relative;
-  &:hover {
-    color: rgb(119, 116, 116);
-    cursor: pointer;
-  }
-}
-
-.alert-error-box {
-  z-index: 9999999999;
-  position: fixed;
-  top: 90vh;
-  left: 1vw;
-  padding: 1vh;
-  min-width: 20vw;
-  max-width: 30vw;
-  height: 5vh;
-  background-color: rgb(190, 65, 103);
-  border-radius: 0.5rem;
-  color: white;
-  border: none;
-  i {
-    display: flex;
-    height: 100%;
-    justify-self: center;
-    align-items: center;
-    float: right;
-    font-size: 1.3rem;
-    &:hover {
-      color: rgb(216, 216, 216);
-      cursor: pointer;
-    }
-  }
-}
-
-.custom-modal-task-bar-profile {
-  .modal-content {
-    color: white;
-    background: linear-gradient(
-      to right,
-      #2c5364,
-      #203a43,
-      #0f2027
-    ); 
-    border: none;
-  }
-
-  h5 {
-    text-align: center;
-  }
-
-  .button-section {
-    width: 100%;
-    padding: 10px 0 0 0;
-    
-    button {
-      width: 40%;
-      margin: 0 5%;
-      font-weight: bold;
-      overflow-y: hidden;
-      max-height: 100px;
-      &:hover{
-        color: white;
-        background-color: rgb(20, 25, 54);
-      }
-    }
-    .custom-delete-account-btn{
-      width: 40%;
-    }
-  }
-
-  input[type="text"]{
-    margin: 5px 0;
-    width: 100%;
-  }
-
-  span{
-    padding: 2px;
-    background-color: rgba(0, 0, 0, 0.856);
-    border-radius: 0.3rem;
-  }
-}
-
-.playlist-overview {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.473);
-  .playlist-song-count-overview {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    top: 0;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.89);
-    border-radius: 1rem;
-    line-height: 80px;
-    margin: 10px;
-  }
-  .playlist-name-overview {
-    position: absolute;
-    left: 120px;
-    top: 10px;
-  }
-}
-
-.custom-modal-add-playlist {
-  .modal-content {
-    margin-top: 30vh;
-    font-family: Verdana;
-    letter-spacing: 0.1em;
-    .custom-header-add-playlist {
-      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-      letter-spacing: 0.1em;
-    }
-  }
-
-  .modal-dialog .modal-content {
-    background: linear-gradient(
-      0deg,
-      rgba(66, 12, 12, 1) 0%,
-      rgb(75, 82, 128) 100%
-    );
-    color: white;
-  }
-
-  .custom-btn-close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-  }
-
-  .modal-body {
-    h4 {
-      padding-top: 20px;
-    }
-
-    label {
-      width: 100%;
-      text-align: center;
-    }
-  }
-
-  .custom-add-playlist-button {
-    margin-top: 30px;
-    width: 100%;
-    background: linear-gradient(
-      0deg,
-      rgba(34, 193, 195, 1) 0%,
-      rgba(45, 81, 253, 1) 100%
-    );
-    border-radius: 3rem;
-    font-family: Verdana;
-    letter-spacing: 0.12em;
-    &:hover {
-      background: linear-gradient(
-        0deg,
-        rgb(27, 134, 136) 0%,
-        rgb(32, 55, 168) 100%
-      );
-    }
-  }
-}
-
-.user-profile {
-  background: url("https://wallpaperaccess.com/full/3136252.jpg");
-  width: 100vw;
-  height: 100vh;
-}
-
-.user-modify-loading {
-  z-index: 10000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  line-height: 100vh;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.70022003);
-  color: white;
-  font-size: 40px;
-}
-
-.user-profile-container {
-  border-radius: 2rem;
-  width: 80%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.911);
-  color: white;
-  margin: auto;
-  animation: fadedProfile-PC 1s ease-in-out;
-  .user-profile-info {
-    border-radius: 2rem;
+@media (min-width: 1200px) {
+  .three-dot-user-profile {
     position: relative;
-    width: 100%;
-    height: 30%;
-    background: url("https://wallpaperboat.com/wp-content/uploads/2020/04/aesthetic-christmas-background-full-hd.jpg");
-    // background: rgb(58, 43, 43);
-
-    img {
-      position: absolute;
-      border-radius: 50%;
-      height: 150px;
-      width: 150px;
-      top: 5rem;
-      left: 5rem;
-      &:hover {
-        cursor: pointer;
-        opacity: 0.88;
-      }
-    }
-
-    .fa-image {
-      position: absolute;
-      padding: 5px;
-      top: calc(5rem + 140px);
-      left: calc(65px + 5rem);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      color: black;
-    }
-
-    .fa-pencil-alt {
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.671);
-    }
-
-    .fas:hover {
+    width: 30px;
+    text-align: center;
+    background-color: rgb(114, 112, 112);
+    border-radius: 50%;
+    &:hover {
+      color: rgb(160, 158, 158);
       cursor: pointer;
-      color: rgba(78, 76, 76, 0.986);
     }
+  }
 
-    .user-full-name {
-      position: absolute;
-      top: 5rem;
-      left: 15rem;
-      font-size: 1.5em;
-      font-weight: 700;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 2px 10px;
-      border-radius: 1rem;
-      background: rgba(0, 0, 0, 0.548);
-    }
-
-    .user-full-name-input {
-      position: absolute;
-      font-weight: 700;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      top: 5rem;
-      left: 15rem;
-      input[type="text"] {
-        background: rgba(0, 0, 0, 0.548);
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        color: white;
-        font-size: 1.5em;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 700;
-        letter-spacing: 1px;
+  .alert-error-box {
+    z-index: 9999999999;
+    position: fixed;
+    top: 90vh;
+    left: 1vw;
+    padding: 1vh;
+    min-width: 20vw;
+    max-width: 30vw;
+    height: 5vh;
+    background-color: rgb(190, 65, 103);
+    border-radius: 0.5rem;
+    color: white;
+    border: none;
+    i {
+      display: flex;
+      height: 100%;
+      justify-self: center;
+      align-items: center;
+      float: right;
+      font-size: 1.3rem;
+      &:hover {
+        color: rgb(216, 216, 216);
+        cursor: pointer;
       }
     }
+  }
 
-    .user-name-input {
-      position: absolute;
-      font-weight: 700;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      top: 8rem;
-      left: 15rem;
-      input[type="text"] {
-        background: rgba(0, 0, 0, 0.548);
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        color: white;
-        font-size: 1.2em;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 700;
-        letter-spacing: 1px;
-      }
+  .custom-modal-task-bar-profile {
+    .modal-content {
+      color: white;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      border: none;
     }
 
     h5 {
-      position: absolute;
-      top: 8rem;
-      left: 15rem;
-      padding: 2px 10px;
-      border-radius: 1rem;
-      background: rgba(0, 0, 0, 0.479);
+      text-align: center;
     }
 
-    .user-profile-follow-container {
-      position: absolute;
-      display: flex;
-      top: 5rem;
-      right: 10rem;
-      width: 20%;
-      height: 20%;
-      border-radius: 2rem;
-      background: rgba(12, 12, 12, 0.671);
-      div {
-        font-family: cursive;
-        width: 33%;
-        font-size: 1vw;
-        text-align: center;
-        div {
-          width: 100%;
+    .button-section {
+      width: 100%;
+      padding: 10px 0 0 0;
+
+      button {
+        width: 40%;
+        margin: 0 5%;
+        font-weight: bold;
+        overflow-y: hidden;
+        max-height: 100px;
+        &:hover {
+          color: white;
+          background-color: rgb(20, 25, 54);
         }
+      }
+      .custom-delete-account-btn {
+        width: 40%;
       }
     }
 
-    .user-profile-taskbar {
+    input[type="text"] {
+      margin: 5px 0;
+      width: 100%;
+    }
+
+    span {
+      padding: 2px;
+      background-color: rgba(0, 0, 0, 0.856);
+      border-radius: 0.3rem;
+    }
+  }
+
+  .playlist-overview {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.473);
+    .playlist-song-count-overview {
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.705);
-      padding: 10px;
+      width: 80px;
+      height: 80px;
+      top: 0;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.89);
       border-radius: 1rem;
+      line-height: 80px;
+      margin: 10px;
+    }
+    .playlist-name-overview {
+      position: absolute;
+      left: 120px;
       top: 10px;
-      right: 10px;
-      display: flex;
-      i {
-        padding: 0 10px;
+    }
+  }
+
+  .custom-modal-add-playlist {
+    .modal-content {
+      margin-top: 30vh;
+      font-family: Verdana;
+      letter-spacing: 0.1em;
+      .custom-header-add-playlist {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    .modal-dialog .modal-content {
+      background: linear-gradient(
+        0deg,
+        rgba(66, 12, 12, 1) 0%,
+        rgb(75, 82, 128) 100%
+      );
+      color: white;
+    }
+
+    .custom-btn-close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .modal-body {
+      h4 {
+        padding-top: 20px;
+      }
+
+      label {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .custom-add-playlist-button {
+      margin-top: 30px;
+      width: 100%;
+      background: linear-gradient(
+        0deg,
+        rgba(34, 193, 195, 1) 0%,
+        rgba(45, 81, 253, 1) 100%
+      );
+      border-radius: 3rem;
+      font-family: Verdana;
+      letter-spacing: 0.12em;
+      &:hover {
+        background: linear-gradient(
+          0deg,
+          rgb(27, 134, 136) 0%,
+          rgb(32, 55, 168) 100%
+        );
       }
     }
   }
 
-  .user-profile-overview {
-    overflow-y: auto;
-    height: 70%;
-    .overview-songs {
-      animation: fadedOverviewSongs-PC 1s ease-in-out;
+  .user-profile {
+    background: url("https://wallpaperaccess.com/full/3136252.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+  }
+
+  .user-modify-loading {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    line-height: 100vh;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.70022003);
+    color: white;
+    font-size: 40px;
+  }
+
+  .user-profile-container {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.911);
+    color: white;
+    margin: auto;
+    animation: fadedProfile-PC 1s ease-in-out;
+    .user-profile-info {
+      border-radius: 2rem;
+      position: relative;
       width: 100%;
-      height: 65%;
-      padding: 30px 20px;
-      h5 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 1.3em;
-        font-weight: bold;
-        padding-left: 15px;
-        padding-bottom: 10px;
+      height: 30%;
+      background: url("https://wallpaperboat.com/wp-content/uploads/2020/04/aesthetic-christmas-background-full-hd.jpg");
+      // background: rgb(58, 43, 43);
+
+      img {
+        position: absolute;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        top: 5rem;
+        left: 5rem;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.88;
+        }
       }
-      .overview-user-songs-container,
-      .overview-user-playlist-container {
-        display: flex;
-        width: 100%;
-        margin: 10px 0;
-        overflow-y: auto;
-        overflow-x: auto;
-        // overflow-x: hidden;
-        .song-empty {
-          width: calc(14vw);
-          height: calc(14vw);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 2.5px;
-          border-radius: 1rem;
-          background-color: rgba(143, 143, 143, 0.397);
+
+      .fa-image {
+        position: absolute;
+        padding: 5px;
+        top: calc(5rem + 140px);
+        left: calc(65px + 5rem);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        color: black;
+      }
+
+      .fa-pencil-alt {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.671);
+      }
+
+      .fas:hover {
+        cursor: pointer;
+        color: rgba(78, 76, 76, 0.986);
+      }
+
+      .user-full-name {
+        position: absolute;
+        top: 5rem;
+        left: 15rem;
+        font-size: 1.5em;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.548);
+      }
+
+      .user-full-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: 5rem;
+        left: 15rem;
+        input[type="text"] {
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
           color: white;
-          text-decoration: none;
-          &:hover {
-            background-color: rgba(207, 207, 207, 0.397);
-            cursor: pointer;
+          font-size: 1.5em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px;
+        }
+      }
+
+      .user-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: 8rem;
+        left: 15rem;
+        input[type="text"] {
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 1.2em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px;
+        }
+      }
+
+      h5 {
+        position: absolute;
+        top: 8rem;
+        left: 15rem;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.479);
+      }
+
+      .user-profile-follow-container {
+        position: absolute;
+        display: flex;
+        top: 5rem;
+        right: 10rem;
+        width: 20%;
+        height: 20%;
+        border-radius: 2rem;
+        background: rgba(12, 12, 12, 0.671);
+        div {
+          font-family: cursive;
+          width: 33%;
+          font-size: 1vw;
+          text-align: center;
+          div {
+            width: 100%;
           }
         }
+      }
 
-        .overview-user-song {
-          min-width: 20%;
-          img {
+      .user-profile-taskbar {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.705);
+        padding: 10px;
+        border-radius: 1rem;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        i {
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .user-profile-overview {
+      overflow-y: auto;
+      height: 70%;
+      .overview-songs {
+        animation: fadedOverviewSongs-PC 1s ease-in-out;
+        width: 100%;
+        height: 65%;
+        padding: 30px 20px;
+        h5 {
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          font-size: 1.3em;
+          font-weight: bold;
+          padding-left: 15px;
+          padding-bottom: 10px;
+        }
+        .overview-user-songs-container,
+        .overview-user-playlist-container {
+          display: flex;
+          width: 100%;
+          margin: 10px 0;
+          overflow-y: auto;
+          overflow-x: auto;
+          // overflow-x: hidden;
+          .song-empty {
             width: calc(14vw);
             height: calc(14vw);
-            margin: 0 5%;
-            border-radius: 1rem;
-            &:hover {
-              cursor: pointer;
-              opacity: 0.88;
-            }
-          }
-          .song-name {
-            margin-left: 15px;
-            font-size: 1.2rem;
-          }
-          .song-artists {
-            margin-left: 15px;
-            font-size: 0.7rem;
-          }
-        }
-
-        .overview-user-playlist {
-          max-width: 20%;
-          padding: 0 15px;
-          min-height: calc(14vw);
-          // border-radius: 2rem;
-          // overflow-y: auto;
-          .overview-playlist-thumbnail {
-            min-width: calc(14vw);
-            height: calc(14vw);
             display: flex;
-            flex-wrap: wrap;
-            background-color: rgba(85, 58, 58, 0.397);
-            border-radius: 2rem;
-            img {
-              width: calc(14vw / 2);
-              height: calc(14vw / 2);
-              padding: 2.5px;
-              border-radius: 1rem;
-              // border-radius: 2rem;
-            }
-
-            div {
-              width: calc(14vw / 2);
-              height: calc(14vw / 2);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 2.5px;
-              border-radius: 1rem;
-              background-color: rgba(143, 143, 143, 0.397);
-              &:hover {
-                background-color: rgba(207, 207, 207, 0.397);
-                cursor: pointer;
-              }
-            }
-
-            .add-playlist {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 2.5px;
-              border-radius: 1rem;
-              background-color: rgba(143, 143, 143, 0.397);
-              &:hover {
-                background-color: rgba(207, 207, 207, 0.397);
-                cursor: pointer;
-              }
-            }
-
+            justify-content: center;
+            align-items: center;
+            padding: 2.5px;
+            border-radius: 1rem;
+            background-color: rgba(143, 143, 143, 0.397);
+            color: white;
+            text-decoration: none;
             &:hover {
+              background-color: rgba(207, 207, 207, 0.397);
               cursor: pointer;
-              opacity: 0.88;
             }
           }
-          .playlist-detail {
-            min-height: 55px;
+
+          .overview-user-song {
+            min-width: 20%;
+            img {
+              width: calc(14vw);
+              height: calc(14vw);
+              margin: 0 5%;
+              border-radius: 1rem;
+              &:hover {
+                cursor: pointer;
+                opacity: 0.88;
+              }
+            }
             .song-name {
               margin-left: 15px;
               font-size: 1.2rem;
-              i {
-                float: right;
-                line-height: 30px;
-              }
             }
             .song-artists {
               margin-left: 15px;
               font-size: 0.7rem;
             }
           }
+
+          .overview-user-playlist {
+            max-width: 20%;
+            padding: 0 15px;
+            min-height: calc(14vw);
+            // border-radius: 2rem;
+            // overflow-y: auto;
+            .overview-playlist-thumbnail {
+              min-width: calc(14vw);
+              height: calc(14vw);
+              display: flex;
+              flex-wrap: wrap;
+              background-color: rgba(85, 58, 58, 0.397);
+              border-radius: 2rem;
+              img {
+                width: calc(14vw / 2);
+                height: calc(14vw / 2);
+                padding: 2.5px;
+                border-radius: 1rem;
+                // border-radius: 2rem;
+              }
+
+              div {
+                width: calc(14vw / 2);
+                height: calc(14vw / 2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397);
+                &:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer;
+                }
+              }
+
+              .add-playlist {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397);
+                &:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer;
+                }
+              }
+
+              &:hover {
+                cursor: pointer;
+                opacity: 0.88;
+              }
+            }
+            .playlist-detail {
+              min-height: 55px;
+              .song-name {
+                margin-left: 15px;
+                font-size: 1.2rem;
+                i {
+                  float: right;
+                  line-height: 30px;
+                }
+              }
+              .song-artists {
+                margin-left: 15px;
+                font-size: 0.7rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .custom-modal-fullname .modal-content{
+    margin-top: 35vh;
+    font-size: 1.5rem;
+    .user-preview{
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 10%;
+      background: linear-gradient(to left, rgb(124, 86, 10), rgb(0, 0, 0));
+      img{
+        width: 20%;
+        padding: 5px;
+        border-radius: 50%;
+      }
+  
+      div{
+        padding: 5px 0 0 5px;
+        color: rgb(241, 238, 234);
+        h5{
+          font-size: 1.3rem;
+          margin: 0;
+        }
+        div{
+          font-size: 1rem;
+          line-height: 1rem;
+        }
+      }
+  
+      .user-profile-follow-container{
+        display: flex;
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        background-color: rgba(0, 0, 0, 0.582);
+        border-radius: 2rem;
+        padding: 5px 15px;
+        div{
+          padding: 0 5px;
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+// MOBILE
+@media (max-width: 1199.99999px) {
+  .three-dot-user-profile {
+    position: relative;
+    padding: 5px;
+    background-color: gainsboro;
+    border-radius: 50%;
+    &:hover {
+      color: rgb(119, 116, 116);
+      cursor: pointer;
+    }
+  }
+
+  .alert-error-box {
+    z-index: 9999999999;
+    position: fixed;
+    top: 90vh;
+    left: 1vw;
+    padding: 1vh;
+    width: 95%;
+    height: 5vh;
+    background-color: rgb(190, 65, 103);
+    border-radius: 0.5rem;
+    color: white;
+    border: none;
+    i {
+      display: flex;
+      height: 100%;
+      justify-self: center;
+      align-items: center;
+      float: right;
+      font-size: 1.3rem;
+      &:hover {
+        color: rgb(216, 216, 216);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .custom-modal-task-bar-profile {
+    .modal-content {
+      margin-top: 10vh;
+      color: white;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      border: none;
+    }
+
+    h5 {
+      text-align: center;
+    }
+
+    .button-section {
+      width: 100%;
+      padding: 10px 0 0 0;
+
+      button {
+        width: 40%;
+        margin: 0 5%;
+        font-weight: bold;
+        overflow-y: hidden;
+        max-height: 100px;
+        &:hover {
+          color: white;
+          background-color: rgb(20, 25, 54);
+        }
+      }
+      .custom-delete-account-btn {
+        width: 40%;
+      }
+    }
+
+    input[type="text"] {
+      margin: 5px 0;
+      width: 100%;
+    }
+
+    span {
+      padding: 2px;
+      background-color: rgba(0, 0, 0, 0.856);
+      border-radius: 0.3rem;
+    }
+  }
+
+  .playlist-overview {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.473);
+    .playlist-song-count-overview {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      top: 0;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.89);
+      border-radius: 1rem;
+      line-height: 80px;
+      margin: 10px;
+    }
+    .playlist-name-overview {
+      position: absolute;
+      left: 120px;
+      top: 10px;
+    }
+  }
+
+  .custom-modal-add-playlist {
+    .modal-content {
+      margin-top: 30vh;
+      font-family: Verdana;
+      letter-spacing: 0.1em;
+      .custom-header-add-playlist {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    .modal-dialog .modal-content {
+      background: linear-gradient(
+        0deg,
+        rgba(66, 12, 12, 1) 0%,
+        rgb(75, 82, 128) 100%
+      );
+      color: white;
+    }
+
+    .custom-btn-close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .modal-body {
+      h4 {
+        padding-top: 20px;
+      }
+
+      label {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .custom-add-playlist-button {
+      margin-top: 30px;
+      width: 100%;
+      background: linear-gradient(
+        0deg,
+        rgba(34, 193, 195, 1) 0%,
+        rgba(45, 81, 253, 1) 100%
+      );
+      border-radius: 3rem;
+      font-family: Verdana;
+      letter-spacing: 0.12em;
+      &:hover {
+        background: linear-gradient(
+          0deg,
+          rgb(27, 134, 136) 0%,
+          rgb(32, 55, 168) 100%
+        );
+      }
+    }
+  }
+
+  .user-profile {
+    background: url("https://wallpaperaccess.com/full/3136252.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .user-modify-loading {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    line-height: 100vh;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.70022003);
+    color: white;
+    font-size: 40px;
+  }
+
+  .user-profile-container {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    width: 90%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.911);
+    color: white;
+    margin: auto;
+    animation: fadedProfile-PC 1s ease-in-out;
+    .user-profile-info {
+      border-radius: 2rem;
+      position: relative;
+      width: 100%;
+      height: 40%;
+      background: url("https://wallpaperboat.com/wp-content/uploads/2020/04/aesthetic-christmas-background-full-hd.jpg");
+      // background: rgb(58, 43, 43);
+
+      img {
+        position: absolute;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        top: 5%;
+        left: calc(50% - 75px);
+        &:hover {
+          cursor: pointer;
+          opacity: 0.88;
+        }
+      }
+
+      .fa-image {
+        position: absolute;
+        padding: 5px;
+        top: calc(5% + 140px);
+        left: calc(50% - 95px + 5rem);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        color: black;
+      }
+
+      .fa-pencil-alt {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.671);
+      }
+
+      .fas:hover {
+        cursor: pointer;
+        color: rgba(78, 76, 76, 0.986);
+      }
+
+      .user-full-name {
+        position: absolute;
+        top: calc(5% + 150px + 2.2vh);
+        left: calc(50% - 100px);
+        text-align: center;
+        min-width: 200px;
+        max-width: 220px;
+        font-size: 1.0em;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.548);
+      }
+
+      .user-full-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: calc(5% + 150px + 2.2vh);
+        left: calc(50% - 100px);
+        input[type="text"] {
+          min-width: 200px;
+          max-width: 220px;
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 1.5em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px;
+        }
+      }
+
+      .user-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: calc(5% + 150px + 2.2vh + 30px);
+        left: calc(50% - 90px);
+        input[type="text"] {
+          min-width: 150px;
+          max-width: 170px;
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 1.2em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px;
+        }
+      }
+
+      h5 {
+        position: absolute;
+        top: calc(5% + 150px + 2.2vh + 30px);
+        left: calc(50% - 70px);
+        text-align: center;
+        font-size: 0.8em;
+        min-width: 150px;
+        max-width: 170px;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.479);
+      }
+
+      .user-profile-follow-container {
+        position: absolute;
+        display: flex;
+        top: calc(5% + 150px + 2.2vh + 60px);
+        left: calc(50% - 60%/2);
+        width: 60%;
+        height: 10%;
+        border-radius: 2rem;
+        background: rgba(12, 12, 12, 0.671);
+        div {
+          font-family: cursive;
+          width: 33%;
+          font-size: 10px;
+          text-align: center;
+          div {
+            width: 100%;
+          }
+        }
+      }
+
+      .user-profile-taskbar {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.705);
+        padding: 10px;
+        border-radius: 1rem;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        i {
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .user-profile-overview {
+      overflow-y: auto;
+      overflow-x: auto;
+      height: 60%;
+      .overview-songs {
+        animation: fadedOverviewSongs-PC 1s ease-in-out;
+        width: 100%;
+        padding: 10px 5px 5px 5px;
+        h5 {
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          font-size: 1.2em;
+          font-weight: bold;
+          padding-left: 15px;
+          padding-bottom: 10px;
+        }
+        .overview-user-songs-container,
+        .overview-user-playlist-container {
+          display: flex;
+          width: 100%;
+          margin: 10px 0;
+          overflow-y: auto;
+          overflow-x: auto;
+          // overflow-x: hidden;
+          .song-empty {
+            width: calc(35vw);
+            height: calc(35vw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5px;
+            border-radius: 1rem;
+            background-color: rgba(143, 143, 143, 0.397);
+            color: white;
+            text-decoration: none;
+            &:hover {
+              background-color: rgba(207, 207, 207, 0.397);
+              cursor: pointer;
+            }
+          }
+
+          .overview-user-song {
+            min-width: 50%;
+            img {
+              width: calc(35vw);
+              height: calc(35vw);
+              margin: 0 5%;
+              border-radius: 1rem;
+              &:hover {
+                cursor: pointer;
+                opacity: 0.88;
+              }
+            }
+            .song-name {
+              margin-left: 15px;
+              font-size: 10px;
+            }
+            .song-artists {
+              margin-left: 15px;
+              font-size: 8px;
+            }
+          }
+
+          .overview-user-playlist {
+            min-width: 100%;
+            max-width: calc(70vw);
+            padding: 0 15px;
+            min-height: calc(70vw);
+            max-height: 100vh;
+            // border-radius: 2rem;
+            // overflow-y: auto;
+            .overview-playlist-thumbnail {
+              margin: auto;
+              width: calc(70vw);
+              height: calc(70vw);
+              display: flex;
+              flex-wrap: wrap;
+              background-color: rgba(85, 58, 58, 0.397);
+              border-radius: 2rem;
+              img {
+                width: calc(70vw / 2);
+                height: calc(70vw / 2);
+                border-radius: 1rem;
+                // border-radius: 2rem;
+              }
+
+              div {
+                width: calc(70vw / 2);
+                height: calc(70vw / 2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397);
+                &:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer;
+                }
+              }
+
+              .add-playlist {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397);
+                &:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer;
+                }
+              }
+
+              &:hover {
+                cursor: pointer;
+                opacity: 0.88;
+              }
+            }
+            .playlist-detail {
+              min-height: 55px;
+              .song-name {
+               
+                font-size: 13px;
+                i {
+                  float: right;
+                  // line-height: 30px;
+                }
+              }
+              .song-artists {
+               
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .custom-modal-fullname .modal-content{
+    margin-top: 35vh;
+    font-size: 1.5rem;
+    .user-preview{
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 10%;
+      background: linear-gradient(to left, rgb(124, 86, 10), rgb(0, 0, 0));
+      img{
+        width: 20%;
+        padding: 5px;
+        border-radius: 50%;
+      }
+  
+      div{
+        padding: 5px 0 0 5px;
+        color: rgb(241, 238, 234);
+        h5{
+          font-size: 0.8rem;
+          margin: 0;
+        }
+        div{
+          font-size: 0.8rem;
+          line-height: 0.8rem;
+        }
+      }
+  
+      .user-profile-follow-container{
+        display: flex;
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        background-color: rgba(0, 0, 0, 0.582);
+        border-radius: 2rem;
+        padding: 5px 3px;
+        div{
+          padding: 0 3px;
+          text-align: center;
+          font-size: 10px;
         }
       }
     }

@@ -203,378 +203,810 @@
     opacity: 1;
     height: 70%; } }
 
-.three-dot-user-profile {
-  position: relative; }
-  .three-dot-user-profile:hover {
-    color: #777474;
-    cursor: pointer; }
-
-.alert-error-box {
-  z-index: 9999999999;
-  position: fixed;
-  top: 90vh;
-  left: 1vw;
-  padding: 1vh;
-  min-width: 20vw;
-  max-width: 30vw;
-  height: 5vh;
-  background-color: #be4167;
-  border-radius: 0.5rem;
-  color: white;
-  border: none; }
-  .alert-error-box i {
-    display: flex;
-    height: 100%;
-    justify-self: center;
-    align-items: center;
-    float: right;
-    font-size: 1.3rem; }
-    .alert-error-box i:hover {
-      color: #d8d8d8;
-      cursor: pointer; }
-
-.custom-modal-task-bar-profile .modal-content {
-  color: white;
-  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-  border: none; }
-
-.custom-modal-task-bar-profile h5 {
-  text-align: center; }
-
-.custom-modal-task-bar-profile .button-section {
-  width: 100%;
-  padding: 10px 0 0 0; }
-  .custom-modal-task-bar-profile .button-section button {
-    width: 40%;
-    margin: 0 5%;
-    font-weight: bold;
-    overflow-y: hidden;
-    max-height: 100px; }
-    .custom-modal-task-bar-profile .button-section button:hover {
-      color: white;
-      background-color: #141936; }
-  .custom-modal-task-bar-profile .button-section .custom-delete-account-btn {
-    width: 40%; }
-
-.custom-modal-task-bar-profile input[type="text"] {
-  margin: 5px 0;
-  width: 100%; }
-
-.custom-modal-task-bar-profile span {
-  padding: 2px;
-  background-color: rgba(0, 0, 0, 0.856);
-  border-radius: 0.3rem; }
-
-.playlist-overview {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.473); }
-  .playlist-overview .playlist-song-count-overview {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    top: 0;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.89);
-    border-radius: 1rem;
-    line-height: 80px;
-    margin: 10px; }
-  .playlist-overview .playlist-name-overview {
-    position: absolute;
-    left: 120px;
-    top: 10px; }
-
-.custom-modal-add-playlist .modal-content {
-  margin-top: 30vh;
-  font-family: Verdana;
-  letter-spacing: 0.1em; }
-  .custom-modal-add-playlist .modal-content .custom-header-add-playlist {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    letter-spacing: 0.1em; }
-
-.custom-modal-add-playlist .modal-dialog .modal-content {
-  background: linear-gradient(0deg, #420c0c 0%, #4b5280 100%);
-  color: white; }
-
-.custom-modal-add-playlist .custom-btn-close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px; }
-
-.custom-modal-add-playlist .modal-body h4 {
-  padding-top: 20px; }
-
-.custom-modal-add-playlist .modal-body label {
-  width: 100%;
-  text-align: center; }
-
-.custom-modal-add-playlist .custom-add-playlist-button {
-  margin-top: 30px;
-  width: 100%;
-  background: linear-gradient(0deg, #22c1c3 0%, #2d51fd 100%);
-  border-radius: 3rem;
-  font-family: Verdana;
-  letter-spacing: 0.12em; }
-  .custom-modal-add-playlist .custom-add-playlist-button:hover {
-    background: linear-gradient(0deg, #1b8688 0%, #2037a8 100%); }
-
-.user-profile {
-  background: url("https://wallpaperaccess.com/full/3136252.jpg");
-  width: 100vw;
-  height: 100vh; }
-
-.user-modify-loading {
-  z-index: 10000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  line-height: 100vh;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.70022);
-  color: white;
-  font-size: 40px; }
-
-.user-profile-container {
-  border-radius: 2rem;
-  width: 80%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.911);
-  color: white;
-  margin: auto;
-  animation: fadedProfile-PC 1s ease-in-out; }
-  .user-profile-container .user-profile-info {
-    border-radius: 2rem;
+@media (min-width: 1200px) {
+  .three-dot-user-profile {
     position: relative;
-    width: 100%;
-    height: 30%;
-    background: url("https://wallpaperboat.com/wp-content/uploads/2020/04/aesthetic-christmas-background-full-hd.jpg"); }
-    .user-profile-container .user-profile-info img {
-      position: absolute;
-      border-radius: 50%;
-      height: 150px;
-      width: 150px;
-      top: 5rem;
-      left: 5rem; }
-      .user-profile-container .user-profile-info img:hover {
-        cursor: pointer;
-        opacity: 0.88; }
-    .user-profile-container .user-profile-info .fa-image {
-      position: absolute;
-      padding: 5px;
-      top: calc(5rem + 140px);
-      left: calc(65px + 5rem);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      color: black; }
-    .user-profile-container .user-profile-info .fa-pencil-alt {
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.671); }
-    .user-profile-container .user-profile-info .fas:hover {
-      cursor: pointer;
-      color: rgba(78, 76, 76, 0.986); }
-    .user-profile-container .user-profile-info .user-full-name {
-      position: absolute;
-      top: 5rem;
-      left: 15rem;
-      font-size: 1.5em;
-      font-weight: 700;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 2px 10px;
-      border-radius: 1rem;
-      background: rgba(0, 0, 0, 0.548); }
-    .user-profile-container .user-profile-info .user-full-name-input {
-      position: absolute;
-      font-weight: 700;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      top: 5rem;
-      left: 15rem; }
-      .user-profile-container .user-profile-info .user-full-name-input input[type="text"] {
-        background: rgba(0, 0, 0, 0.548);
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        color: white;
-        font-size: 1.5em;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 700;
-        letter-spacing: 1px; }
-    .user-profile-container .user-profile-info .user-name-input {
-      position: absolute;
-      font-weight: 700;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      top: 8rem;
-      left: 15rem; }
-      .user-profile-container .user-profile-info .user-name-input input[type="text"] {
-        background: rgba(0, 0, 0, 0.548);
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        color: white;
-        font-size: 1.2em;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 700;
-        letter-spacing: 1px; }
-    .user-profile-container .user-profile-info h5 {
-      position: absolute;
-      top: 8rem;
-      left: 15rem;
-      padding: 2px 10px;
-      border-radius: 1rem;
-      background: rgba(0, 0, 0, 0.479); }
-    .user-profile-container .user-profile-info .user-profile-follow-container {
-      position: absolute;
+    width: 30px;
+    text-align: center;
+    background-color: #727070;
+    border-radius: 50%; }
+    .three-dot-user-profile:hover {
+      color: #a09e9e;
+      cursor: pointer; }
+  .alert-error-box {
+    z-index: 9999999999;
+    position: fixed;
+    top: 90vh;
+    left: 1vw;
+    padding: 1vh;
+    min-width: 20vw;
+    max-width: 30vw;
+    height: 5vh;
+    background-color: #be4167;
+    border-radius: 0.5rem;
+    color: white;
+    border: none; }
+    .alert-error-box i {
       display: flex;
-      top: 5rem;
-      right: 10rem;
-      width: 20%;
-      height: 20%;
-      border-radius: 2rem;
-      background: rgba(12, 12, 12, 0.671); }
-      .user-profile-container .user-profile-info .user-profile-follow-container div {
-        font-family: cursive;
-        width: 33%;
-        font-size: 1vw;
-        text-align: center; }
-        .user-profile-container .user-profile-info .user-profile-follow-container div div {
-          width: 100%; }
-    .user-profile-container .user-profile-info .user-profile-taskbar {
+      height: 100%;
+      justify-self: center;
+      align-items: center;
+      float: right;
+      font-size: 1.3rem; }
+      .alert-error-box i:hover {
+        color: #d8d8d8;
+        cursor: pointer; }
+  .custom-modal-task-bar-profile .modal-content {
+    color: white;
+    background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+    border: none; }
+  .custom-modal-task-bar-profile h5 {
+    text-align: center; }
+  .custom-modal-task-bar-profile .button-section {
+    width: 100%;
+    padding: 10px 0 0 0; }
+    .custom-modal-task-bar-profile .button-section button {
+      width: 40%;
+      margin: 0 5%;
+      font-weight: bold;
+      overflow-y: hidden;
+      max-height: 100px; }
+      .custom-modal-task-bar-profile .button-section button:hover {
+        color: white;
+        background-color: #141936; }
+    .custom-modal-task-bar-profile .button-section .custom-delete-account-btn {
+      width: 40%; }
+  .custom-modal-task-bar-profile input[type="text"] {
+    margin: 5px 0;
+    width: 100%; }
+  .custom-modal-task-bar-profile span {
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.856);
+    border-radius: 0.3rem; }
+  .playlist-overview {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.473); }
+    .playlist-overview .playlist-song-count-overview {
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.705);
-      padding: 10px;
+      width: 80px;
+      height: 80px;
+      top: 0;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.89);
       border-radius: 1rem;
-      top: 10px;
-      right: 10px;
-      display: flex; }
-      .user-profile-container .user-profile-info .user-profile-taskbar i {
-        padding: 0 10px; }
-  .user-profile-container .user-profile-overview {
-    overflow-y: auto;
-    height: 70%; }
-    .user-profile-container .user-profile-overview .overview-songs {
-      animation: fadedOverviewSongs-PC 1s ease-in-out;
+      line-height: 80px;
+      margin: 10px; }
+    .playlist-overview .playlist-name-overview {
+      position: absolute;
+      left: 120px;
+      top: 10px; }
+  .custom-modal-add-playlist .modal-content {
+    margin-top: 30vh;
+    font-family: Verdana;
+    letter-spacing: 0.1em; }
+    .custom-modal-add-playlist .modal-content .custom-header-add-playlist {
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      letter-spacing: 0.1em; }
+  .custom-modal-add-playlist .modal-dialog .modal-content {
+    background: linear-gradient(0deg, #420c0c 0%, #4b5280 100%);
+    color: white; }
+  .custom-modal-add-playlist .custom-btn-close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px; }
+  .custom-modal-add-playlist .modal-body h4 {
+    padding-top: 20px; }
+  .custom-modal-add-playlist .modal-body label {
+    width: 100%;
+    text-align: center; }
+  .custom-modal-add-playlist .custom-add-playlist-button {
+    margin-top: 30px;
+    width: 100%;
+    background: linear-gradient(0deg, #22c1c3 0%, #2d51fd 100%);
+    border-radius: 3rem;
+    font-family: Verdana;
+    letter-spacing: 0.12em; }
+    .custom-modal-add-playlist .custom-add-playlist-button:hover {
+      background: linear-gradient(0deg, #1b8688 0%, #2037a8 100%); }
+  .user-profile {
+    background: url("https://wallpaperaccess.com/full/3136252.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll; }
+  .user-modify-loading {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    line-height: 100vh;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.70022);
+    color: white;
+    font-size: 40px; }
+  .user-profile-container {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.911);
+    color: white;
+    margin: auto;
+    animation: fadedProfile-PC 1s ease-in-out; }
+    .user-profile-container .user-profile-info {
+      border-radius: 2rem;
+      position: relative;
       width: 100%;
-      height: 65%;
-      padding: 30px 20px; }
-      .user-profile-container .user-profile-overview .overview-songs h5 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 1.3em;
-        font-weight: bold;
-        padding-left: 15px;
-        padding-bottom: 10px; }
-      .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container,
-      .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container {
-        display: flex;
-        width: 100%;
-        margin: 10px 0;
-        overflow-y: auto;
-        overflow-x: auto; }
-        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty,
-        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty {
-          width: calc(14vw);
-          height: calc(14vw);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 2.5px;
-          border-radius: 1rem;
-          background-color: rgba(143, 143, 143, 0.397);
+      height: 30%;
+      background: url("https://wallpaperboat.com/wp-content/uploads/2020/04/aesthetic-christmas-background-full-hd.jpg"); }
+      .user-profile-container .user-profile-info img {
+        position: absolute;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        top: 5rem;
+        left: 5rem; }
+        .user-profile-container .user-profile-info img:hover {
+          cursor: pointer;
+          opacity: 0.88; }
+      .user-profile-container .user-profile-info .fa-image {
+        position: absolute;
+        padding: 5px;
+        top: calc(5rem + 140px);
+        left: calc(65px + 5rem);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        color: black; }
+      .user-profile-container .user-profile-info .fa-pencil-alt {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.671); }
+      .user-profile-container .user-profile-info .fas:hover {
+        cursor: pointer;
+        color: rgba(78, 76, 76, 0.986); }
+      .user-profile-container .user-profile-info .user-full-name {
+        position: absolute;
+        top: 5rem;
+        left: 15rem;
+        font-size: 1.5em;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.548); }
+      .user-profile-container .user-profile-info .user-full-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: 5rem;
+        left: 15rem; }
+        .user-profile-container .user-profile-info .user-full-name-input input[type="text"] {
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
           color: white;
-          text-decoration: none; }
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty:hover,
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty:hover {
-            background-color: rgba(207, 207, 207, 0.397);
-            cursor: pointer; }
-        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song,
-        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song {
-          min-width: 20%; }
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img,
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img {
+          font-size: 1.5em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px; }
+      .user-profile-container .user-profile-info .user-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: 8rem;
+        left: 15rem; }
+        .user-profile-container .user-profile-info .user-name-input input[type="text"] {
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 1.2em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px; }
+      .user-profile-container .user-profile-info h5 {
+        position: absolute;
+        top: 8rem;
+        left: 15rem;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.479); }
+      .user-profile-container .user-profile-info .user-profile-follow-container {
+        position: absolute;
+        display: flex;
+        top: 5rem;
+        right: 10rem;
+        width: 20%;
+        height: 20%;
+        border-radius: 2rem;
+        background: rgba(12, 12, 12, 0.671); }
+        .user-profile-container .user-profile-info .user-profile-follow-container div {
+          font-family: cursive;
+          width: 33%;
+          font-size: 1vw;
+          text-align: center; }
+          .user-profile-container .user-profile-info .user-profile-follow-container div div {
+            width: 100%; }
+      .user-profile-container .user-profile-info .user-profile-taskbar {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.705);
+        padding: 10px;
+        border-radius: 1rem;
+        top: 10px;
+        right: 10px;
+        display: flex; }
+        .user-profile-container .user-profile-info .user-profile-taskbar i {
+          padding: 0 10px; }
+    .user-profile-container .user-profile-overview {
+      overflow-y: auto;
+      height: 70%; }
+      .user-profile-container .user-profile-overview .overview-songs {
+        animation: fadedOverviewSongs-PC 1s ease-in-out;
+        width: 100%;
+        height: 65%;
+        padding: 30px 20px; }
+        .user-profile-container .user-profile-overview .overview-songs h5 {
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          font-size: 1.3em;
+          font-weight: bold;
+          padding-left: 15px;
+          padding-bottom: 10px; }
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container,
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container {
+          display: flex;
+          width: 100%;
+          margin: 10px 0;
+          overflow-y: auto;
+          overflow-x: auto; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty {
             width: calc(14vw);
             height: calc(14vw);
-            margin: 0 5%;
-            border-radius: 1rem; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img:hover,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img:hover {
-              cursor: pointer;
-              opacity: 0.88; }
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-name,
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-name {
-            margin-left: 15px;
-            font-size: 1.2rem; }
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-artists,
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-artists {
-            margin-left: 15px;
-            font-size: 0.7rem; }
-        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist,
-        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist {
-          max-width: 20%;
-          padding: 0 15px;
-          min-height: calc(14vw); }
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail,
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail {
-            min-width: calc(14vw);
-            height: calc(14vw);
             display: flex;
-            flex-wrap: wrap;
-            background-color: rgba(85, 58, 58, 0.397);
-            border-radius: 2rem; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail img,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail img {
-              width: calc(14vw / 2);
-              height: calc(14vw / 2);
-              padding: 2.5px;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5px;
+            border-radius: 1rem;
+            background-color: rgba(143, 143, 143, 0.397);
+            color: white;
+            text-decoration: none; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty:hover,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty:hover {
+              background-color: rgba(207, 207, 207, 0.397);
+              cursor: pointer; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song {
+            min-width: 20%; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img {
+              width: calc(14vw);
+              height: calc(14vw);
+              margin: 0 5%;
               border-radius: 1rem; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div {
-              width: calc(14vw / 2);
-              height: calc(14vw / 2);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 2.5px;
-              border-radius: 1rem;
-              background-color: rgba(143, 143, 143, 0.397); }
-              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div:hover,
-              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div:hover {
-                background-color: rgba(207, 207, 207, 0.397);
-                cursor: pointer; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 2.5px;
-              border-radius: 1rem;
-              background-color: rgba(143, 143, 143, 0.397); }
-              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover,
-              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover {
-                background-color: rgba(207, 207, 207, 0.397);
-                cursor: pointer; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail:hover,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail:hover {
-              cursor: pointer;
-              opacity: 0.88; }
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail,
-          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail {
-            min-height: 55px; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-name,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-name {
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img:hover,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img:hover {
+                cursor: pointer;
+                opacity: 0.88; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-name,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-name {
               margin-left: 15px;
               font-size: 1.2rem; }
-              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-name i,
-              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-name i {
-                float: right;
-                line-height: 30px; }
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-artists,
-            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-artists {
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-artists,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-artists {
               margin-left: 15px;
               font-size: 0.7rem; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist {
+            max-width: 20%;
+            padding: 0 15px;
+            min-height: calc(14vw); }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail {
+              min-width: calc(14vw);
+              height: calc(14vw);
+              display: flex;
+              flex-wrap: wrap;
+              background-color: rgba(85, 58, 58, 0.397);
+              border-radius: 2rem; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail img,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail img {
+                width: calc(14vw / 2);
+                height: calc(14vw / 2);
+                padding: 2.5px;
+                border-radius: 1rem; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div {
+                width: calc(14vw / 2);
+                height: calc(14vw / 2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397); }
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div:hover,
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397); }
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover,
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail:hover,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail:hover {
+                cursor: pointer;
+                opacity: 0.88; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail {
+              min-height: 55px; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-name,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-name {
+                margin-left: 15px;
+                font-size: 1.2rem; }
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-name i,
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-name i {
+                  float: right;
+                  line-height: 30px; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-artists,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-artists {
+                margin-left: 15px;
+                font-size: 0.7rem; }
+  .custom-modal-fullname .modal-content {
+    margin-top: 35vh;
+    font-size: 1.5rem; }
+    .custom-modal-fullname .modal-content .user-preview {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 10%;
+      background: linear-gradient(to left, #7c560a, black); }
+      .custom-modal-fullname .modal-content .user-preview img {
+        width: 20%;
+        padding: 5px;
+        border-radius: 50%; }
+      .custom-modal-fullname .modal-content .user-preview div {
+        padding: 5px 0 0 5px;
+        color: #f1eeea; }
+        .custom-modal-fullname .modal-content .user-preview div h5 {
+          font-size: 1.3rem;
+          margin: 0; }
+        .custom-modal-fullname .modal-content .user-preview div div {
+          font-size: 1rem;
+          line-height: 1rem; }
+      .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container {
+        display: flex;
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        background-color: rgba(0, 0, 0, 0.582);
+        border-radius: 2rem;
+        padding: 5px 15px; }
+        .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container div {
+          padding: 0 5px;
+          text-align: center;
+          font-size: 12px; } }
+
+@media (max-width: 1199.99999px) {
+  .three-dot-user-profile {
+    position: relative;
+    padding: 5px;
+    background-color: gainsboro;
+    border-radius: 50%; }
+    .three-dot-user-profile:hover {
+      color: #777474;
+      cursor: pointer; }
+  .alert-error-box {
+    z-index: 9999999999;
+    position: fixed;
+    top: 90vh;
+    left: 1vw;
+    padding: 1vh;
+    width: 95%;
+    height: 5vh;
+    background-color: #be4167;
+    border-radius: 0.5rem;
+    color: white;
+    border: none; }
+    .alert-error-box i {
+      display: flex;
+      height: 100%;
+      justify-self: center;
+      align-items: center;
+      float: right;
+      font-size: 1.3rem; }
+      .alert-error-box i:hover {
+        color: #d8d8d8;
+        cursor: pointer; }
+  .custom-modal-task-bar-profile .modal-content {
+    margin-top: 10vh;
+    color: white;
+    background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+    border: none; }
+  .custom-modal-task-bar-profile h5 {
+    text-align: center; }
+  .custom-modal-task-bar-profile .button-section {
+    width: 100%;
+    padding: 10px 0 0 0; }
+    .custom-modal-task-bar-profile .button-section button {
+      width: 40%;
+      margin: 0 5%;
+      font-weight: bold;
+      overflow-y: hidden;
+      max-height: 100px; }
+      .custom-modal-task-bar-profile .button-section button:hover {
+        color: white;
+        background-color: #141936; }
+    .custom-modal-task-bar-profile .button-section .custom-delete-account-btn {
+      width: 40%; }
+  .custom-modal-task-bar-profile input[type="text"] {
+    margin: 5px 0;
+    width: 100%; }
+  .custom-modal-task-bar-profile span {
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.856);
+    border-radius: 0.3rem; }
+  .playlist-overview {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.473); }
+    .playlist-overview .playlist-song-count-overview {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      top: 0;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.89);
+      border-radius: 1rem;
+      line-height: 80px;
+      margin: 10px; }
+    .playlist-overview .playlist-name-overview {
+      position: absolute;
+      left: 120px;
+      top: 10px; }
+  .custom-modal-add-playlist .modal-content {
+    margin-top: 30vh;
+    font-family: Verdana;
+    letter-spacing: 0.1em; }
+    .custom-modal-add-playlist .modal-content .custom-header-add-playlist {
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      letter-spacing: 0.1em; }
+  .custom-modal-add-playlist .modal-dialog .modal-content {
+    background: linear-gradient(0deg, #420c0c 0%, #4b5280 100%);
+    color: white; }
+  .custom-modal-add-playlist .custom-btn-close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px; }
+  .custom-modal-add-playlist .modal-body h4 {
+    padding-top: 20px; }
+  .custom-modal-add-playlist .modal-body label {
+    width: 100%;
+    text-align: center; }
+  .custom-modal-add-playlist .custom-add-playlist-button {
+    margin-top: 30px;
+    width: 100%;
+    background: linear-gradient(0deg, #22c1c3 0%, #2d51fd 100%);
+    border-radius: 3rem;
+    font-family: Verdana;
+    letter-spacing: 0.12em; }
+    .custom-modal-add-playlist .custom-add-playlist-button:hover {
+      background: linear-gradient(0deg, #1b8688 0%, #2037a8 100%); }
+  .user-profile {
+    background: url("https://wallpaperaccess.com/full/3136252.jpg");
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; }
+  .user-modify-loading {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    line-height: 100vh;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.70022);
+    color: white;
+    font-size: 40px; }
+  .user-profile-container {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    width: 90%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.911);
+    color: white;
+    margin: auto;
+    animation: fadedProfile-PC 1s ease-in-out; }
+    .user-profile-container .user-profile-info {
+      border-radius: 2rem;
+      position: relative;
+      width: 100%;
+      height: 40%;
+      background: url("https://wallpaperboat.com/wp-content/uploads/2020/04/aesthetic-christmas-background-full-hd.jpg"); }
+      .user-profile-container .user-profile-info img {
+        position: absolute;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        top: 5%;
+        left: calc(50% - 75px); }
+        .user-profile-container .user-profile-info img:hover {
+          cursor: pointer;
+          opacity: 0.88; }
+      .user-profile-container .user-profile-info .fa-image {
+        position: absolute;
+        padding: 5px;
+        top: calc(5% + 140px);
+        left: calc(50% - 95px + 5rem);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        color: black; }
+      .user-profile-container .user-profile-info .fa-pencil-alt {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.671); }
+      .user-profile-container .user-profile-info .fas:hover {
+        cursor: pointer;
+        color: rgba(78, 76, 76, 0.986); }
+      .user-profile-container .user-profile-info .user-full-name {
+        position: absolute;
+        top: calc(5% + 150px + 2.2vh);
+        left: calc(50% - 100px);
+        text-align: center;
+        min-width: 200px;
+        max-width: 220px;
+        font-size: 1.0em;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.548); }
+      .user-profile-container .user-profile-info .user-full-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: calc(5% + 150px + 2.2vh);
+        left: calc(50% - 100px); }
+        .user-profile-container .user-profile-info .user-full-name-input input[type="text"] {
+          min-width: 200px;
+          max-width: 220px;
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 1.5em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px; }
+      .user-profile-container .user-profile-info .user-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: calc(5% + 150px + 2.2vh + 30px);
+        left: calc(50% - 90px); }
+        .user-profile-container .user-profile-info .user-name-input input[type="text"] {
+          min-width: 150px;
+          max-width: 170px;
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 1.2em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px; }
+      .user-profile-container .user-profile-info h5 {
+        position: absolute;
+        top: calc(5% + 150px + 2.2vh + 30px);
+        left: calc(50% - 70px);
+        text-align: center;
+        font-size: 0.8em;
+        min-width: 150px;
+        max-width: 170px;
+        padding: 2px 10px;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.479); }
+      .user-profile-container .user-profile-info .user-profile-follow-container {
+        position: absolute;
+        display: flex;
+        top: calc(5% + 150px + 2.2vh + 60px);
+        left: calc(50% - 60%/2);
+        width: 60%;
+        height: 10%;
+        border-radius: 2rem;
+        background: rgba(12, 12, 12, 0.671); }
+        .user-profile-container .user-profile-info .user-profile-follow-container div {
+          font-family: cursive;
+          width: 33%;
+          font-size: 10px;
+          text-align: center; }
+          .user-profile-container .user-profile-info .user-profile-follow-container div div {
+            width: 100%; }
+      .user-profile-container .user-profile-info .user-profile-taskbar {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.705);
+        padding: 10px;
+        border-radius: 1rem;
+        top: 10px;
+        right: 10px;
+        display: flex; }
+        .user-profile-container .user-profile-info .user-profile-taskbar i {
+          padding: 0 10px; }
+    .user-profile-container .user-profile-overview {
+      overflow-y: auto;
+      overflow-x: auto;
+      height: 60%; }
+      .user-profile-container .user-profile-overview .overview-songs {
+        animation: fadedOverviewSongs-PC 1s ease-in-out;
+        width: 100%;
+        padding: 10px 5px 5px 5px; }
+        .user-profile-container .user-profile-overview .overview-songs h5 {
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          font-size: 1.2em;
+          font-weight: bold;
+          padding-left: 15px;
+          padding-bottom: 10px; }
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container,
+        .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container {
+          display: flex;
+          width: 100%;
+          margin: 10px 0;
+          overflow-y: auto;
+          overflow-x: auto; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty {
+            width: calc(35vw);
+            height: calc(35vw);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5px;
+            border-radius: 1rem;
+            background-color: rgba(143, 143, 143, 0.397);
+            color: white;
+            text-decoration: none; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .song-empty:hover,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .song-empty:hover {
+              background-color: rgba(207, 207, 207, 0.397);
+              cursor: pointer; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song {
+            min-width: 50%; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img {
+              width: calc(35vw);
+              height: calc(35vw);
+              margin: 0 5%;
+              border-radius: 1rem; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song img:hover,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song img:hover {
+                cursor: pointer;
+                opacity: 0.88; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-name,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-name {
+              margin-left: 15px;
+              font-size: 10px; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-song .song-artists,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-song .song-artists {
+              margin-left: 15px;
+              font-size: 8px; }
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist,
+          .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist {
+            min-width: 100%;
+            max-width: calc(70vw);
+            padding: 0 15px;
+            min-height: calc(70vw);
+            max-height: 100vh; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail {
+              margin: auto;
+              width: calc(70vw);
+              height: calc(70vw);
+              display: flex;
+              flex-wrap: wrap;
+              background-color: rgba(85, 58, 58, 0.397);
+              border-radius: 2rem; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail img,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail img {
+                width: calc(70vw / 2);
+                height: calc(70vw / 2);
+                border-radius: 1rem; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div {
+                width: calc(70vw / 2);
+                height: calc(70vw / 2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397); }
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail div:hover,
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail div:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5px;
+                border-radius: 1rem;
+                background-color: rgba(143, 143, 143, 0.397); }
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover,
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail .add-playlist:hover {
+                  background-color: rgba(207, 207, 207, 0.397);
+                  cursor: pointer; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .overview-playlist-thumbnail:hover,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .overview-playlist-thumbnail:hover {
+                cursor: pointer;
+                opacity: 0.88; }
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail,
+            .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail {
+              min-height: 55px; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-name,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-name {
+                font-size: 13px; }
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-name i,
+                .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-name i {
+                  float: right; }
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-songs-container .overview-user-playlist .playlist-detail .song-artists,
+              .user-profile-container .user-profile-overview .overview-songs .overview-user-playlist-container .overview-user-playlist .playlist-detail .song-artists {
+                font-size: 10px; }
+  .custom-modal-fullname .modal-content {
+    margin-top: 35vh;
+    font-size: 1.5rem; }
+    .custom-modal-fullname .modal-content .user-preview {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 10%;
+      background: linear-gradient(to left, #7c560a, black); }
+      .custom-modal-fullname .modal-content .user-preview img {
+        width: 20%;
+        padding: 5px;
+        border-radius: 50%; }
+      .custom-modal-fullname .modal-content .user-preview div {
+        padding: 5px 0 0 5px;
+        color: #f1eeea; }
+        .custom-modal-fullname .modal-content .user-preview div h5 {
+          font-size: 0.8rem;
+          margin: 0; }
+        .custom-modal-fullname .modal-content .user-preview div div {
+          font-size: 0.8rem;
+          line-height: 0.8rem; }
+      .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container {
+        display: flex;
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        background-color: rgba(0, 0, 0, 0.582);
+        border-radius: 2rem;
+        padding: 5px 3px; }
+        .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container div {
+          padding: 0 3px;
+          text-align: center;
+          font-size: 10px; } }
 
 input {
   font-family: Verdana;
@@ -760,40 +1192,6 @@ input {
     opacity: 0.8; }
   .custom-modal-user .modal-content label:hover {
     opacity: 0.8; }
-
-.custom-modal-fullname .modal-content {
-  margin-top: 35vh;
-  font-size: 1.5rem; }
-  .custom-modal-fullname .modal-content .user-preview {
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 10%;
-    background: linear-gradient(to left, #7c560a, black); }
-    .custom-modal-fullname .modal-content .user-preview img {
-      width: 20%;
-      padding: 5px;
-      border-radius: 50%; }
-    .custom-modal-fullname .modal-content .user-preview div {
-      padding: 5px 0 0 5px;
-      color: #f1eeea; }
-      .custom-modal-fullname .modal-content .user-preview div h5 {
-        margin: 0; }
-      .custom-modal-fullname .modal-content .user-preview div div {
-        line-height: 16px;
-        font-size: 16px; }
-    .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container {
-      display: flex;
-      position: absolute;
-      right: 5px;
-      top: 10px;
-      background-color: rgba(0, 0, 0, 0.582);
-      border-radius: 2rem;
-      padding: 5px 15px; }
-      .custom-modal-fullname .modal-content .user-preview .user-profile-follow-container div {
-        padding: 0 5px;
-        text-align: center;
-        font-size: 12px; }
 
 .custom-modal-avatar .modal-content {
   margin-top: 25vh; }
@@ -1333,7 +1731,7 @@ html {
     color: #fafafa;
     cursor: pointer; } }
 
-@media (max-width: 1199.999px) {
+@media (max-width: 1199.99999px) {
   .slider {
     -webkit-appearance: none;
     width: 100px;
@@ -1484,10 +1882,10 @@ html {
     flex: 1;
     padding: 0 16px; }
   .song .title {
-    font-size: 18px;
+    font-size: calc(12px + 0.4vw);
     color: var(--color-song); }
   .song .author {
-    font-size: 12px;
+    font-size: calc(12px + 0.4vw);
     color: var(--color-song); }
   .song .option {
     padding: 16px 8px;

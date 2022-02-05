@@ -3,10 +3,12 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import {
     searchByKeyword
   } from "nhaccuatui-api-full";
-import {useCallback} from 'react';
+import {useCallback, useState} from 'react';
 import { debounce } from "debounce";
+import UserModifyLoading from "./UserModifyLoading";
 
 export default function SongModal(props) {
+    const [PostSongsLoading, setPostSongsLoading] = useState(false)
      // eslint-disable-next-line
     const debounceSearchSong = useCallback(debounce((value) => searchSong(value), 1000), []);
     const searchSong = (value) => {
@@ -40,10 +42,11 @@ export default function SongModal(props) {
 
     return (
         <div>
+            {(PostSongsLoading)? <UserModifyLoading /> : <></>}
             <input onChange={(e) => { handleInputOnchange(e.target.value); }} className="search-song-input"></input>
             {props.songsList && (props.loading)? <div className="songs-modal-loading"><h4>Loading <Spinner animation="border" className="spinner" variant="info" /></h4></div> : props.songsList.map((song, index) => {
                 return (
-                    <NCTSongs index={index} userDetail={props.userDetail} addSongToDatabase={props.addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} id={song.key} song={song.title} artists={song.artists} image={song.thumbnail} />
+                    <NCTSongs modifyPostSongsLoading={(bl) => setPostSongsLoading(bl)}index={index} userDetail={props.userDetail} addSongToDatabase={props.addSongToDatabase} modifySongPlay={props.modifySongPlay} songs={props.songs} handleAddSong={props.handleAddSong} id={song.key} song={song.title} artists={song.artists} image={song.thumbnail} />
                 )
             })}
         </div>
