@@ -602,25 +602,7 @@
           border-left-color: transparent;
           border-right-color: transparent;
           color: white;
-          font-size: 1.5em;
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-          font-weight: 700;
-          letter-spacing: 1px; }
-      .user-profile-container .user-profile-info .user-name-input {
-        position: absolute;
-        font-weight: 700;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        top: calc(5% + 150px + 2.2vh + 30px);
-        left: calc(50% - 90px); }
-        .user-profile-container .user-profile-info .user-name-input input[type="text"] {
-          min-width: 150px;
-          max-width: 170px;
-          background: rgba(0, 0, 0, 0.548);
-          border-top-color: transparent;
-          border-left-color: transparent;
-          border-right-color: transparent;
-          color: white;
-          font-size: 1.2em;
+          font-size: 1.0em;
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
           font-weight: 700;
           letter-spacing: 1px; }
@@ -635,6 +617,24 @@
         padding: 2px 10px;
         border-radius: 1rem;
         background: rgba(0, 0, 0, 0.479); }
+      .user-profile-container .user-profile-info .user-name-input {
+        position: absolute;
+        font-weight: 700;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        top: calc(5% + 150px + 2.2vh + 30px);
+        left: calc(50% - 90px); }
+        .user-profile-container .user-profile-info .user-name-input input[type="text"] {
+          min-width: 150px;
+          max-width: 170px;
+          background: rgba(0, 0, 0, 0.548);
+          border-top-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          color: white;
+          font-size: 0.8em;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: 700;
+          letter-spacing: 1px; }
       .user-profile-container .user-profile-info .user-profile-follow-container {
         position: absolute;
         display: flex;
