@@ -110,7 +110,7 @@ export default function UserProfile({ path }) {
 
   const submitModifyUserName = () => {
     console.log(userName.length);
-    if (userName.length < 3 || userName.length > 16) {
+    if (userName.length < 3 || userName.length > 16){
       setShowAlert(true);
       setAlertMessage("Username length should be between 3-16");
       return;
@@ -135,7 +135,7 @@ export default function UserProfile({ path }) {
   };
 
   const submitModifyFullName = () => {
-    if (fullName.length < 3 || fullName.length > 30) {
+    if (fullName.length < 3 || fullName.length > 30){
       setShowAlert(true);
       setAlertMessage("Fullname length should be between 3-30");
       return;
@@ -216,13 +216,13 @@ export default function UserProfile({ path }) {
       });
   };
 
-  const signOut = () => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/signout`, { mode: 'cors', withCredentials: true })
-      .then(() => window.location = window.location.origin)
-      .catch((err) => console.log(err));
+  const signOut = () =>{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/user/signout`, {mode: 'cors', withCredentials: true})
+        .then(() => window.location = window.location.origin)
+        .catch((err) => console.log(err));
   }
 
-  const handleDeleteAccount = () => {
+  const handleDeleteAccount = () =>{
     if (confirmUsername !== username) {
       setShowAlert(true);
       setAlertMessage("User name doesn't match!!");
@@ -230,14 +230,14 @@ export default function UserProfile({ path }) {
     }
     const url = `${process.env.REACT_APP_API_ENDPOINT}/user/${username}`;
     setModifyDataLoading(true);
-    axios.delete(url).then(() => {
+    axios.delete(url).then(() =>{
       window.location = window.location.origin;
     })
-      .catch((err) => console.log(err))
-      .finally(() => setModifyDataLoading(false));
+    .catch((err) => console.log(err))
+    .finally(() => setModifyDataLoading(false));
   }
 
-  const handleShowDeleteAccount = (bl) => {
+  const handleShowDeleteAccount = (bl) =>{
     setShowDeleteAccount(bl);
     setConfirmUsername("");
   }
@@ -251,17 +251,14 @@ export default function UserProfile({ path }) {
           {modifyDataLoading ? <UserModifyLoading /> : <></>}
           <div className="user-profile-container">
             <div className="user-profile-info">
-              {validated.current && (
-                <>
-                  <img alt={username} src={userIcon}></img>
-                  <i
-                    className="fas fa-image"
-                    onClick={() => {
-                      setShowAvatarModal(true);
-                    }}
-                  ></i>
-                </>
-              )
+              <img alt={username} src={userIcon}></img>
+              {validated.current &&
+              <i
+                className="fas fa-image"
+                onClick={() => {
+                  setShowAvatarModal(true);
+                }}
+              ></i>
               }
               {onChangeUserFullName ? (
                 <div className="user-full-name-input">
@@ -341,13 +338,13 @@ export default function UserProfile({ path }) {
                   Following <div>0</div>
                 </div>
               </div>
-              {(validated.current) ?
-                <div className="user-profile-taskbar">
-                  <i className="fas fa-sign-out-alt" onClick={() => setShowSignOutModal(true)}></i>
-                  <i className="fas fa-user-cog" onClick={() => { setShowAlert(true); setAlertMessage("Config user isn't available yet :(") }}></i>
-                  <i className="fas fa-user-slash" onClick={() => setShowDeleteAccount(true)}></i>
-                </div>
-                : ''}
+              {(validated.current)?
+              <div className="user-profile-taskbar">
+                <i className="fas fa-sign-out-alt" onClick={() => setShowSignOutModal(true)}></i>
+                <i className="fas fa-user-cog" onClick={() => {setShowAlert(true); setAlertMessage("Config user isn't available yet :(")}}></i>
+                <i className="fas fa-user-slash" onClick={() => setShowDeleteAccount(true)}></i>
+              </div>
+              : ''}
             </div>
 
             <div className="user-profile-overview">
@@ -364,7 +361,7 @@ export default function UserProfile({ path }) {
                         </div>
                       );
                     })}
-                  {(validated.current) ? <a href={`/user/${username}`} className="song-empty"><i className="fas fa-plus"></i></a> : ''}
+                  {(validated.current)? <a href={`/user/${username}`} className="song-empty"><i className="fas fa-plus"></i></a> : ''}
                   {/* {
                     <div className="overview-user-song">
                       <img src="https://trunkey2003.github.io/img-us-uk/img-6.png"></img>
@@ -437,7 +434,7 @@ export default function UserProfile({ path }) {
                                 <div>
                                   <i className="fas fa-plus"></i>
                                 </div>
-                              ) : ((playlist.songCount >= 4) ?
+                              ) : ((playlist.songCount >= 4)? 
                                 <div>
                                   <h5>{playlist.songCount - 3}+</h5>
                                 </div>
@@ -698,8 +695,8 @@ export default function UserProfile({ path }) {
           <Modal className="custom-modal-task-bar-profile" show={showDeleteAccount} onHide={() => handleShowDeleteAccount(false)}>
             <Modal.Body>
               <h5>Are you sure you want to delete your account </h5>
-              Please type your <span>username</span> to confirm. <br />
-              <input type="text" maxlength="16" onChange={(e) => { setConfirmUsername(e.target.value); console.log(e.target.value); }}></input>
+              Please type your <span>username</span> to confirm. <br/>
+              <input type="text" maxlength="16" onChange={(e) => {setConfirmUsername(e.target.value); console.log(e.target.value);}}></input>
               <div className="button-section">
                 <Button className="custom-sign-out-btn" variant="info" onClick={() => handleShowDeleteAccount(false)}>Close <i className="fas fa-times"></i></Button>
                 <Button className="custom-delete-account-btn" variant="info" onClick={() => handleDeleteAccount(false)}>Delete {confirmUsername}</Button>
